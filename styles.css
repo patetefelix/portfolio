@@ -92,6 +92,9 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
   text-transform:lowercase;
   margin:0 0 14px;
 }
+/* Used where we want Title Case / capitalized acronyms (e.g. "UI/UX")
+   to actually render as typed, instead of the lowercase eyebrow default. */
+.eyebrow.is-caps{ text-transform:none; }
 
 .accent{ color:var(--accent); font-style:italic; }
 

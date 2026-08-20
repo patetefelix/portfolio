@@ -36,6 +36,18 @@ Everything project-related lives in **`script.js`**, in the `PROJECTS` array nea
 
 The **"more brand work"** strip (Denali/Bark 2 Earth/Biona are full case studies; the rest are a lighter gallery) lives in the `BRAND_GALLERY` array right below `PROJECTS`.
 
+## Roster expansion (Aug 2026 update)
+
+The portfolio now reflects your full company list — **30 full case studies** (19 UI/UX, 6 brand, 5 growth marketing) plus **14 lighter gallery items**, and a **44-company marquee** ordered by the tier list you provided (biggest/most prominent first). Within each tab, companies you worked with through **Crimson Agility** are listed first, since that's your current and most senior-scope work.
+
+**Before this goes live, you'll need ~44 images** — one per project/gallery item, referenced by predictable filenames like `images/proj-briskheat.jpg` or `images/b-emraw.jpg`. Run this to see every path the code expects:
+```bash
+grep -oP 'images/[a-zA-Z0-9_-]+\.jpg' script.js | sort -u
+```
+Anything missing will just show a broken-image icon — the rest of the card (name, copy, metrics) will still render fine.
+
+**A few companies I only had your one-line description for** (no screenshots) — Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Outlast Supply, Klassen Farm Products, and most of the Tier 5 gallery items — so their case copy is intentionally general (structure/challenge-level, not screenshot-specific claims). Worth a pass to sharpen these with real specifics once you're back in the files.
+
 ## Design system
 
 - **Fonts:** Instrument Serif for display type (headings, card names, the big stats), DM Sans for body copy, DM Mono for the small lowercase labels (`.eyebrow`, tab numbers, `cs-head-item`). All three load from one Google Fonts request in `index.html`. Instrument Serif only ships in weight 400 (regular + italic) — don't set `font-weight` above 400 on anything using `--font-display`, it'll just fall back to the browser's synthetic bold, which looks bad.
