@@ -491,7 +491,15 @@ document.querySelector(".footer-note").innerHTML =
 /* ============================================================
    Init
    ============================================================ */
-tabDescEl.textContent = TAB_COPY[currentTab];
-populateMarquee();
-renderGrid(currentTab);
+// Reveal-on-scroll runs first and independently — a bug in the
+// project data or grid rendering below should never be able to
+// blank out the rest of the page.
 observeReveal(document.querySelectorAll(".hero .reveal, .clients .eyebrow, .work-head, .tabs, .tab-desc, .about .reveal, .contact .reveal"));
+
+try {
+  tabDescEl.textContent = TAB_COPY[currentTab];
+  populateMarquee();
+  renderGrid(currentTab);
+} catch (err){
+  console.error("Félix portfolio — failed to render tabs/grid/marquee:", err);
+}
