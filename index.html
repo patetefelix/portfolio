@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Félix Patete — UI/UX &amp; Brand Designer</title>
+<meta name="description" content="Félix Patete — UI/UX and brand designer specializing in e-commerce storefronts, design systems, and brand identity. Remote from Medellín, Colombia." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">félix<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#contact">say&nbsp;hello</a>
+    </nav>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark theme">
+      <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">.designer — medellín, co</p>
+      <h1 class="reveal">
+        I design commerce<br>
+        systems &amp; brand worlds<br>
+        for teams that <span class="accent">sell&nbsp;things.</span>
+      </h1>
+      <p class="hero-sub reveal">
+        13 years across UI/UX, branding, and email design — 7 of them inside e-commerce,
+        building storefronts on Adobe&nbsp;Commerce, Shopify, BigCommerce, and Shopware.
+        Currently designing at Crimson Agility, remote from Colombia.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#work" class="btn btn-primary">
+          <span>see the work</span>
+          <span class="btn-icon">↓</span>
+        </a>
+        <a href="mailto:patetefelix@gmail.com" class="btn btn-ghost">
+          <span>say hello</span>
+          <span class="btn-icon">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stack" aria-hidden="true">
+      <img class="stack-card c1" src="images/proj-nueskes.jpg" alt="" loading="eager">
+      <img class="stack-card c2" src="images/b-bark2earth.jpg" alt="" loading="eager">
+      <img class="stack-card c3" src="images/email-brumate.jpg" alt="" loading="eager">
+    </div>
+  </section>
+
+  <section class="clients">
+    <p class="eyebrow">.clients</p>
+    <div class="marquee">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="work-head reveal">
+      <p class="eyebrow">.work</p>
+      <h2>A full-service view of one designer<span class="accent">.</span></h2>
+      <p class="work-intro">Three ways to look at the same 7 years of e-commerce work — pick a lens.</p>
+    </div>
+
+    <div class="tabs reveal" role="tablist" id="tabs">
+      <button class="tab active" data-tab="uiux" role="tab" aria-selected="true">
+        <span class="tab-index">01</span> UI/UX &amp; E-Commerce
+      </button>
+      <button class="tab" data-tab="brand" role="tab" aria-selected="false">
+        <span class="tab-index">02</span> Brand Identity
+      </button>
+      <button class="tab" data-tab="growth" role="tab" aria-selected="false">
+        <span class="tab-index">03</span> Growth Marketing Creative
+      </button>
+    </div>
+    <p class="tab-desc reveal" id="tabDesc"></p>
+
+    <div class="grid" id="projectGrid"></div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p class="eyebrow">.about</p>
+        <h2>From Maracaibo to Medellín, always building storefronts.</h2>
+        <p>
+          I started as a graphic designer in Venezuela in 2014 — branding, packaging, retail
+          spaces — before moving into email design and, eventually, full UI/UX for e-commerce.
+          Today I design storefronts and design systems for US-based brands on Adobe Commerce,
+          Shopify, BigCommerce, and Shopware at Crimson Agility, while running
+          <strong>Alinea</strong>, my own branding &amp; web studio, on the side.
+        </p>
+        <p>
+          I like projects where the interface has to carry a brand's voice, not just its
+          functionality — a checkout that still feels like the brand, a spec-heavy B2B catalog
+          that a technician can actually use. Based in Medellín, Colombia, working EST/CST hours,
+          no visa or sponsorship required.
+        </p>
+      </div>
+      <ul class="about-facts reveal">
+        <li><span class="fact-num">13</span><span class="fact-label">years in design</span></li>
+        <li><span class="fact-num">7</span><span class="fact-label">years in e-commerce UX</span></li>
+        <li><span class="fact-num">4</span><span class="fact-label">platforms — Adobe Commerce, Shopify, BigCommerce, Shopware</span></li>
+        <li><span class="fact-num">2</span><span class="fact-label">languages — native Spanish, fluent English</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="eyebrow reveal">.say hello</p>
+    <h2 class="reveal">Open to full-time &amp; remote<br>UI/UX roles<span class="accent">.</span></h2>
+    <p class="contact-sub reveal">
+      Based in Medellín, Colombia — EST/CST-aligned, no visa or sponsorship required
+      for US-based teams.
+    </p>
+    <a href="mailto:patetefelix@gmail.com" class="btn btn-primary btn-lg reveal">
+      <span>patetefelix@gmail.com</span>
+      <span class="btn-icon">↗</span>
+    </a>
+    <div class="socials reveal">
+      <a href="https://www.behance.net/alineabrands" target="_blank" rel="noopener">behance</a>
+      <span class="social-sep">/</span>
+      <a href="#" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#top" class="nav-logo">félix<span class="dot">.</span></a>
+    <nav class="footer-links">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#contact">say hello</a>
+    </nav>
+    <p class="footer-note">Designed &amp; built by Félix Patete. Medellín, Colombia — {YEAR}.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <span>close</span><span class="btn-icon">✕</span>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
