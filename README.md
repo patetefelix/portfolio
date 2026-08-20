@@ -36,12 +36,20 @@ Everything project-related lives in **`script.js`**, in the `PROJECTS` array nea
 
 The **"more brand work"** strip (Denali/Bark 2 Earth/Biona are full case studies; the rest are a lighter gallery) lives in the `BRAND_GALLERY` array right below `PROJECTS`.
 
-## Things worth doing before this goes fully live
+## Design system
 
-- **One client name needs your confirmation.** In the UI/UX tab, the "Tactical & Outdoor Gear" card (`images/proj-tactical-b.jpg`) — I couldn't confidently read the actual brand name off the screenshots, and I didn't want to guess wrong on a public portfolio. Rename it (or delete it) in `PROJECTS`.
-- **The Challenge/Ownership/Outcome copy is my best-effort read of each screenshot** — accurate to what's visibly true, but written without your actual project briefs or metrics. If you have real numbers (conversion lift, time-to-purchase, anything measurable) swap them into the `outcome` field — real metrics will do more for you with recruiters than my qualitative descriptions.
-- **The `.cs-note` box in each case study** is a placeholder reminding you to paste a real Figma embed link if you want one — currently just a text prompt, not a live embed.
+- **Fonts:** Instrument Serif for display type (headings, card names, the big stats), DM Sans for body copy, DM Mono for the small lowercase labels (`.eyebrow`, tab numbers, `cs-head-item`). All three load from one Google Fonts request in `index.html`. Instrument Serif only ships in weight 400 (regular + italic) — don't set `font-weight` above 400 on anything using `--font-display`, it'll just fall back to the browser's synthetic bold, which looks bad.
+- **Colors:** pulled from your own Alinea studio palette — pine green `#1B3E3A`, cream `#EBE4DC`, sand `#B9AC9F`. Light mode uses them close to source (cream background, pine text/accent). Dark mode swaps the pine accent for a muted sage (`#93BBA4`) so it still reads as "the same plant" against a near-black canvas, instead of reaching for a generic terracotta or acid-green accent. Everything is a CSS variable in `styles.css` — change the palette in one place.
+
+## Metrics — what's real vs. what needs your input
+
+Every project card and case study now shows 2 small stat chips (`metrics` field on each object in `PROJECTS`). **These are scope metrics I could honestly infer from the case itself** — catalog size, number of surfaces redesigned, click-count on a flow — not fabricated business outcomes. I didn't invent conversion-rate, revenue, or AOV numbers for real clients; I don't have your analytics, and made-up stats on a public portfolio are the kind of thing that falls apart in an interview.
+
+**Before this goes fully live:**
+- **The Challenge/Ownership/Outcome copy is my best-effort read of each screenshot and resume line** — accurate to what's visibly true, but written without your actual project briefs. If you have real numbers (conversion lift, AOV change, time-to-purchase, client testimonials) add them to the `outcome` field for that project — a verified number will outperform any qualitative line I can write.
+- **The `.cs-note` box in each case study** now doubles as a reminder for both a real Figma embed link and real metrics — still just a text prompt, not a live embed.
 - Add your real LinkedIn URL — it's a `#` placeholder in `index.html` (search for `linkedin`).
+- The `BRAND_GALLERY` array (lighter, logo-only entries below the brand tab) references image paths like `images/b-massalino.jpg` — confirm these match your actual `images/` folder filenames, or swap them.
 
 ## Structure
 ```

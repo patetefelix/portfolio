@@ -2,41 +2,48 @@
    FÉLIX PATETE — PORTFOLIO
    Design tokens
    ============================================================ */
+/* ------------------------------------------------------------
+   Palette pulled from Félix's own studio (Alinea) reference file:
+   pine green #1B3E3A, cream #EBE4DC, sand #B9AC9F, ink #282725.
+   Dark mode swaps the pine for a muted sage so it still reads as
+   "the same plant" against a near-black canvas, instead of
+   reaching for a generic terracotta/acid-green accent.
+   ------------------------------------------------------------ */
 :root{
-  --bg:            #100F0D;
-  --bg-alt:        #1A1815;
-  --bg-alt-2:      #201E19;
-  --line:          rgba(243,241,234,0.09);
-  --line-strong:   rgba(243,241,234,0.18);
-  --text:          #F3F1EA;
-  --text-dim:      #9C988C;
-  --text-dimmer:   #716D63;
-  --accent:        #CE9A4E;
-  --accent-text:   #171410;
-  --accent-soft:   rgba(206,154,78,0.14);
-  --shadow:        0 30px 60px -30px rgba(0,0,0,0.5);
+  --bg:            #101E19;
+  --bg-alt:        #17261F;
+  --bg-alt-2:      #1E3128;
+  --line:          rgba(239,231,218,0.09);
+  --line-strong:   rgba(239,231,218,0.18);
+  --text:          #EFE7DA;
+  --text-dim:      #B9AC9F;
+  --text-dimmer:   #7C8D82;
+  --accent:        #93BBA4;
+  --accent-text:   #10201A;
+  --accent-soft:   rgba(147,187,164,0.14);
+  --shadow:        0 30px 60px -30px rgba(0,0,0,0.55);
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "General Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Space Mono", "SF Mono", monospace;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "DM Mono", "SF Mono", monospace;
 
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
   --container: 1200px;
 }
 
 html[data-theme="light"]{
-  --bg:            #F3F1EA;
-  --bg-alt:        #FFFFFF;
-  --bg-alt-2:      #ECE8DE;
-  --line:          rgba(20,19,15,0.09);
-  --line-strong:   rgba(20,19,15,0.16);
-  --text:          #17150F;
-  --text-dim:      #605C50;
-  --text-dimmer:   #8B8778;
-  --accent:        #A9702A;
-  --accent-text:   #FFFBF3;
-  --accent-soft:   rgba(169,112,42,0.12);
-  --shadow:        0 30px 60px -30px rgba(20,19,15,0.18);
+  --bg:            #EFE7DA;
+  --bg-alt:        #FAF6EE;
+  --bg-alt-2:      #E3D9C8;
+  --line:          rgba(27,62,58,0.10);
+  --line-strong:   rgba(27,62,58,0.20);
+  --text:          #1B3E3A;
+  --text-dim:      #4B655F;
+  --text-dimmer:   #7F9089;
+  --accent:        #1B3E3A;
+  --accent-text:   #FAF6EE;
+  --accent-soft:   rgba(27,62,58,0.10);
+  --shadow:        0 30px 60px -30px rgba(27,62,58,0.16);
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
@@ -86,11 +93,11 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
   margin:0 0 14px;
 }
 
-.accent{ color:var(--accent); }
+.accent{ color:var(--accent); font-style:italic; }
 
 h1,h2,h3{
   font-family:var(--font-display);
-  font-weight:500;
+  font-weight:400;
   letter-spacing:-0.01em;
   margin:0;
 }
@@ -155,8 +162,9 @@ html[data-theme="light"] .btn-primary .btn-icon{ background:rgba(255,255,255,0.2
 }
 .nav-logo{
   font-family:var(--font-display);
-  font-size:18px;
-  font-weight:600;
+  font-size:22px;
+  font-weight:400;
+  letter-spacing:-0.01em;
 }
 .nav-logo .dot{ color:var(--accent); }
 .nav-links{ display:flex; gap:26px; }
@@ -361,6 +369,23 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 }
 .card:hover .card-cta{ color:var(--accent); gap:10px; }
 
+/* Scope metrics — honest, inferable numbers (catalog size, steps
+   redesigned, deliverable count). Not a stand-in for real business
+   outcomes; see .cs-metric-note in the case study for that. */
+.card-metrics{
+  display:flex; gap:18px;
+  padding-top:14px; margin-top:2px;
+  border-top:1px solid var(--line);
+}
+.metric-value{
+  display:block; font-family:var(--font-display); font-size:19px;
+  color:var(--accent); line-height:1.1;
+}
+.metric-label{
+  display:block; font-family:var(--font-mono); font-size:10.5px;
+  color:var(--text-dimmer); text-transform:lowercase; margin-top:3px;
+}
+
 .card-tags{
   position:absolute; top:14px; left:14px;
   display:flex; gap:6px;
@@ -490,11 +515,21 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 .cs-gallery{ display:grid; grid-template-columns:1fr; gap:14px; }
 .cs-gallery img{ border-radius:12px; width:100%; border:1px solid var(--line); }
 
+.cs-metrics{
+  display:flex; flex-wrap:wrap; gap:28px;
+  border:1px solid var(--line); border-radius:16px;
+  padding:20px 22px; margin-bottom:26px;
+  background:var(--bg-alt-2);
+}
+.cs-metrics .metric-value{ font-size:26px; }
+.cs-metrics .metric-label{ font-size:11px; }
+
 .cs-note{
   margin-top:8px; padding:16px 18px; border-radius:14px;
   background:var(--accent-soft); border:1px dashed var(--accent);
   font-size:13px; color:var(--text-dim); line-height:1.6;
 }
+.cs-note b{ color:var(--text); }
 
 /* lightbox (gallery-only cards) */
 .modal.lightbox .modal-inner{ max-width:1000px; padding:16px; }
