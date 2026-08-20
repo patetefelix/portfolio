@@ -4,6 +4,18 @@
    to add, remove, or update case studies. No build step needed.
    ============================================================ */
 
+/* ============================================================
+   TEXTOS DE CATEGORÍA (TAB_COPY) - MEJORADOS
+   ============================================================ */
+const TAB_COPY = {
+  uiux: "Tiendas e-commerce de alta conversión y plataformas B2B complejas diseñadas para escala — Adobe Commerce, Shopify, BigCommerce y Shopware.",
+  brand: "Sistemas de identidad de 0 a 1: estrategia de marca, tipografía, empaque e interiorismo comercial construidos para perdurar.",
+  growth: "Estrategia visual para marketing digital: flujos de email, anuncios de alto rendimiento y assets de campaña enfocados en retención y conversión DTC."
+};
+
+/* ============================================================
+   COLECCIÓN DE PROYECTOS OPTIMIZADA (PROJECTS)
+   ============================================================ */
 const PROJECTS = [
 
   /* ---------------- TAB 1 — UI/UX & E-COMMERCE ---------------- */
@@ -11,167 +23,87 @@ const PROJECTS = [
     id: "accutech", tab: "uiux", type: "case", featured: true,
     name: "Accutech", industry: "IT Hardware & Data Storage", platform: "Adobe Commerce",
     role: "UX Design · Figma Prototyping",
-    desc: "A 15,000-SKU technical catalog rebuilt for faster procurement browsing.",
+    desc: "Rediseño UX de catálogo B2B de 15,000 SKUs optimizado para compras corporativas rápidas.",
     image: "images/proj-accutech.jpg",
-    challenge: "Enterprise IT buyers needed a faster way to find and compare thousands of SKUs of enterprise storage hardware without getting lost in category depth.",
-    owned: ["Full storefront UX redesign in Figma", "Category & PLP filtering logic", "PDP layout for spec-heavy technical products"],
-    scope: ["Homepage merchandising", "Category navigation", "Cart"],
-    influence: "Pushed for a simplified featured-products module on the homepage to shorten the path to top sellers.",
-    outcome: "A cleaner, faster browsing experience for a highly technical B2B catalog, built for both procurement buyers and IT resellers."
+    challenge: "Los compradores de IT corporativos necesitaban comparar miles de SKUs de almacenamiento técnico sin perderse en arquitecturas de navegación profundas.",
+    owned: ["Rediseño integral de interfaz storefront en Figma", "Lógica de filtrado avanzado para PLP y categorías", "Diseño de PDP estructurado para especificaciones técnicas complejas"],
+    scope: ["Merchandising en Homepage", "Navegación por categorías", "Flujo de Carrito"],
+    influence: "Impulsé un módulo simplificado de productos destacados en la Home para acortar la ruta hacia los SKUs de mayor rotación.",
+    outcome: "Una experiencia de navegación más rápida y clara para un catálogo B2B técnico, optimizada tanto para ejecutivos de compras como para distribuidores de TI."
   },
   {
     id: "nueskes", tab: "uiux", type: "case", featured: true,
     name: "Nueske's", industry: "Specialty Foods · Smoked Meats DTC", platform: "Adobe Commerce",
     role: "UX Design · Merchandising",
-    desc: "A premium DTC storefront for gifting-led, seasonal smoked-meat sales.",
+    desc: "Storefront premium DTC enfocado en regalos corporativos, estacionalidad y venta directa.",
     image: "images/proj-nueskes.jpg",
-    challenge: "A legacy smoked-meats retailer needed a storefront that felt as premium and appetite-driving as the product, while still handling a large SKU catalog with gifting and subscription flows.",
-    owned: ["Category & PDP redesign", "Cart & checkout UX", "Seasonal merchandising modules (holiday gifting, best sellers)"],
-    scope: ["Homepage", "PLP / PDP", "Cart"],
-    influence: "Introduced recipe-driven cross-sell modules to connect product pages back to real usage occasions.",
-    outcome: "A storefront that leans into food photography and seasonal merchandising to drive gifting and repeat purchase."
-  },
-  {
-    id: "briskheat", tab: "uiux", type: "case", featured: false,
-    name: "BriskHeat", industry: "Industrial Heating Equipment", platform: "Adobe Commerce",
-    role: "UX Design · PDP Systems",
-    desc: "A need-based storefront for facilities engineers, not casual browsers.",
-    image: "images/proj-briskheat.jpg",
-    challenge: "Technical B2B buyers — facilities and industrial engineers — needed to move from a functional need like \u201cfreeze protection\u201d straight to the right SKU without wading through spec sheets.",
-    owned: ["Storefront UX", "PDP layout for technical, spec-heavy products", "Checkout flow"],
-    scope: ["Category navigation", "PDP", "Cart & checkout"],
-    influence: "Suggested need-based merchandising (\u201cFreeze Protection Top Sellers\u201d) over pure category browsing, matching how industrial buyers actually shop.",
-    outcome: "A storefront that speaks the language of facilities engineers first, catalog structure second."
-  },
-  {
-    id: "tavs", tab: "uiux", type: "case", featured: false,
-    name: "TAVS", industry: "Firearms & Tactical Equipment Retail", platform: "Adobe Commerce",
-    role: "UX Design · Regulated Commerce",
-    desc: "A regulated-category storefront built for trust as much as conversion.",
-    image: "images/proj-tavs.jpg",
-    challenge: "A firearms & equipment retailer needed a storefront that felt premium and trustworthy while handling age-gated, regulated products.",
-    owned: ["Homepage & category UX", "PDP", "Cart", "Trust & compliance architecture"],
-    scope: ["Full storefront experience"],
-    influence: "Shaped where trust-and-compliance messaging (age verification, dealer info) sits so it doesn't undercut the shopping experience.",
-    outcome: "A storefront built to Crimson Agility's regulated-commerce standard for the firearms industry."
-  },
-  {
-    id: "whitecap", tab: "uiux", type: "case", featured: true,
-    name: "White Cap Foods", industry: "Foodservice Distribution · B2B", platform: "Figma → static HTML/CSS",
-    role: "Design System",
-    desc: "A full design system for a foodservice distributor, delivered as static HTML/CSS for engineering handoff.",
-    image: "images/proj-whitecap.jpg",
-    challenge: "A foodservice distributor's B2B customers — restaurants, retailers — needed a faster reorder experience across a huge catalog, plus a working credit application flow for new accounts.",
-    owned: ["Full Figma design system — homepage, mega menu, cart/checkout, and account pages", "Static HTML/CSS delivery for engineering"],
-    scope: ["Mega menu IA", "Reorder flow", "Credit approval application form"],
-    influence: "Simplified the credit approval form's structure to reduce abandonment for new B2B accounts.",
-    outcome: "A reusable design system rather than a one-off storefront — built so the engineering team could implement it directly from static markup."
-  },
-  {
-    id: "riddy", tab: "uiux", type: "case", featured: false,
-    name: "Riddy", industry: "Lawn Care & Pest Control · Subscription DTC", platform: "Shopify",
-    role: "UX Design · Onboarding Flow",
-    desc: "Explaining a recurring-service subscription without a sales call.",
-    image: "images/proj-riddy.jpg",
-    challenge: "A local-service subscription brand needed to explain a model that isn't self-evident — recurring lawn & pest treatments — and get visitors to sign up without a sales call.",
-    owned: ["Full site UX — homepage, plan builder / quote flow, cart"],
-    scope: ["Onboarding / plan-selection flow", "Homepage storytelling"],
-    influence: "Moved the \u201cHow does a Riddy subscription work\u201d 3-step explainer higher on the homepage after noticing the model needed context before the pitch.",
-    outcome: "A friendlier, more approachable storefront for a service that's easy to misunderstand at a glance."
-  },
-  {
-    id: "profchoice", tab: "uiux", type: "case", featured: false,
-    name: "Professional's Choice", industry: "Equestrian Performance Gear", platform: "Adobe Commerce",
-    role: "UX Design · Category Strategy",
-    desc: "A storefront built to carry a 50-year reputation into the browsing experience.",
-    image: "images/proj-profchoice.jpg",
-    challenge: "A well-established equestrian brand needed an e-commerce experience with the same credibility as its decades-long reputation, across a technical product range — boots, tack, sports medicine gear.",
-    owned: ["Storefront UX", "Category / PDP for technical gear", "Shop-by-category navigation"],
-    scope: ["Homepage", "PLP / PDP"],
-    influence: "Recommended shop-by-category entry points over search-first navigation, matching how equestrians actually browse by discipline — Western vs. English.",
-    outcome: "A storefront that carries the brand's earned-credibility positioning into the shopping experience."
+    challenge: "Marca tradicional de carnes ahumadas requería una tienda digital a la altura de su calidad premium, capaz de gestionar un gran catálogo con flujos de regalos y suscripciones.",
+    owned: ["Rediseño de categorías y Fichas de Producto (PDP)", "Optimización de UX en Carrito y Checkout", "Módulos de merchandising estacional y regalos"],
+    scope: ["Homepage", "PLP / PDP", "Carrito"],
+    influence: "Integré módulos de venta cruzada basados en recetas para conectar los productos con momentos reales de consumo y preparación.",
+    outcome: "Un storefront que aprovecha la fotografía gastronómica y el merchandising de temporada para elevar el valor promedio de pedido (AOV) y las compras recurrentes."
   },
   {
     id: "tke", tab: "uiux", type: "case", featured: true,
     name: "TK Elevator", industry: "Industrial Elevator Parts · B2B", platform: "Adobe Commerce",
     role: "UX Design · Technical PDP",
-    desc: "A spare-parts catalog built for technicians who already know their part number.",
+    desc: "Catálogo técnico B2B de repuestos optimizado para búsquedas por número de pieza.",
     image: "images/proj-tke.jpg",
-    challenge: "Facilities technicians needed to find exact spare parts — bearings, assemblies — by spec, fast: a classic \u201cI know what I need, get me there in two clicks\u201d B2B flow.",
-    owned: ["Storefront UX for the spare-parts catalog", "PDP with technical spec tables", "\u201cFrequently bought together\u201d cross-sell"],
-    scope: ["Category navigation", "PDP"],
-    influence: "Advocated for a spec-first PDP layout — exact bearing dimensions above the fold — over lifestyle imagery, since technicians shop by number, not photo.",
-    outcome: "A parts catalog built for people who already know what they need and just need it fast."
+    challenge: "Técnicos de mantenimiento necesitaban encontrar repuestos exactos por especificación técnica en un flujo ultra rápido de dos clics.",
+    owned: ["UX de tienda B2B para repuestos industriales", "PDP con tablas de especificaciones técnicas interactivas", "Módulo de venta cruzada 'Frecuentemente comprados juntos'"],
+    scope: ["Navegación de categorías", "Ficha de producto (PDP)"],
+    influence: "Propuse una estructura de PDP priorizada en datos técnicos antes del pliegue (above the fold) en lugar de imágenes de estilo de vida, adaptándome a los hábitos reales de compra técnica.",
+    outcome: "Un catálogo de repuestos ágil y preciso que reduce el tiempo de búsqueda para técnicos e ingenieros."
   },
   {
-    id: "siege", tab: "uiux", type: "case", featured: false,
-    name: "Siege Suppressors", industry: "Firearms Suppressors · DTC", platform: "Adobe Commerce",
-    role: "UX Design · Technical PDP",
-    desc: "An engineered visual language for a highly technical buyer.",
-    image: "images/proj-siege.jpg",
-    challenge: "A suppressor brand needed a storefront that felt as engineered and premium as its hardware, while clearly explaining technical differentiators — like the Linear Diffuser Array — to a knowledgeable buyer.",
-    owned: ["Storefront UX", "PDP video / technical-explainer integration", "Category navigation"],
-    scope: ["Homepage", "PDP"],
-    influence: "Pushed to lead PDPs with the technical explainer video instead of specs-only, since buyers were already sold on the category and needed differentiation.",
-    outcome: "A dark, engineered visual language matched to a highly technical buyer."
-  },
-  {
-    id: "crimson-rcr", tab: "uiux", type: "case", featured: false,
-    name: "Crimson Agility — Regulated Commerce Recovery", industry: "Internal Service Line", platform: "Marketing site",
-    role: "Landing Page UX",
-    desc: "The landing page for Crimson's highest-stakes service — migrating merchants in regulated categories.",
-    image: "images/proj-crimson-rcr.jpg",
-    challenge: "Merchants on legacy or non-compliant platforms in regulated categories (firearms, supplements, and similar) needed a clear reason to trust Crimson with a full commerce-system migration.",
-    owned: ["Landing page UX and visual system for the Regulated Commerce Recovery service"],
-    scope: ["Full landing page"],
-    influence: "Shaped the \u201cOperate today. Build for tomorrow.\u201d positioning to speak to merchants who can't afford downtime during a platform move.",
-    outcome: "A dedicated landing experience for Crimson's highest-stakes service line."
-  },
-  {
-    id: "tactical", tab: "uiux", type: "gallery", featured: false,
-    name: "Tactical & Outdoor Gear", industry: "Firearms Accessories · DTC", platform: "—",
-    role: "UX Design",
-    desc: "A minimal, engineered storefront for a tactical/outdoor gear retailer.",
-    image: "images/proj-tactical-b.jpg",
-    caption: "Client name pending confirmation — see note below the grid."
+    id: "whitecap", tab: "uiux", type: "case", featured: true,
+    name: "White Cap Foods", industry: "Foodservice Distribution · B2B", platform: "Figma → HTML/CSS",
+    role: "Design System",
+    desc: "Sistema de diseño completo e-commerce entregado en HTML/CSS estático para handover de ingeniería.",
+    image: "images/proj-whitecap.jpg",
+    challenge: "Los clientes B2B de un distribuidor de alimentos requerían un proceso de reorden ultra rápido y un flujo simplificado para solicitudes de crédito.",
+    owned: ["Sistema de diseño completo en Figma (Home, Mega Menu, Carrito, Cuenta)", "Maquetación estática HTML/CSS para desarrollo"],
+    scope: ["Arquitectura de Información (Mega Menu)", "Flujo de Reorden", "Formulario de Aprobación de Crédito B2B"],
+    influence: "Reestructuré el formulario de crédito comercial dividiéndolo en pasos lógicos para reducir drásticamente la tasa de abandono de nuevas cuentas.",
+    outcome: "Un Design System modular y reutilizable listo para implementación directa por el equipo de desarrollo."
   },
 
-  /* ---------------- TAB 2 — BRAND IDENTITY (featured) ---------------- */
+  /* ---------------- TAB 2 — BRAND IDENTITY ---------------- */
   {
     id: "denali", tab: "brand", type: "case", featured: true,
-    name: "Denali Leather Goods", industry: "Leather Goods · 0→1 Brand", platform: "Brand Identity",
+    name: "Denali Leather Goods", industry: "Leather Goods · Brand 0→1", platform: "Brand Identity",
     role: "Brand Strategy · Identity System",
-    desc: "A rugged, heritage identity built to hold up on embossed leather and Instagram alike.",
+    desc: "Identidad de marca robusta y atemporal adaptada tanto para grabado en piel como para entornos digitales.",
     image: "images/b-denali.jpg",
-    challenge: "A leather goods company needed a brand identity built from scratch that felt rugged and heritage without tipping into cliché \u201coutdoors\u201d visual tropes.",
-    owned: ["Full identity system — wordmark, seal mark, typography", "Social & print applications"],
-    scope: ["Logo suite (stacked & horizontal)", "Brand guidelines", "Social templates", "Stationery"],
-    influence: "Advocated for a monochrome-first palette so the brand would hold up equally well on leather embossing and digital screens.",
-    outcome: "A cohesive identity that works across product embossing, social content, and print collateral."
+    challenge: "Creación desde cero de la identidad para una marca artesanal de cuero que requería transmitir elegancia y durabilidad sin caer en clichés visuales.",
+    owned: ["Sistema visual completo (Wordmark, Isotipo/Sello, Tipografía)", "Aplicaciones impresas, empaque y digitales"],
+    scope: ["Suite de logotipos", "Guía de estilo de marca", "Plantillas para redes sociales", "Papelería corporativa"],
+    influence: "Definí una paleta monocromática primaria que garantiza legibilidad e impacto gráfico tanto en el grabado térmico sobre cuero como en pantallas.",
+    outcome: "Una marca cohesiva y versátil lista para escalar en producción física y canales de e-commerce."
   },
   {
     id: "bark2earth", tab: "brand", type: "case", featured: true,
-    name: "Bark 2 Earth", industry: "Pet Treats & Wellness · 0→1 Brand", platform: "Brand Identity",
+    name: "Bark 2 Earth", industry: "Pet Treats & Wellness · Brand 0→1", platform: "Brand Identity",
     role: "Branding · Packaging · Web",
-    desc: "Shelf-ready packaging and a matching site for a natural pet-treats brand.",
+    desc: "Branding integral, diseño de empaques para anaquel y tienda e-commerce para marca de bienestar animal.",
     image: "images/b-bark2earth.jpg",
-    challenge: "A natural pet-treats brand needed packaging and a site that could compete on a crowded shelf — physical and digital — against much bigger pet brands.",
-    owned: ["Brand identity", "Packaging design system", "Website design"],
-    scope: ["Logo", "Packaging (pouch + box)", "Site"],
-    influence: "Pushed the \u201chead to tails\u201d tagline and paw-print mark to carry across every packaging SKU for shelf recognition.",
-    outcome: "A consistent, shelf-ready identity across both product and digital touchpoints."
+    challenge: "Desarrollar una marca natural para mascotas capaz de destacar visualmente en los anaqueles físicos y digitales frente a competidores consolidados.",
+    owned: ["Identidad de marca", "Sistema de diseño de empaque (Packaging)", "Diseño de sitio web e-commerce"],
+    scope: ["Logo", "Empaques (Pouch + Cajas)", "Diseño Web"],
+    influence: "Establecí un código de color y patrones gráficos unificados para mantener el reconocimiento de marca a través de todas las líneas de producto.",
+    outcome: "Una identidad visual consistente y 'shelf-ready' que transmite origen natural y confianza al consumidor."
   },
   {
     id: "biona", tab: "brand", type: "case", featured: true,
-    name: "Biona Coffee", industry: "Coffee · 0→1 Packaging", platform: "Brand Identity",
+    name: "Biona Coffee", industry: "Coffee · Packaging 0→1", platform: "Brand Identity",
     role: "Branding · Packaging",
-    desc: "An origin-first packaging system across roasts and single-origin lines.",
+    desc: "Sistema de empaque enfocado en origen y niveles de tueste para línea de café especial.",
     image: "images/b-bionacoffee.jpg",
-    challenge: "A coffee brand needed packaging that communicated origin — Peru, Colombia — and quality at a glance, on a shelf full of similar bags.",
-    owned: ["Brand identity and packaging system across multiple origins & roasts"],
-    scope: ["Logo", "Packaging design", "Color-coding system by origin"],
-    influence: "Introduced a consistent origin/roast color-coding system across all SKUs.",
-    outcome: "A packaging family that's easy to shop by origin at a glance."
+    challenge: "Una marca de café especial necesitaba empaques que comunicaran el origen único (Perú, Colombia) y la calidad artesanal de forma inmediata en el punto de venta.",
+    owned: ["Identidad visual y línea de empaques para múltiples orígenes y tipos de tueste"],
+    scope: ["Logo", "Diseño de empaques", "Sistema de codificación por color e ilustración"],
+    influence: "Diseñé un sistema de etiquetado y colorimetría por origen que facilita la decisión de compra rápida en anaquel.",
+    outcome: "Una familia de empaques llamativa y coherente que fortalece el posicionamiento premium del producto."
   },
 
   /* ---------------- TAB 3 — GROWTH MARKETING CREATIVE ---------------- */
@@ -179,177 +111,40 @@ const PROJECTS = [
     id: "feat", tab: "growth", type: "case", featured: true,
     name: "Feat Clothing", industry: "Apparel · DTC", platform: "Email Marketing",
     role: "Email Design",
-    desc: "A soft, sustainable-brand email system built for a fast drop cadence.",
+    desc: "Sistema visual de email marketing modular para lanzamientos frecuentes en marca de ropa sostenible.",
     image: "images/email-feat.jpg",
-    challenge: "A sustainable apparel brand needed weekly email campaigns that kept its soft, sustainable positioning without feeling repetitive.",
-    owned: ["Email template design and campaign builds across drops, sales, and seasonal moments"],
-    scope: ["Email design", "Light copy adaptation"],
-    influence: "Built a modular template system so new drops could be turned around quickly without starting from scratch.",
-    outcome: "A recognizable, on-brand email system that could be produced quickly across a high send cadence."
+    challenge: "Mantener una alta frecuencia de envíos semanales de email sin desgastar la estética suave y sostenible de la marca.",
+    owned: ["Diseño de plantillas y campañas para lanzamientos de producto, ofertas estacionales y flujos automáticos"],
+    scope: ["Diseño de emails", "Adaptación visual de copy"],
+    influence: "Creé un sistema modular de bloques reutilizables en Figma que redujo los tiempos de producción de cada campaña.",
+    outcome: "Una estrategia visual consistente y ágil que soporta un ritmo alto de publicación manteniendo el engagement de la audiencia."
   },
   {
     id: "brumate", tab: "growth", type: "case", featured: true,
     name: "Brumate", industry: "Drinkware · DTC", platform: "Email Marketing",
     role: "Email Design",
-    desc: "A color-driven email system for a drinkware catalog with dozens of SKUs.",
+    desc: "Campañas de email dinámicas y coloridas orientadas a resaltar catálogos amplios de productos.",
     image: "images/email-brumate.jpg",
-    challenge: "A drinkware brand with dozens of colorways needed emails that could sell \u201cwhich color, which style\u201d as much as the product itself.",
-    owned: ["Email campaign design across product launches, holidays, and always-on flows"],
-    scope: ["Email design"],
-    influence: "Standardized a colorway-grid module reused across nearly every campaign.",
-    outcome: "A high-frequency email system built for a large, color-driven SKU catalog."
-  },
-  {
-    id: "smithey", tab: "growth", type: "case", featured: true,
-    name: "Smithey Ironware", industry: "Cookware · DTC", platform: "Email Marketing",
-    role: "Email Design",
-    desc: "Brand storytelling emails mixed with product marketing for a heritage cookware brand.",
-    image: "images/email-smithey.jpg",
-    challenge: "A heritage cast-iron cookware brand needed emails that felt as crafted as the product, without leaning on generic DTC email tropes.",
-    owned: ["Email campaign design, including maker-profile storytelling emails alongside product & sale emails"],
-    scope: ["Email design"],
-    influence: "Balanced the send calendar between brand storytelling and direct product marketing.",
-    outcome: "An email system that mixes brand storytelling with product marketing."
-  },
-  {
-    id: "12thtribe", tab: "growth", type: "case", featured: false,
-    name: "12th Tribe", industry: "Apparel · DTC", platform: "Email Marketing",
-    role: "Email Design",
-    desc: "A flexible template system for a fast-moving fashion brand.",
-    image: "images/email-12thtribe.jpg",
-    challenge: "A fast-moving fashion brand needed a high cadence of on-trend email campaigns.",
-    owned: ["Email template design and campaign builds"],
-    scope: ["Email design"],
-    influence: "Kept a consistent modular grid so campaigns could flex between lookbook-style and sale-driven sends.",
-    outcome: "A flexible template system built for a fast content cadence."
+    challenge: "Presentar de forma atractiva múltiples variantes de color y productos en campañas masivas de conversión.",
+    owned: ["Diseño de campañas para lanzamientos, festividades y promociones especiales"],
+    scope: ["Diseño de Email"],
+    influence: "Estandaricé módulos en cuadrícula específicos para variantes de color, facilitando la exploración visual rápida dentro del correo.",
+    outcome: "Un sistema de email eficiente enfocado en impulsar la conversión de un catálogo con alta variedad de SKUs."
   },
   {
     id: "crimson-collateral", tab: "growth", type: "case", featured: true,
-    name: "Crimson Agility Campaign Assets", industry: "B2B E-Commerce Agency · Internal", platform: "Digital Marketing",
+    name: "Crimson Agility Campaign Assets", industry: "B2B E-Commerce Agency", platform: "Digital Marketing",
     role: "Campaign Creative",
-    desc: "A reusable ad-tile and social system across service lines and case studies.",
+    desc: "Sistema de ad-tiles y gráficos para redes sociales orientados al marketing de servicios e-commerce B2B.",
     image: "images/marketing-collateral-01.jpg",
-    challenge: "Crimson Agility needed a consistent visual system for paid social, case-study promotion, and service-line marketing — audits, 2A commerce, compliance.",
-    owned: ["Ad tile and social graphic system across multiple campaigns and service lines"],
-    scope: ["Social ad templates", "Case-study promo graphics", "Service-line campaign assets"],
-    influence: "Built the templates modular so non-designers on the team could swap copy without breaking the grid.",
-    outcome: "A flexible, on-brand template system the internal team could reuse across campaigns.",
-    gallery2: "images/marketing-collateral-02.jpg"
-  },
-];
-
-/* Secondary "more brand work" gallery — lighter cards, image + name only */
-const BRAND_GALLERY = [
-  { name: "Brussel", tag: "Branding, Retail Branding", image: "images/b-brussel.jpg" },
-  { name: "Emraw", tag: "Branding, Label Design", image: "images/b-emraw.jpg" },
-  { name: "Cuida tu Mente", tag: "Branding, Retail Branding", image: "images/b-cuidatumente.jpg" },
-  { name: "Bon Pops", tag: "Branding, Retail Branding", image: "images/b-bonpops.jpg" },
-  { name: "Fryefit", tag: "Branding", image: "images/b-fryefit.jpg" },
-  { name: "Casa Santafé Hostel", tag: "Branding, Signage Design", image: "images/b-casasantafe.jpg" },
-  { name: "Garment Decor", tag: "Branding, Web Design", image: "images/b-garmentdecor.jpg" },
-  { name: "Phila Cup Coffee", tag: "Logo, Packaging Design", image: "images/b-philacup.jpg" },
-  { name: "Oggi Pizza", tag: "Branding, Retail Branding", image: "images/b-oggipizza.jpg" },
-  { name: "Arépale", tag: "Branding, Menu Design", image: "images/b-arepale.jpg" },
-  { name: "Sunset Coffee", tag: "Branding, Social Media", image: "images/b-sunsetcoffee-b.jpg" },
-  { name: "Pawty Animals", tag: "Branding, Web, Packaging", image: "images/b-pawtyanimals.jpg" },
-  { name: "Massalino Bakery", tag: "Branding, Retail Branding", image: "images/b-massalino.jpg" },
-  { name: "Casa de Encantos", tag: "Branding, Packaging Design", image: "images/b-casadeencantos.jpg" },
-  { name: "El Paraíso Heladería", tag: "Branding, 3D Visualisation", image: "images/b-elparaiso.jpg" },
-  { name: "Disfruta", tag: "Branding, Interior Design", image: "images/b-disfruta.jpg" },
-];
-
-const CLIENT_NAMES = [
-  "Crimson Agility","TK Elevator","Nueske's","BriskHeat","White Cap Foods",
-  "Siege Suppressors","Professional's Choice","Brumate","Smithey Ironware",
-  "Feat Clothing","12th Tribe","Riddy"
-];
-
-const TAB_COPY = {
-  uiux: "High-converting storefronts and B2B platforms — Adobe Commerce, Shopify, BigCommerce, Shopware.",
-  brand: "Strategy, logomark, typography, packaging, and retail guidelines — brands built from zero to one.",
-  growth: "Email flows, social collateral, and promotional campaign assets for DTC brands."
-};
-
-/* ============================================================
-   Render: client marquee
-   ============================================================ */
-const marqueeTrack = document.getElementById("marqueeTrack");
-const marqueeItems = [...CLIENT_NAMES, ...CLIENT_NAMES]
-  .map(n => `<span>${n}</span>`).join("");
-marqueeTrack.innerHTML = marqueeItems;
-
-/* ============================================================
-   Render: project grid (tab-filtered)
-   ============================================================ */
-const grid = document.getElementById("projectGrid");
-const tabDesc = document.getElementById("tabDesc");
-const tabs = document.querySelectorAll(".tab");
-let currentTab = "uiux";
-
-function cardTemplate(p){
-  return `
-    <article class="card reveal-card" data-id="${p.id}">
-      <div class="card-tags"><span class="card-tag">${p.role.split("·")[0].trim()}</span></div>
-      <div class="card-media"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
-      <div class="card-body">
-        <p class="card-role">${p.industry}</p>
-        <h3 class="card-name">${p.name}</h3>
-        <p class="card-desc">${p.desc}</p>
-        <span class="card-cta">${p.type === "case" ? "view case study" : "view work"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;">↗</span></span>
-      </div>
-    </article>
-  `;
-}
-
-function renderGrid(tab){
-  const items = PROJECTS.filter(p => p.tab === tab);
-  grid.className = "grid" + (items.length > 6 ? " is-dense" : "");
-  grid.innerHTML = items.map(cardTemplate).join("");
-  tabDesc.textContent = TAB_COPY[tab];
-
-  // secondary gallery only on brand tab
-  const existingSub = document.querySelector(".subgrid-wrap");
-  if (existingSub) existingSub.remove();
-
-  if (tab === "brand"){
-    const wrap = document.createElement("div");
-    wrap.className = "subgrid-wrap";
-    wrap.innerHTML = `
-      <div class="subgrid-head reveal">
-        <p class="eyebrow">.more brand work</p>
-        <p>A wider look at Alinea &amp; Crimson Agility branding projects — logo, packaging, and retail identity.</p>
-      </div>
-      <div class="subgrid" id="subgrid"></div>
-    `;
-    grid.insertAdjacentElement("afterend", wrap);
-    const sub = wrap.querySelector("#subgrid");
-    sub.innerHTML = BRAND_GALLERY.map((g,i) => `
-      <div class="subcard" data-idx="${i}">
-        <div class="subcard-media"><img src="${g.image}" alt="${g.name}" loading="lazy"></div>
-        <div class="subcard-label">${g.name}</div>
-      </div>
-    `).join("");
-    sub.querySelectorAll(".subcard").forEach(el => {
-      el.addEventListener("click", () => openLightbox(BRAND_GALLERY[+el.dataset.idx]));
-    });
-    observeReveal(wrap.querySelectorAll(".reveal"));
-    observeCards(sub.querySelectorAll(".subcard"));
+    challenge: "Crear una identidad gráfica coherente para campañas pagadas y promociones B2B de auditorías e-commerce y soluciones de cumplimiento.",
+    owned: ["Sistema de plantillas publicitarias y contenido para redes sociales a través de múltiples servicios"],
+    scope: ["Plantillas para Ads", "Gráficos para promocionar Case Studies", "Assets visuales de campaña"],
+    influence: "Desarrollé plantillas modulares que permitieron al equipo interno actualizar textos e imágenes sin perder la calidad ni la estructura del diseño.",
+    outcome: "Un kit de assets de marketing versátil que profesionalizó la presencia digital de la agencia."
   }
+];
 
-  grid.querySelectorAll(".card").forEach(el => {
-    el.addEventListener("click", () => openCase(el.dataset.id));
-  });
-  observeCards(grid.querySelectorAll(".card"));
-}
-
-tabs.forEach(btn => {
-  btn.addEventListener("click", () => {
-    tabs.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected","false"); });
-    btn.classList.add("active"); btn.setAttribute("aria-selected","true");
-    currentTab = btn.dataset.tab;
-    renderGrid(currentTab);
-  });
-});
 
 /* ============================================================
    Modal — case study + lightbox
