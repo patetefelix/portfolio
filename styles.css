@@ -397,6 +397,13 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 .about-copy p{ color:var(--text-dim); max-width:520px; line-height:1.7; margin:0 0 18px; }
 .about-copy strong{ color:var(--text); font-weight:600; }
 
+.about-aside{ display:flex; flex-direction:column; gap:36px; }
+.about-portrait{
+  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center;
+  border-radius:4px; filter:grayscale(1); transition:filter .4s ease;
+}
+.about-portrait:hover{ filter:grayscale(0); }
+
 .about-facts{ display:flex; flex-direction:column; gap:26px; }
 .about-facts li{ display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--line); padding-bottom:22px; }
 .fact-num{ font-family:var(--font-display); font-size:40px; color:var(--accent); line-height:1; }
