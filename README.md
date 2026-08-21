@@ -25,48 +25,51 @@ Everything project-related lives in **`script.js`**, in the `PROJECTS` array nea
 {
   id: "nueskes", tab: "uiux", type: "case", featured: true,
   name: "Nueske's", industry: "...", platform: "...", role: "...",
-  desc: "...", image: "images/proj-nueskes.jpg",
-  challenge: "...", owned: [...], scope: [...], influence: "...", outcome: "..."
+  desc: "...",
+  thumbnail: "images/nueskes-thumb.png",      // card hero image
+  gallery: ["images/nueskes-01.png", ...],    // full set shown in the project view, in order
+  scope: ["Homepage", "PLP / PDP", ...]       // short, factual list of what you worked on
 }
 ```
 
 - `tab` — `"uiux"`, `"brand"`, or `"growth"` — controls which of the 3 filter tabs it appears under.
-- `type` — `"case"` opens the full Ownership → Challenge → Outcome modal on click. `"gallery"` just opens the image with a caption (used for the one client I wasn't 100% sure how to name — see below).
+- `type` — `"case"` opens the full project-view modal (header + image gallery + "What I worked on" list). `"gallery"` just opens a single image with a caption (used for the lighter Tier 5 brand items — see `BRAND_GALLERY`).
+- `thumbnail` — the single image shown on the grid card. Name it `<something>-thumb.<ext>`.
+- `gallery` — every other image for that project, shown stacked in order in the modal. Add or remove paths freely; the modal loops over whatever's in the array.
 - Add a new project by copy-pasting an object and editing the fields. Remove one by deleting its object.
 
-The **"more brand work"** strip (Denali/Bark 2 Earth/Biona are full case studies; the rest are a lighter gallery) lives in the `BRAND_GALLERY` array right below `PROJECTS`.
+The **"more brand work"** strip (Denali/Bark 2 Earth/Biona are full case studies; the rest are a lighter gallery) lives in the `BRAND_GALLERY` array right below `PROJECTS` — those still use a single `image` field, unchanged.
 
-## Roster expansion (Aug 2026 update)
+## Images wired up (Aug 2026 update)
 
-The portfolio now reflects your full company list — **30 full case studies** (19 UI/UX, 6 brand, 5 growth marketing) plus **14 lighter gallery items**, and a **44-company marquee** ordered by the tier list you provided (biggest/most prominent first). Within each tab, companies you worked with through **Crimson Agility** are listed first, since that's your current and most senior-scope work.
+Thumbnail + gallery paths are now set for the 21 projects where you gave me real filenames:
 
-**Before this goes live, you'll need ~44 images** — one per project/gallery item, referenced by predictable filenames like `images/proj-briskheat.jpg` or `images/b-emraw.jpg`. Run this to see every path the code expects:
-```bash
-grep -oP 'images/[a-zA-Z0-9_-]+\.jpg' script.js | sort -u
-```
-Anything missing will just show a broken-image icon — the rest of the card (name, copy, metrics) will still render fine.
+TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Siege Suppressors, Riddy, Professional's Choice, Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Outlast Supply, Garment Decor, Klassen Farm Products.
 
-**A few companies I only had your one-line description for** (no screenshots) — Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Outlast Supply, Klassen Farm Products, and most of the Tier 5 gallery items — so their case copy is intentionally general (structure/challenge-level, not screenshot-specific claims). Worth a pass to sharpen these with real specifics once you're back in the files.
+Two things worth double-checking on your end:
+
+- **Outlast Supply** is pointed at the `rugged-*` files — that was the only unclaimed image set left once everything else matched a filename, but I inferred it rather than you confirming it. Worth a quick look.
+- **The `livq-*` image set** (7 files) doesn't match any client currently in the site. I left it out — tell me which project it belongs to (or if it's a new one to add) and I'll wire it in.
+- **AFG Distribution** only had `afg-02` and `afg-03` in what you sent — no `afg-01` — so the gallery is just those two for now.
+
+**Everyone else** (Denali, Bark 2 Earth, Biona, Emraw, the Crimson Agility campaign assets, Feat, BrüMate, Smithey, 12th Tribe, and all 14 `BRAND_GALLERY` items) is still on its old single image path from before — those will show a broken-image icon until you send over `thumb` + full-image filenames for them, same pattern as above.
 
 ## Design system
 
-- **Fonts:** Instrument Serif for display type (headings, card names, the big stats), DM Sans for body copy, DM Mono for the small lowercase labels (`.eyebrow`, tab numbers, `cs-head-item`). All three load from one Google Fonts request in `index.html`. Instrument Serif only ships in weight 400 (regular + italic) — don't set `font-weight` above 400 on anything using `--font-display`, it'll just fall back to the browser's synthetic bold, which looks bad.
-- **Colors:** pulled from your own Alinea studio palette — pine green `#1B3E3A`, cream `#EBE4DC`, sand `#B9AC9F`. Light mode uses them close to source (cream background, pine text/accent). Dark mode swaps the pine accent for a muted sage (`#93BBA4`) so it still reads as "the same plant" against a near-black canvas, instead of reaching for a generic terracotta or acid-green accent. Everything is a CSS variable in `styles.css` — change the palette in one place.
+- **Fonts:** Instrument Serif for display type (headings, card names), DM Sans for body copy, DM Mono for the small mono labels (eyebrows, tab numbers, `cs-head-item`). All three load from one Google Fonts request in `index.html`. Instrument Serif only ships in weight 400 (regular + italic) — don't set `font-weight` above 400 on anything using `--font-display`.
+- **Colors:** pulled from your own Alinea studio palette — pine green `#1B3E3A`, cream `#EBE4DC`, sand `#B9AC9F`. Light mode uses them close to source. Dark mode swaps the pine accent for a muted sage (`#93BBA4`). Everything is a CSS variable in `styles.css`.
+- **Section headers:** the `.eyebrow` labels (Work, About, Clients, Say Hello, More Brand Work) are now standard capitalized text — the CSS no longer force-lowercases or prefixes them, so whatever you type in `index.html` is what renders.
 
-## Metrics — what's real vs. what needs your input
+## Project copy — what's real vs. what's a placeholder
 
-Every project card and case study now shows 2 small stat chips (`metrics` field on each object in `PROJECTS`). **These are scope metrics I could honestly infer from the case itself** — catalog size, number of surfaces redesigned, click-count on a flow — not fabricated business outcomes. I didn't invent conversion-rate, revenue, or AOV numbers for real clients; I don't have your analytics, and made-up stats on a public portfolio are the kind of thing that falls apart in an interview.
+Every case study now shows just: client / industry / platform / role, the full image gallery, and a short, factual "What I worked on" list (the `scope` array — actual surfaces/flows you designed, nothing invented). I removed the earlier Challenge / Ownership / Outcome narrative and the metric chips — that copy was my best-effort read of screenshots and resume lines without your real project briefs, and read as more polished than it should for things I can't verify. Better to keep it short and add real specifics yourself than to leave speculative claims live.
 
-**Before this goes fully live:**
-- **The Challenge/Ownership/Outcome copy is my best-effort read of each screenshot and resume line** — accurate to what's visibly true, but written without your actual project briefs. If you have real numbers (conversion lift, AOV change, time-to-purchase, client testimonials) add them to the `outcome` field for that project — a verified number will outperform any qualitative line I can write.
-- **The `.cs-note` box in each case study** now doubles as a reminder for both a real Figma embed link and real metrics — still just a text prompt, not a live embed.
-- Add your real LinkedIn URL — it's a `#` placeholder in `index.html` (search for `linkedin`).
-- The `BRAND_GALLERY` array (lighter, logo-only entries below the brand tab) references image paths like `images/b-massalino.jpg` — confirm these match your actual `images/` folder filenames, or swap them.
+**Still worth doing when you have time:** if you want a line or two of real context for any project (a genuine challenge, a number, a testimonial), just tell me which one and what to add — happy to keep it short.
 
 ## Structure
 ```
 index.html      → all content/markup
 styles.css       → design tokens + layout (breakpoints at 1200 / 810 / 390px)
 script.js        → project data + tab filtering + modal + theme toggle
-images/          → cropped from your resume PDF, optimized for web
+images/          → your project screenshots (thumb + gallery images per project)
 ```
