@@ -34,7 +34,7 @@ const CLIENTS = [
   "Professional's Choice", "Zip Corvette", "Feat Clothing", "Smithey Ironware", "12th Tribe",
   "Accutech", "Emraw", "Icarus Precision", "Siege Suppressors", "Phoenix Medical Instruments",
   // Tier 4 — growing DTC brands, niche B2B & digital agencies
-  "Crimson Agility", "Riddy", "Outlast Supply", "Garment Decor", "Denali Leather Goods",
+  "Crimson Agility", "Riddy", "Rugged Suppressors", "Garment Decor", "Denali Leather Goods",
   "Bark 2 Earth", "Klassen Farm Products",
   // Tier 5 — boutique regional brands, hospitality & 0→1 startups
   "Massalino Bakery", "Brüssel", "Oggi Pizza", "Arépale", "Disfruta", "Casa Santafé Hostel",
@@ -224,10 +224,10 @@ const PROJECTS = [
     scope: ["Category navigation", "Product detail page"]
   },
   {
-    id: "outlast-supply", tab: "uiux", type: "case",
-    name: "Outlast Supply", industry: "Tactical Gear, Survival & Outdoor Equipment · DTC", platform: "Adobe Commerce",
+    id: "rugged-suppressors", tab: "uiux", type: "case",
+    name: "Rugged Suppressors", industry: "Firearm Suppressors & Accessories · DTC", platform: "Adobe Commerce",
     role: "UX Design",
-    desc: "E-commerce UX for a tactical gear, survival tools, and outdoor equipment retailer.",
+    desc: "E-commerce UX for a firearm suppressor manufacturer and retailer.",
     thumbnail: "images/rugged-thumb.png",
     gallery: ["images/rugged-01.png", "images/rugged-02.png", "images/rugged-03.png", "images/rugged-04.png", "images/rugged-05.png", "images/rugged-06.png", "images/rugged-07.png"],
     scope: ["Category navigation", "Product detail page"]

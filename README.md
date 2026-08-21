@@ -44,11 +44,11 @@ The **"more brand work"** strip (Denali/Bark 2 Earth/Biona are full case studies
 
 Thumbnail + gallery paths are now set for the 21 projects where you gave me real filenames:
 
-TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Siege Suppressors, Riddy, Professional's Choice, Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Outlast Supply, Garment Decor, Klassen Farm Products.
+TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Siege Suppressors, Riddy, Professional's Choice, Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Rugged Suppressors, Garment Decor, Klassen Farm Products.
 
 Two things worth double-checking on your end:
 
-- **Outlast Supply** is pointed at the `rugged-*` files — that was the only unclaimed image set left once everything else matched a filename, but I inferred it rather than you confirming it. Worth a quick look.
+- **Rugged Suppressors** is now correctly matched to the `rugged-*` image files (previously mislabeled as "Outlast Supply" — fixed).
 - **The `livq-*` image set** (7 files) doesn't match any client currently in the site. I left it out — tell me which project it belongs to (or if it's a new one to add) and I'll wire it in.
 - **AFG Distribution** only had `afg-02` and `afg-03` in what you sent — no `afg-01` — so the gallery is just those two for now.
 
