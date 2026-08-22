@@ -46,13 +46,29 @@ Thumbnail + gallery paths are now set for the 21 projects where you gave me real
 
 TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Siege Suppressors, Riddy, Professional's Choice, Caplugs, Frontier Co-op, PT Solutions, AFG Distribution, Hoveround Mobility Solutions, Oklahoma Correctional Industries, High Speed Gear, Zip Corvette, Icarus Precision, Phoenix Medical Instruments, Rugged Suppressors, Garment Decor, Klassen Farm Products.
 
-Two things worth double-checking on your end:
-
-- **Rugged Suppressors** is now correctly matched to the `rugged-*` image files (previously mislabeled as "Outlast Supply" — fixed).
-- **The `livq-*` image set** (7 files) doesn't match any client currently in the site. I left it out — tell me which project it belongs to (or if it's a new one to add) and I'll wire it in.
+- **Rugged Suppressors** is correctly matched to the `rugged-*` image files (previously mislabeled as "Outlast Supply" — fixed).
 - **AFG Distribution** only had `afg-02` and `afg-03` in what you sent — no `afg-01` — so the gallery is just those two for now.
 
-**Everyone else** (Denali, Bark 2 Earth, Biona, Emraw, the Crimson Agility campaign assets, Feat, BrüMate, Smithey, 12th Tribe, and all 14 `BRAND_GALLERY` items) is still on its old single image path from before — those will show a broken-image icon until you send over `thumb` + full-image filenames for them, same pattern as above.
+## Platform tags, tech stack, and "view live" (Aug 2026 update)
+
+- **Platform tags updated** on every UI/UX project you sent a table for, and each now also carries a `techStack` field (shown as a second row in the case-study modal, under "platform") — e.g. TK Elevator is `platform: "Adobe Commerce"` / `techStack: "Magento 2 / Enterprise B2B"`.
+- **New project added: Live Q Or Die (Q)** — `id: "live-q-or-die"`, Shopify, in the UI/UX tab. This turned out to be the client behind the `livq-*` image set (7 files) that didn't match anyone before — Q, LLC's actual site is liveqordie.com, so I matched it up.
+- **"View live" button** added to the case-study modal, right under the description. It only renders when a project has a `liveUrl` (a real link) or is flagged `comingSoon: true` (shows a disabled "coming soon" pill) — otherwise nothing shows, rather than a guessed link.
+  - **Confirmed live** (I verified these): Caplugs, Siege Suppressors, Rugged Suppressors, Hoveround, Live Q Or Die, plus the growth-tab email clients you gave URLs for (Feat, BrüMate, Smithey, 12th Tribe, Wolven, Lifeboost).
+  - **Marked "coming soon"** per your note: Icarus Precision, Zip Corvette.
+  - **No `liveUrl` set yet** (I didn't want to guess a company URL and get it wrong on a live site): TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Riddy, Professional's Choice, Frontier Co-op, PT Solutions, AFG Distribution, Oklahoma Correctional Industries, Phoenix Medical Instruments. Send me the real links (or `comingSoon: true`) for any of these and I'll wire them in the same way.
+
+## Growth marketing tab (Aug 2026 update)
+
+- **Feat Clothing, 12th Tribe, Smithey Ironware** renamed to the `<slug>-thumb / <slug>-01 / -02` convention: `feat-thumb/-01/-02`, `12tribe-thumb/-01/-02`, `smithey-thumb/-01`. BrüMate keeps its existing `email-brumate.jpg` filename since that same file is also used in the hero image stack on the homepage — renaming it would break that too.
+- **Two new growth-tab clients added**, no stats, images-only like the rest of this tab:
+  - **Wolven Threads** (`id: "wolven"`) — `wolven-thumb/-01/-02`, based on the Q4 email-lifecycle strategy deck you shared (welcome drip rebuild, abandonment-flow redesign, RFM segmentation).
+  - **Lifeboost Coffee** (`id: "lifeboost"`) — `lifeboost-thumb/-01`.
+- **Not added yet:** Rasa, Tiny Rituals, and Static Nails were in your list of email-brand URLs, but I don't have any supporting content (screenshots, scope, description) for them the way I do for Wolven — so rather than invent case-study copy, I left them out. Send over images + a line on what you did for each and I'll add them the same way.
+
+## Brand gallery naming (Aug 2026 update)
+
+All 14 `BRAND_GALLERY` items (Massalino, Brüssel, Oggi Pizza, Arépale, Disfruta, Casa Santafé, Bon Pops, Cuida tu Mente, Sunset Coffee, Casa de Encantos, Phila Cup, El Paraíso, Pawty Animals, Fryefit) now point at `<slug>-thumb.jpg` placeholders (e.g. `images/paraiso-thumb.jpg`) instead of the old `b-<name>.jpg` pattern — matching the naming scheme used everywhere else. These are still single-image lightbox entries (`type: "gallery"`), so you only need one `-thumb` file per brand here, not a full `-01/-02` set — unless you want to upgrade any of these into full case studies later, in which case just say the word.
 
 ## Design system
 
