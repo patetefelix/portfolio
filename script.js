@@ -305,8 +305,8 @@ const PROJECTS = [
     name: "Feat Clothing", industry: "Apparel · DTC", platform: "Email Marketing", liveUrl: "https://featclothing.com/",
     role: "Email Design",
     desc: "Built a modular email system to support weekly drops without wearing down the brand's aesthetic.",
-    thumbnail: "images/feat-thumb.jpg",
-    gallery: ["images/feat-01.jpg", "images/feat-02.jpg"],
+    thumbnail: "images/feat-thumb.png",
+    gallery: ["images/feat-01.png", "images/feat-02.png", "images/feat-03.png", "images/feat-04.png", "images/feat-05.png", "images/feat-06.png", "images/feat-07.png", "images/feat-08.png", "images/feat-09.png"],
     scope: ["Email design", "Copy-to-visual adaptation"]
   },
   {
@@ -315,7 +315,7 @@ const PROJECTS = [
     role: "Email Design",
     desc: "Designed campaigns for an adaptogen and mushroom coffee-alternative brand.",
     thumbnail: "images/rasa-thumb.jpg",
-    gallery: ["images/rasa-01.jpg"],
+    gallery: ["images/rasa-01.jpg", "images/rasa-02.jpg", "images/rasa-03.jpg", "images/rasa-04.jpg", "images/rasa-05.jpg", "images/rasa-06.jpg"],
     scope: ["Email design"]
   },
   {
@@ -324,7 +324,7 @@ const PROJECTS = [
     role: "Email Design",
     desc: "Designed campaigns for a crystal and spiritual jewelry brand.",
     thumbnail: "images/tinyrituals-thumb.jpg",
-    gallery: ["images/tinyrituals-01.jpg"],
+    gallery: ["images/tinyrituals-01.jpg", "images/tinyrituals-02.jpg", "images/tinyrituals-03.jpg"],
     scope: ["Email design"]
   },
   {
@@ -332,8 +332,8 @@ const PROJECTS = [
     name: "12th Tribe", industry: "Women's Fashion & Festival Wear · DTC", platform: "Email Marketing", liveUrl: "https://www.12thtribe.com/",
     role: "Email Design",
     desc: "Designed high-volume campaigns for a national festival and resort-wear fashion retailer.",
-    thumbnail: "images/12tribe-thumb.jpg",
-    gallery: ["images/12tribe-01.jpg", "images/12tribe-02.jpg"],
+    thumbnail: "images/12tribe-thumb.png",
+    gallery: ["images/12tribe-01.png", "images/12tribe-02.png", "images/12tribe-03.png", "images/12tribe-04.png", "images/12tribe-05.png", "images/12tribe-06.png", "images/12tribe-07.png", "images/12tribe-08.png", "images/12tribe-09.png"],
     scope: ["Email design"]
   },
   {
@@ -341,8 +341,8 @@ const PROJECTS = [
     name: "Smithey Ironware", industry: "Luxury Cookware · DTC", platform: "Email Marketing", liveUrl: "https://smithey.com/",
     role: "Email Design",
     desc: "Designed campaigns for a high-end cast iron cookware brand featured across major culinary media.",
-    thumbnail: "images/smithey-thumb.jpg",
-    gallery: ["images/smithey-01.jpg"],
+    thumbnail: "images/smithey-thumb.png",
+    gallery: ["images/smithey-01.png", "images/smithey-02.png", "images/smithey-03.png", "images/smithey-04.png", "images/smithey-05.png", "images/smithey-06.png", "images/smithey-07.png", "images/smithey-08.png", "images/smithey-09.png"],
     scope: ["Email design", "Recipe + product pairing modules"]
   },
   {
@@ -350,8 +350,8 @@ const PROJECTS = [
     name: "Wolven Threads", industry: "Sustainable Intimates & Activewear · DTC", platform: "Email Marketing", liveUrl: "https://wolventhreads.com/",
     role: "Email Marketing Strategy",
     desc: "Developed a Q4 email lifecycle strategy — welcome and abandonment drip redesigns, RFM-based segmentation — for a sustainable intimates and activewear brand.",
-    thumbnail: "images/wolven-thumb.jpg",
-    gallery: ["images/wolven-01.jpg", "images/wolven-02.jpg"],
+    thumbnail: "images/wolven-thumb.png",
+    gallery: ["images/wolven-01.png", "images/wolven-02.png", "images/wolven-03.png", "images/wolven-04.png", "images/wolven-05.png", "images/wolven-06.png", "images/wolven-07.png", "images/wolven-08.png", "images/wolven-09.png"],
     scope: ["Welcome drip series", "Cart & browse abandonment redesign", "RFM lifecycle segmentation strategy"]
   },
   {
@@ -359,8 +359,8 @@ const PROJECTS = [
     name: "Lifeboost Coffee", industry: "Coffee · DTC", platform: "Email Marketing", liveUrl: "https://lifeboostcoffee.com/",
     role: "Email Design",
     desc: "Designed campaigns for a specialty low-acid coffee DTC brand.",
-    thumbnail: "images/lifeboost-thumb.jpg",
-    gallery: ["images/lifeboost-01.jpg"],
+    thumbnail: "images/lifeboostcoffee-thumb.png",
+    gallery: ["images/lifeboostcoffee-01.png", "images/lifeboostcoffee-02.png", "images/lifeboostcoffee-03.png", "images/lifeboostcoffee-04.png", "images/lifeboostcoffee-05.png", "images/lifeboostcoffee-06.png", "images/lifeboostcoffee-07.png", "images/lifeboostcoffee-08.png", "images/lifeboostcoffee-09.png"],
     scope: ["Email design"]
   },
   {
@@ -369,7 +369,7 @@ const PROJECTS = [
     role: "Email Design",
     desc: "Designed campaigns for a reusable press-on manicure and nail care brand.",
     thumbnail: "images/staticnails-thumb.jpg",
-    gallery: ["images/staticnails-01.jpg"],
+    gallery: ["images/staticnails-01.jpg", "images/staticnails-02.jpg", "images/staticnails-03.jpg", "images/staticnails-04.jpg", "images/staticnails-05.jpg", "images/staticnails-06.jpg", "images/staticnails-07.jpg", "images/staticnails-08.jpg", "images/staticnails-09.jpg", "images/staticnails-10.jpg", "images/staticnails-11.jpg", "images/staticnails-12.jpg", "images/staticnails-13.jpg"],
     scope: ["Email design"]
   },
   {
@@ -377,8 +377,8 @@ const PROJECTS = [
     name: "BrüMate", industry: "Drinkware · DTC", platform: "Email Marketing", liveUrl: "https://www.brumate.com/",
     role: "Email Design",
     desc: "Designed color-forward campaigns to showcase a wide multi-variant catalog.",
-    thumbnail: "images/email-brumate.jpg",
-    gallery: ["images/email-brumate.jpg"],
+    thumbnail: "images/brumate-thumb.png",
+    gallery: ["images/brumate-01.png", "images/brumate-02.png", "images/brumate-03.png", "images/brumate-04.png", "images/brumate-05.png", "images/brumate-06.png", "images/brumate-07.png"],
     scope: ["Email design"]
   }
 ];
