@@ -243,43 +243,13 @@ const PROJECTS = [
     scope: ["Category navigation", "Product detail page"]
   },
 
-  /* ================= TAB — BRAND IDENTITY ================= */
-  {
-    id: "denali", tab: "brand", type: "case", featured: true,
-    name: "Denali Leather Goods", industry: "Leather Goods · Brand 0→1", platform: "Brand Identity",
-    role: "Brand Strategy · Identity System",
-    desc: "Built a 0→1 identity durable enough for hide-stamping and screens alike.",
-    thumbnail: "images/b-denali.jpg",
-    gallery: ["images/b-denali.jpg"],
-    scope: ["Logo suite", "Brand style guide", "Social templates", "Stationery"]
-  },
-  {
-    id: "bark2earth", tab: "brand", type: "case", featured: true,
-    name: "Bark 2 Earth", industry: "Pet Treats & Wellness · Brand 0→1", platform: "Brand Identity",
-    role: "Branding · Packaging · Web",
-    desc: "Took a pet-wellness brand from logo to shelf-ready packaging to storefront.",
-    thumbnail: "images/b-bark2earth.jpg",
-    gallery: ["images/b-bark2earth.jpg"],
-    scope: ["Logo", "Packaging (pouch + box)", "Web design"]
-  },
-  {
-    id: "biona", tab: "brand", type: "case", featured: true,
-    name: "Biona Coffee", industry: "Coffee · Packaging 0→1", platform: "Brand Identity",
-    role: "Branding · Packaging",
-    desc: "Built an origin-coded packaging system across multiple roasts and countries.",
-    thumbnail: "images/b-bionacoffee.jpg",
-    gallery: ["images/b-bionacoffee.jpg"],
-    scope: ["Logo", "Packaging design", "Origin-based color + illustration system"]
-  },
-  {
-    id: "emraw", tab: "brand", type: "case",
-    name: "Emraw", industry: "School & Office Supplies · Mass Retail", platform: "Brand Identity + Packaging",
-    role: "Branding · Label Design",
-    desc: "Branding and packaging for a mass-market school and office supply manufacturer sold nationally.",
-    thumbnail: "images/b-emraw.jpg",
-    gallery: ["images/b-emraw.jpg"],
-    scope: ["Logo", "Packaging / label design", "Retail collateral"]
-  },
+  /* ================= TAB — BRAND IDENTITY =================
+     Full case studies live here; the six featured brand cards
+     (El Paraíso, Massalino, Disfruta, Casa Santafé, Casa de Encantos,
+     Pawty Animals) plus the smaller ones now render from BRAND_GALLERY
+     below instead — see the two subgrids in renderGrid(). */
+
+  /* ================= TAB — UI/UX & E-COMMERCE (cont'd) ================= */
   {
     id: "garment-decor-full", tab: "uiux", type: "case",
     name: "Garment Decor", industry: "Apparel Screen-Printing & Embroidery · B2B", platform: "Brand Identity + Web",
@@ -396,6 +366,10 @@ const BRAND_GALLERY = [
   { id: "casa-encantos", tab: "brand", type: "gallery", featured: true, name: "Casa de Encantos — Tea House", image: "images/casadeencantos-thumb.jpg", caption: " · Branding and packaging for a boutique tea house line." },
   { id: "pawty-animals", tab: "brand", type: "gallery", featured: true, name: "Pawty Animals", image: "images/pawtyanimals-thumb.jpg", caption: " · Branding, social media, toy design, packaging, and web design for a pet brand." },
   // Remaining — smaller cards
+  { id: "denali", tab: "brand", type: "gallery", name: "Denali Leather Goods", image: "images/denali-thumb.jpg", caption: " · Brand strategy and identity system for a 0→1 leather goods brand." },
+  { id: "bark2earth", tab: "brand", type: "gallery", name: "Bark 2 Earth", image: "images/bark2earth-thumb.jpg", caption: " · Branding, packaging, and web design for a pet wellness brand." },
+  { id: "biona", tab: "brand", type: "gallery", name: "Biona Coffee", image: "images/biona-thumb.jpg", caption: " · Branding and packaging for a coffee brand across multiple roasts and origins." },
+  { id: "emraw", tab: "brand", type: "gallery", name: "Emraw", image: "images/emraw-thumb.jpg", caption: " · Branding and packaging for a mass-market school and office supply manufacturer." },
   { id: "brussel", tab: "brand", type: "gallery", name: "Brüssel", image: "images/brussel-thumb.jpg", caption: " · Branding and retail branding for a restaurant concept." },
   { id: "oggi-pizza", tab: "brand", type: "gallery", name: "Oggi Pizza", image: "images/oggi-thumb.jpg", caption: " · Branding and retail branding for a pizzeria." },
   { id: "arepale", tab: "brand", type: "gallery", name: "Arépale", image: "images/arepale-thumb.jpg", caption: " · Branding, menu design, and retail branding for a food truck concept." },
