@@ -519,7 +519,7 @@ const BRAND_GALLERY = [
     role: "Branding",
     desc: "Brand identity for a faith-and-fitness apparel line.",
     thumbnail: "images/fryefit-thumb.jpg",
-    gallery: ["images/fryefit-01.jpg", "images/fryefit-02.jpg", "images/fryefit-03.jpg", "images/fryefit-04.jpg", "images/fryefit-05.jpg", "images/fryefit-06.jpg", "images/fryefit-07.jpg", "images/fryefit-08.jpg", "images/fryefit-09.jpg", "images/fryefit-10.jpg", "images/fryefit-11.jpg", "images/fryefit-12.jpg", "images/fryefit-13.jpg", "images/fryefit-14.jpg", "images/fryefit-15.png", "images/fryefit-16.jpg"],
+    gallery: ["images/fryefit-01.jpg", "images/fryefit-02.jpg", "images/fryefit-03.jpg", "images/fryefit-04.jpg", "images/fryefit-05.jpg", "images/fryefit-06.jpg", "images/fryefit-07.jpg", "images/fryefit-08.jpg", "images/fryefit-09.jpg", "images/fryefit-10.jpg", "images/fryefit-11.jpg", "images/fryefit-12.jpg", "images/fryefit-13.jpg", "images/fryefit-14.jpg", "images/fryefit-15.png", "images/fryefit-16.jpg", "images/fryefit-17.jpg"],
     scope: ["Logo", "Brand identity system"]
   },
   {
