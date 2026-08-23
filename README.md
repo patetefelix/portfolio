@@ -60,15 +60,46 @@ TK Elevator, Nueske's, Accutech, White Cap Foods, BriskHeat, Siege Suppressors, 
 
 ## Growth marketing tab (Aug 2026 update)
 
-- **Feat Clothing, 12th Tribe, Smithey Ironware** renamed to the `<slug>-thumb / <slug>-01 / -02` convention: `feat-thumb/-01/-02`, `12tribe-thumb/-01/-02`, `smithey-thumb/-01`. BrüMate keeps its existing `email-brumate.jpg` filename since that same file is also used in the hero image stack on the homepage — renaming it would break that too.
-- **Two new growth-tab clients added**, no stats, images-only like the rest of this tab:
-  - **Wolven Threads** (`id: "wolven"`) — `wolven-thumb/-01/-02`, based on the Q4 email-lifecycle strategy deck you shared (welcome drip rebuild, abandonment-flow redesign, RFM segmentation).
-  - **Lifeboost Coffee** (`id: "lifeboost"`) — `lifeboost-thumb/-01`.
-- **Not added yet:** Rasa, Tiny Rituals, and Static Nails were in your list of email-brand URLs, but I don't have any supporting content (screenshots, scope, description) for them the way I do for Wolven — so rather than invent case-study copy, I left them out. Send over images + a line on what you did for each and I'll add them the same way.
+Now exactly **9 cards**, matching your list. "Crimson Agility Campaign Assets" was removed (no client name on that one — it was internal collateral, not a real brand).
 
-## Brand gallery naming (Aug 2026 update)
+- **Feat, BrüMate, Smithey, 12th Tribe, Wolven, Lifeboost** — unchanged from the last update (naming + live links already in place).
+- **Three new cards added**, images-only like the rest of this tab (no stats), using the same `<slug>-thumb / <slug>-01` convention:
+  - **Rasa** (`id: "rasa"`) — `rasa-thumb.jpg` / `rasa-01.jpg` — [wearerasa.com](https://wearerasa.com/)
+  - **Tiny Rituals** (`id: "tinyrituals"`) — `tinyrituals-thumb.jpg` / `tinyrituals-01.jpg` — [tinyrituals.co](https://tinyrituals.co/)
+  - **Static Nails** (`id: "staticnails"`) — `staticnails-thumb.jpg` / `staticnails-01.jpg` — [staticnails.com](https://staticnails.com/)
+  - I didn't have any brief or scope detail for these three, so the descriptions are generic one-liners — send me a sentence on what you actually did for each and I'll tighten them up.
 
-All 14 `BRAND_GALLERY` items (Massalino, Brüssel, Oggi Pizza, Arépale, Disfruta, Casa Santafé, Bon Pops, Cuida tu Mente, Sunset Coffee, Casa de Encantos, Phila Cup, El Paraíso, Pawty Animals, Fryefit) now point at `<slug>-thumb.jpg` placeholders (e.g. `images/paraiso-thumb.jpg`) instead of the old `b-<name>.jpg` pattern — matching the naming scheme used everywhere else. These are still single-image lightbox entries (`type: "gallery"`), so you only need one `-thumb` file per brand here, not a full `-01/-02` set — unless you want to upgrade any of these into full case studies later, in which case just say the word.
+## Brand tab reordered (Aug 2026 update)
+
+- **Featured order is now, top to bottom:** El Paraíso, Massalino, Disfruta, Casa Santafé, Casa de Encantos, Pawty Animals — as full case cards, per your list.
+- **Denali, Bark 2 Earth, Biona, and Emraw moved down** into the lighter "More Brand Work" strip (small captioned cards, same as Brüssel/Oggi Pizza/etc.) to make room. Their images are renamed to the `<slug>-thumb.jpg` convention too: `denali-thumb.jpg`, `bark2earth-thumb.jpg`, `biona-thumb.jpg`, `emraw-thumb.jpg`.
+- **Garment Decor and Klassen Farm Products moved to the UI/UX (Work) tab** — both are website projects, so they now show up as web case studies instead of under Brand Identity. Garment Decor's platform tag is now `WooCommerce` (tech stack: `WordPress / Custom Printing Engine`), matching your table from before.
+
+## Hero image stack fixed (Aug 2026 update)
+
+The three cards in the homepage hero were pointing at files that were never actually uploaded (`proj-nueskes.jpg`, `b-bark2earth.jpg`, `email-brumate.jpg` — hence the broken-image icons on mobile). Swapped them for one from each category, using files that already exist in the site's data: **Nueske's** (web), **El Paraíso** (branding), **Feat Clothing** (email). If you'd rather feature different projects there, just tell me which three and I'll swap the paths.
+
+## Brand gallery — full case studies now (Aug 2026 update)
+
+All 19 `BRAND_GALLERY` items are now full case studies (`type: "case"`) with real multi-image galleries, using the actual filenames from your images folder — same as every other project on the site. Clicking any brand card now opens the full case modal (header + image grid + "what I worked on"), not a single lightbox image.
+
+- **New client added: Humboldt** (`id: "humboldt"`, 24 images) — this wasn't on the site before; I matched it from the `humboldt-*` files. I inferred "Wine & Spirits · Packaging" from the bottle imagery in the thumbnails since I don't have a brief for it — please correct the industry/description if that's wrong.
+- **Fixed a naming mismatch:** Casa de Encantos was pointing at `casadeencantos-*`, but your actual files are `casaencantos-*` (no "de"). Updated to match.
+- **Fixed several file-extension mismatches** between what the code expected and what you actually have: `massalino-thumb` is `.jpeg` not `.jpg`, `disfruta-thumb` is `.jpeg`, `oggi-thumb` and `philacup-thumb` are `.png`, `bark2earth-thumb` and `biona-thumb` are `.png`. All now point at the real files.
+- **Pawty Animals** didn't have a dedicated `-thumb` file in what you sent, so I used `pawtyanimals-01.png` as the card thumbnail and kept it out of the gallery grid to avoid repeating it.
+- A few filenames appeared twice with different extensions in your list (e.g. `massalino-22.jpg` and `massalino-22.jpeg`, `oggi-15.png` and `oggi-15.jpg`) — I included both as separate gallery images since I can't tell if they're duplicates or different shots. Worth a quick look on your end; delete whichever's the accidental export if they're the same photo.
+- Descriptions and scope lists for the brand tab still follow the same "keep it short, only what's verifiable" approach as before — nothing invented beyond what the existing captions already said.
+
+## "View live" — now on every UI/UX project too (Aug 2026 update)
+
+Every project in the UI/UX & E-Commerce tab now shows a "view live" control in its case-study modal, matching the growth-marketing tab:
+
+- **Newly confirmed links** (I verified these are the real sites): TK Elevator, Nueske's, BriskHeat, Professional's Choice, Frontier Co-op, PT Solutions, High Speed Gear.
+- **Marked "coming soon"** rather than guessed, since the company name alone wasn't enough to be sure I had the right site: Accutech, White Cap Foods, Riddy, AFG Distribution, Oklahoma Correctional Industries, Phoenix Medical Instruments, Garment Decor, Klassen Farm Products — plus the two you already flagged (Icarus Precision, Zip Corvette). Send me the real URL for any of these and I'll swap `comingSoon: true` for a real `liveUrl`.
+
+## Profile photo crop (Aug 2026 update)
+
+Adjusted `object-position` on the About-section portrait — it was centered on the source image, which left a slab of blank background on the left side of the crop. Shifted the focal point right and slightly up so the photo fills the frame more evenly. If it still looks off once you see it live, it's a one-line CSS tweak (`.about-portrait` in `styles.css`) — just let me know which direction to nudge it.
 
 ## Design system
 

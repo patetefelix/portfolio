@@ -406,7 +406,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 
 .about-aside{ display:flex; flex-direction:column; gap:36px; }
 .about-portrait{
-  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center;
+  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:75% 12%;
   border-radius:4px; filter:grayscale(1); transition:filter .4s ease;
 }
 .about-portrait:hover{ filter:grayscale(0); }
