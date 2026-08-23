@@ -409,7 +409,7 @@ const BRAND_GALLERY = [
     name: "Pawty Animals", industry: "Pet Brand · Branding + Web", platform: "Brand Identity + Web",
     role: "Branding · Social Media · Web Design",
     desc: "Branding, social media, toy design, packaging, and web design for a pet brand.",
-    thumbnail: "images/pawtyanimals-thumb.png",
+    thumbnail: "images/pawtyanimals-thumb.jpg",
     gallery: ["images/pawtyanimals-01.png", "images/pawtyanimals-02.png", "images/pawtyanimals-03.png", "images/pawtyanimals-04.png", "images/pawtyanimals-05.png", "images/pawtyanimals-06.png", "images/pawtyanimals-07.png", "images/pawtyanimals-08.png", "images/pawtyanimals-09.png", "images/pawtyanimals-10.png", "images/pawtyanimals-11.jpg", "images/pawtyanimals-11.png", "images/pawtyanimals-12.jpg", "images/pawtyanimals-13.jpg", "images/pawtyanimals-14.jpg", "images/pawtyanimals-15.jpg"],
     scope: ["Logo", "Social media templates", "Toy design", "Packaging", "Web design"]
   },
@@ -512,15 +512,6 @@ const BRAND_GALLERY = [
     thumbnail: "images/philacup-thumb.png",
     gallery: ["images/philacup-01.jpg", "images/philacup-02.jpg", "images/philacup-03.jpg", "images/philacup-04.jpg", "images/philacup-05.jpg", "images/philacup-06.jpg", "images/philacup-07.png"],
     scope: ["Logo", "Packaging design"]
-  },
-  {
-    id: "fryefit", tab: "brand", type: "case",
-    name: "Fryefit", industry: "Faith & Fitness Apparel", platform: "Brand Identity",
-    role: "Branding",
-    desc: "Brand identity for a faith-and-fitness apparel line.",
-    thumbnail: "images/fryefit-thumb.jpg",
-    gallery: ["images/fryefit-01.jpg", "images/fryefit-02.jpg", "images/fryefit-03.jpg", "images/fryefit-04.jpg", "images/fryefit-05.jpg", "images/fryefit-06.jpg", "images/fryefit-07.jpg", "images/fryefit-08.jpg", "images/fryefit-09.jpg", "images/fryefit-10.jpg", "images/fryefit-11.jpg", "images/fryefit-12.jpg", "images/fryefit-13.jpg", "images/fryefit-14.jpg", "images/fryefit-15.png", "images/fryefit-16.jpg", "images/fryefit-17.jpg"],
-    scope: ["Logo", "Brand identity system"]
   },
   {
     id: "humboldt", tab: "brand", type: "case",
