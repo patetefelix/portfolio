@@ -365,7 +365,7 @@ const BRAND_GALLERY = [
     role: "Branding · Packaging · 3D Visualization",
     desc: "Branding, packaging, and 3D visualization for an ice cream brand.",
     thumbnail: "images/paraiso-thumb.jpg",
-    gallery: ["images/paraiso-01.jpeg", "images/paraiso-02.jpg", "images/paraiso-05.jpg", "images/paraiso-06.jpg", "images/paraiso-07.gif", "images/paraiso-08.jpg", "images/paraiso-09.jpg", "images/paraiso-10.gif", "images/paraiso-11.jpg", "images/paraiso-12.jpg", "images/paraiso-14.jpg", "images/paraiso-16.jpg", "images/paraiso-17.png", "images/paraiso-19.png", "images/paraiso-20.jpg", "images/paraiso-21.jpg"],
+    gallery: ["images/paraiso-01.jpeg", "images/paraiso-02.jpg", "images/paraiso-03.png", "images/paraiso-04.png", "images/paraiso-05.jpg", "images/paraiso-06.jpg", "images/paraiso-07.gif", "images/paraiso-08.jpg", "images/paraiso-09.jpg", "images/paraiso-10.gif", "images/paraiso-11.jpg", "images/paraiso-12.jpg", "images/paraiso-14.jpg", "images/paraiso-14.png", "images/paraiso-15.png", "images/paraiso-16.jpg", "images/paraiso-17.png", "images/paraiso-19.png", "images/paraiso-20.jpg", "images/paraiso-21.jpg"],
     scope: ["Logo", "Packaging design", "3D product visualization"]
   },
   {
@@ -409,8 +409,8 @@ const BRAND_GALLERY = [
     name: "Pawty Animals", industry: "Pet Brand · Branding + Web", platform: "Brand Identity + Web",
     role: "Branding · Social Media · Web Design",
     desc: "Branding, social media, toy design, packaging, and web design for a pet brand.",
-    thumbnail: "images/pawtyanimals-01.png",
-    gallery: ["images/pawtyanimals-07.png", "images/pawtyanimals-08.png", "images/pawtyanimals-09.png", "images/pawtyanimals-11.jpg", "images/pawtyanimals-12.jpg", "images/pawtyanimals-13.jpg", "images/pawtyanimals-14.jpg", "images/pawtyanimals-15.jpg"],
+    thumbnail: "images/pawtyanimals-thumb.png",
+    gallery: ["images/pawtyanimals-01.png", "images/pawtyanimals-02.png", "images/pawtyanimals-03.png", "images/pawtyanimals-04.png", "images/pawtyanimals-05.png", "images/pawtyanimals-06.png", "images/pawtyanimals-07.png", "images/pawtyanimals-08.png", "images/pawtyanimals-09.png", "images/pawtyanimals-10.png", "images/pawtyanimals-11.jpg", "images/pawtyanimals-11.png", "images/pawtyanimals-12.jpg", "images/pawtyanimals-13.jpg", "images/pawtyanimals-14.jpg", "images/pawtyanimals-15.jpg"],
     scope: ["Logo", "Social media templates", "Toy design", "Packaging", "Web design"]
   },
   // Remaining — smaller cards
