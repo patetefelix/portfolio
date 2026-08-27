@@ -228,6 +228,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 
 .hero-stack{
   position:relative;
+  width:100%;
   height:480px;
   justify-self:center;
 }
