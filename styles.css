@@ -23,9 +23,9 @@
   --accent-soft:   rgba(147,187,164,0.14);
   --shadow:        0 30px 60px -30px rgba(0,0,0,0.55);
 
-  --font-display: "Instrument Serif", Georgia, serif;
+  --font-display: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "DM Mono", "SF Mono", monospace;
+  --font-mono: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
   --container: 1200px;
@@ -96,7 +96,7 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 
 h1,h2,h3{
   font-family:var(--font-display);
-  font-weight:400;
+  font-weight:600;
   letter-spacing:-0.01em;
   margin:0;
 }
@@ -169,7 +169,7 @@ html[data-theme="light"] .btn-primary .btn-icon{ background:rgba(255,255,255,0.2
 .nav-logo{
   font-family:var(--font-display);
   font-size:22px;
-  font-weight:400;
+  font-weight:600;
   letter-spacing:-0.01em;
 }
 .nav-logo .dot{ color:var(--accent); }
@@ -359,6 +359,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 }
 .card-name{
   font-family:var(--font-display);
+  font-weight:600;
   font-size:22px;
   margin:0 0 8px;
 }
@@ -425,7 +426,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
   border-left:1px solid var(--line);
 }
 .about-facts li:first-child{ padding-left:0; border-left:none; }
-.fact-num{ font-family:var(--font-display); font-size:34px; color:var(--accent); line-height:1; }
+.fact-num{ font-family:var(--font-display); font-weight:600; font-size:34px; color:var(--accent); line-height:1; }
 .fact-label{ font-size:12px; color:var(--text-dim); line-height:1.45; }
 
 /* ============================================================
@@ -501,7 +502,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 .cs-head-item b{ display:block; font-family:var(--font-body); font-size:14px; color:var(--text); font-weight:600; text-transform:none; margin-top:3px; }
 .cs-desc{ color:var(--text-dim); line-height:1.6; margin:0; max-width:560px; }
 
-.cs-title{ font-family:var(--font-display); font-size:clamp(26px,3.6vw,38px); margin:0 0 26px; }
+.cs-title{ font-family:var(--font-display); font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 26px; }
 
 .cs-section{ margin-bottom:8px; }
 .cs-label{ font-family:var(--font-mono); font-size:11px; color:var(--accent); letter-spacing:.04em; margin:0 0 10px; }
@@ -557,7 +558,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform:translateX(18px); }
 .subcard-featured .subcard-media{ aspect-ratio:4/3; }
 .subcard-featured .subcard-body{ padding:14px 16px 16px; }
 .subcard-featured .subcard-label{
-  padding:0 0 6px; font-family:var(--font-display); font-size:17px;
+  padding:0 0 6px; font-family:var(--font-display); font-weight:600; font-size:17px;
   text-transform:none; color:var(--text); letter-spacing:0;
 }
 .subcard-featured .subcard-caption{ margin:0; font-size:12.5px; line-height:1.5; color:var(--text-dimmer); }

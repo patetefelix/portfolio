@@ -103,7 +103,7 @@ Adjusted `object-position` on the About-section portrait — it was centered on 
 
 ## Design system
 
-- **Fonts:** Instrument Serif for display type (headings, card names), DM Sans for body copy, DM Mono for the small mono labels (eyebrows, tab numbers, `cs-head-item`). All three load from one Google Fonts request in `index.html`. Instrument Serif only ships in weight 400 (regular + italic) — don't set `font-weight` above 400 on anything using `--font-display`.
+- **Fonts:** DM Sans across the board — display type (headings, card names), body copy, and the small mono-style labels (eyebrows, tab numbers, `cs-head-item`) all use `--font-display` / `--font-body` / `--font-mono`, which now all point to DM Sans. Headings and other display elements are set to `font-weight: 600` since DM Sans reads better at semibold for large type than at regular. One Google Fonts request in `index.html` (`DM+Sans:opsz,wght@9..40,400..700`) covers the whole range.
 - **Colors:** pulled from your own Alinea studio palette — pine green `#1B3E3A`, cream `#EBE4DC`, sand `#B9AC9F`. Light mode uses them close to source. Dark mode swaps the pine accent for a muted sage (`#93BBA4`). Everything is a CSS variable in `styles.css`.
 - **Section headers:** the `.eyebrow` labels (Work, About, Clients, Say Hello, More Brand Work) are now standard capitalized text — the CSS no longer force-lowercases or prefixes them, so whatever you type in `index.html` is what renders.
 
