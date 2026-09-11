@@ -21,33 +21,19 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<!-- Custom cursor -->
-<div class="cursor" id="cursor">
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
-</div>
+<a class="skip-link" href="#work">Skip to work</a>
+<div class="reading-progress" aria-hidden="true"></div>
 
 <div class="grain" aria-hidden="true"></div>
-
-<!-- Loading screen -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-inner">
-    <div class="loader-count" id="loaderCount">000</div>
-    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
-    <p class="loader-label">Loading portfolio</p>
-  </div>
-</div>
-
 <header class="nav" id="siteNav">
   <div class="nav-inner">
     <a href="#top" class="nav-logo">Félix<span class="dot">.</span></a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Main navigation">
       <a href="#work" data-nav="work">work</a>
       <a href="#about" data-nav="about">about</a>
       <a href="#contact" data-nav="contact">say&nbsp;hello</a>
@@ -60,7 +46,7 @@
   </div>
 </header>
 
-<main>
+<main id="mainContent">
 
   <!-- ═══════════════════════════════════
        HERO
@@ -78,17 +64,17 @@
         </div>
 
         <h1 class="hero-headline">
-          <span class="hl-line hl-line-1" data-scroll-parallax="-0.15">
+          <span class="hl-line hl-line-1">
             <span class="hl-word">Branding</span>
           </span>
-          <span class="hl-line hl-line-2" data-scroll-parallax="0.1">
+          <span class="hl-line hl-line-2">
             <span class="hl-word">is the</span>
             <em class="hl-accent">job.</em>
           </span>
-          <span class="hl-line hl-line-3" data-scroll-parallax="-0.08">
+          <span class="hl-line hl-line-3">
             <span class="hl-word hl-dim">Everything else</span>
           </span>
-          <span class="hl-line hl-line-4" data-scroll-parallax="0.12">
+          <span class="hl-line hl-line-4">
             <span class="hl-word hl-dim">is just the</span>
             <span class="hl-stroke-text">medium.</span>
           </span>
@@ -116,10 +102,13 @@
         </div>
       </div>
 
-      <div class="hero-stack-wrap" aria-hidden="true">
-        <img class="stack-card c1 tilt-card" src="images/zipcorvette-thumb.png" alt="" loading="eager">
-        <img class="stack-card c2 tilt-card" src="images/paraiso-thumb.jpg" alt="" loading="eager">
-        <img class="stack-card c3 tilt-card" src="images/wolven-thumb.png" alt="" loading="eager">
+      <div class="hero-stack-wrap" aria-label="Explore selected projects">
+        <div class="orbit" aria-hidden="true"></div>
+        <span class="stage-label">UX · BRAND · GROWTH</span>
+        <button class="stack-card c1" data-case="zip-corvette" aria-label="View Zip Corvette project"><img src="images/zipcorvette-thumb.png" alt="Zip Corvette storefront"><span>Zip Corvette <b>↗</b></span></button>
+        <button class="stack-card c2" data-case="paraiso" aria-label="View El Paraíso project"><img src="images/paraiso-thumb.jpg" alt="El Paraíso brand identity"><span>El Paraíso <b>↗</b></span></button>
+        <button class="stack-card c3" data-case="wolven" aria-label="View Wolven project"><img src="images/wolven-thumb.png" alt="Wolven campaign design"><span>Wolven <b>↗</b></span></button>
+        <span class="stage-caption">Branding is the throughline.</span>
       </div>
 
     </div>
@@ -171,7 +160,8 @@
     </div>
     <p class="tab-desc" id="tabDesc"></p>
 
-    <div class="grid" id="projectGrid"></div>
+    <div class="grid" id="projectGrid" role="tabpanel" aria-label="Selected projects"></div>
+    <noscript><p>Enable JavaScript to explore the project archive, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
 
     <div class="subgrid subgrid-featured" id="brandGalleryFeatured"></div>
 
@@ -192,21 +182,21 @@
 
     <div class="about-grid">
 
-      <div class="about-stats" aria-hidden="true">
+      <div class="about-stats">
         <div class="stat-block reveal-count" data-count="13">
-          <span class="stat-num" id="stat-13">0</span>
+          <span class="stat-num" id="stat-13">13</span>
           <span class="stat-label">years in design<br>UI/UX · brand · email</span>
         </div>
         <div class="stat-block reveal-count" data-count="7" style="--delay:0.1s">
-          <span class="stat-num" id="stat-7">0</span>
+          <span class="stat-num" id="stat-7">7</span>
           <span class="stat-label">years owning<br>e-commerce UX</span>
         </div>
         <div class="stat-block reveal-count" data-count="4" style="--delay:0.2s">
-          <span class="stat-num" id="stat-4">0</span>
+          <span class="stat-num" id="stat-4">4</span>
           <span class="stat-label">platforms:<br>AC · Shopify · BC · SW</span>
         </div>
         <div class="stat-block reveal-count" data-count="2" style="--delay:0.3s">
-          <span class="stat-num" id="stat-2">0</span>
+          <span class="stat-num" id="stat-2">2</span>
           <span class="stat-label">languages:<br>Spanish · English</span>
         </div>
       </div>
@@ -283,7 +273,7 @@
 </footer>
 
 <!-- Modal -->
-<div class="modal" id="modal" aria-hidden="true">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true" inert>
   <div class="modal-backdrop" id="modalBackdrop"></div>
   <div class="modal-inner">
     <button class="modal-close" id="modalClose" aria-label="Close">

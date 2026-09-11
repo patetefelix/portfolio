@@ -409,258 +409,8 @@ const PROJECTS = [
 
 const BRAND_GALLERY = PROJECTS.filter(p => p.tab === "brand");
 
-/* ─── LOADER ─────────────────────────────────────────────── */
-(function initLoader() {
-  const loader = $("#loader");
-  const countEl = $("#loaderCount");
-  const fill = $("#loaderFill");
-  if (!loader) return;
 
-  let count = 0;
-  const target = 100;
-  const duration = 2000;
-  const step = duration / target;
-
-  const tick = () => {
-    count = Math.min(count + 1, target);
-    countEl.textContent = String(count).padStart(3, "0");
-    fill.style.width = count + "%";
-    if (count < target) {
-      setTimeout(tick, step + Math.random() * 8 - 4);
-    } else {
-      setTimeout(() => loader.classList.add("is-done"), 400);
-    }
-  };
-  setTimeout(tick, 200);
-})();
-
-/* ─── CUSTOM CURSOR ──────────────────────────────────────── */
-(function initCursor() {
-  const ring = $("#cursorRing");
-  const dot  = $("#cursorDot");
-  if (!ring || !dot || window.matchMedia("(pointer: coarse)").matches) return;
-
-  let mx = -100, my = -100;
-  let rx = -100, ry = -100;
-  let raf;
-
-  document.addEventListener("mousemove", e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-  });
-
-  document.addEventListener("mousedown", () => document.body.classList.add("cursor-click"));
-  document.addEventListener("mouseup", () => document.body.classList.remove("cursor-click"));
-
-  const hoverEls = () => $$("a, button, .card, .tab, .subcard, .btn-contact, .modal-close, .stack-card");
-  const textEls  = () => $$("p, h1, h2, h3, li");
-
-  document.addEventListener("mouseover", e => {
-    const el = e.target;
-    if (hoverEls().some(h => h === el || h.contains(el))) {
-      document.body.classList.add("cursor-hover");
-      document.body.classList.remove("cursor-text");
-    } else if (textEls().some(t => t === el || t.contains(el))) {
-      document.body.classList.add("cursor-text");
-      document.body.classList.remove("cursor-hover");
-    } else {
-      document.body.classList.remove("cursor-hover", "cursor-text");
-    }
-  });
-
-  const loop = () => {
-    rx = lerp(rx, mx, 0.1);
-    ry = lerp(ry, my, 0.1);
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-    raf = requestAnimationFrame(loop);
-  };
-  loop();
-})();
-
-/* ─── MAGNETIC HOVER ─────────────────────────────────────── */
-(function initMagnetic() {
-  function applyMagnetic(el) {
-    el.addEventListener("mousemove", e => {
-      const r = el.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top  + r.height / 2;
-      const dx = (e.clientX - cx) * 0.28;
-      const dy = (e.clientY - cy) * 0.28;
-      el.style.transform = `translate(${dx}px, ${dy}px)`;
-
-      // Radial shimmer for .btn
-      if (el.classList.contains("btn")) {
-        const rx = ((e.clientX - r.left) / r.width) * 100;
-        const ry = ((e.clientY - r.top)  / r.height) * 100;
-        el.style.setProperty("--mx", rx + "%");
-        el.style.setProperty("--my", ry + "%");
-      }
-    });
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "";
-    });
-  }
-  // Applied after DOM is ready (reinvoked on tab change too)
-  window.applyMagneticToNew = () => $$(".magnetic").forEach(applyMagnetic);
-})();
-
-/* ─── CARD 3D TILT ───────────────────────────────────────── */
-function initCardTilt() {
-  $$(".card").forEach(card => {
-    card.addEventListener("mousemove", e => {
-      const r  = card.getBoundingClientRect();
-      const x  = (e.clientX - r.left) / r.width  - 0.5;
-      const y  = (e.clientY - r.top)  / r.height - 0.5;
-      const rx = x * 100; const ry = y * 100;
-      card.style.setProperty("--mx", (x + 0.5) * 100 + "%");
-      card.style.setProperty("--my", (y + 0.5) * 100 + "%");
-      card.style.transform = `perspective(900px) rotateY(${rx * 0.06}deg) rotateX(${-ry * 0.06}deg) scale(1.008)`;
-    });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-  });
-}
-
-/* ─── SPLIT TEXT REVEAL ──────────────────────────────────── */
-function initSplitText() {
-  $$(".reveal-split").forEach(el => {
-    // Preserve em/i tags inside — split only text nodes
-    const nodes = Array.from(el.childNodes);
-    el.innerHTML = "";
-    let delay = 0;
-    nodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const words = node.textContent.split(/(\s+)/);
-        words.forEach(word => {
-          if (!word.trim()) {
-            el.appendChild(document.createTextNode(word));
-            return;
-          }
-          const chars = word.split("");
-          chars.forEach(ch => {
-            const span = document.createElement("span");
-            span.className = "char";
-            span.textContent = ch;
-            span.style.transitionDelay = `${delay}s`;
-            delay += 0.025;
-            el.appendChild(span);
-          });
-        });
-      } else {
-        // Tag like <em>, <br> — wrap its own text in .char spans
-        const tag = node.cloneNode(false);
-        const text = node.textContent;
-        text.split("").forEach(ch => {
-          const span = document.createElement("span");
-          span.className = "char";
-          span.textContent = ch;
-          span.style.transitionDelay = `${delay}s`;
-          delay += 0.025;
-          tag.appendChild(span);
-        });
-        el.appendChild(tag);
-      }
-    });
-  });
-}
-
-/* ─── SCROLL REVEAL OBSERVER ─────────────────────────────── */
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("is-visible");
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-
-function observeReveal(nodeList) {
-  nodeList.forEach(el => revealObs.observe(el));
-}
-
-/* ─── CARD OBSERVER ──────────────────────────────────────── */
-const cardObs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add("is-in"), i * 70);
-      cardObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-function observeCards(list) { list.forEach(el => cardObs.observe(el)); }
-
-/* ─── SCROLL COUNTER ─────────────────────────────────────── */
-function initCounters() {
-  const countObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseInt(el.dataset.count, 10);
-      const statNum = el.querySelector(".stat-num");
-      if (!statNum) return;
-
-      let current = 0;
-      const dur = 1200;
-      const start = performance.now();
-      const tick = now => {
-        const t = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - t, 3);
-        current = Math.round(ease * target);
-        statNum.textContent = current;
-        if (t < 1) requestAnimationFrame(tick);
-        else statNum.textContent = target;
-      };
-      requestAnimationFrame(tick);
-      countObs.unobserve(el);
-    });
-  }, { threshold: 0.4 });
-
-  $$(".reveal-count").forEach(el => countObs.observe(el));
-}
-
-/* ─── PARALLAX HEADLINE ──────────────────────────────────── */
-function initParallax() {
-  const lines = $$("[data-scroll-parallax]");
-  if (!lines.length) return;
-
-  window.addEventListener("scroll", () => {
-    const sy = window.scrollY;
-    lines.forEach(line => {
-      const factor = parseFloat(line.dataset.scrollParallax);
-      line.style.transform = `translateY(${sy * factor}px)`;
-    });
-  }, { passive: true });
-}
-
-/* ─── NAV ACTIVE SECTION ─────────────────────────────────── */
-function initNavSpy() {
-  const nav = $("#siteNav");
-  const links = $$(".nav-links a[data-nav]");
-  const sections = links.map(a => document.getElementById(a.dataset.nav)).filter(Boolean);
-
-  window.addEventListener("scroll", () => {
-    const sy = window.scrollY;
-    nav.classList.toggle("is-scrolled", sy > 60);
-    nav.style.top = sy > 40 ? "10px" : "18px";
-
-    let current = "";
-    sections.forEach(sec => {
-      if (sy >= sec.offsetTop - 200) current = sec.id;
-    });
-    links.forEach(a => a.classList.toggle("is-active", a.dataset.nav === current));
-  }, { passive: true });
-}
-
-/* ─── MARQUEE ────────────────────────────────────────────── */
-function populateMarquee() {
-  const track = $("#marqueeTrack");
-  if (!track) return;
-  const doubled = [...CLIENTS, ...CLIENTS];
-  track.innerHTML = doubled.map(name => `<span>${name}</span>`).join("");
-}
-
+let previousFocus = null;
 /* ─── TABS + GRID RENDER ─────────────────────────────────── */
 let currentTab = "uiux";
 const tabsEl       = $("#tabs");
@@ -694,7 +444,9 @@ function renderGrid(tab) {
   gridEl.classList.toggle("is-dense", tab !== "uiux");
 
   PROJECTS.filter(p => p.tab === tab).forEach(p => {
-    const card = document.createElement("div");
+    const card = document.createElement("button");
+    card.type = "button";
+    card.setAttribute("aria-label", `View ${p.name} case study`);
     card.className = "card";
     card.innerHTML = cardHTML(p);
     card.addEventListener("click", () => openCase(p.id));
@@ -709,32 +461,7 @@ function renderGrid(tab) {
   brandFeaturedEl.innerHTML = "";
   brandGalleryEl.innerHTML = "";
 
-  if (isBrand) {
-    BRAND_GALLERY.filter(p => p.featured).forEach(p => {
-      const el = document.createElement("div");
-      el.className = "subcard subcard-featured";
-      el.innerHTML = `
-        <div class="subcard-media"><img src="${p.thumbnail}" alt="${p.name}" loading="lazy"></div>
-        <div class="subcard-body">
-          <div class="subcard-label">${p.name}</div>
-          <p class="subcard-caption">${p.desc}</p>
-        </div>`;
-      el.addEventListener("click", () => openCase(p.id));
-      brandFeaturedEl.appendChild(el);
-    });
-    observeCards($$(".subcard", brandFeaturedEl));
-
-    BRAND_GALLERY.filter(p => !p.featured).forEach(p => {
-      const el = document.createElement("div");
-      el.className = "subcard";
-      el.innerHTML = `
-        <div class="subcard-media"><img src="${p.thumbnail}" alt="${p.name}" loading="lazy"></div>
-        <div class="subcard-label">${p.name}</div>`;
-      el.addEventListener("click", () => openCase(p.id));
-      brandGalleryEl.appendChild(el);
-    });
-    observeCards($$(".subcard", brandGalleryEl));
-  }
+  subgridHeadEl.hidden = true;
 
   if (window.applyMagneticToNew) window.applyMagneticToNew();
 }
@@ -797,12 +524,25 @@ function openCase(id) {
 }
 
 function openModal() {
+  previousFocus = document.activeElement;
+  modal.inert = false;
   modal.classList.add("is-open");
+  document.querySelector("main").inert = true;
+  document.querySelector("header.nav").inert = true;
+  document.querySelector("footer").inert = true;
+  modalClose.focus();
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  modal.querySelector(".modal-inner").scrollTop = 0;
 }
 function closeModal() {
+  if (!modal.classList.contains("is-open")) return;
   modal.classList.remove("is-open");
+  modal.inert = true;
+  document.querySelector("main").inert = false;
+  document.querySelector("header.nav").inert = false;
+  document.querySelector("footer").inert = false;
+  previousFocus?.focus();
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
@@ -810,81 +550,156 @@ modalClose   && modalClose.addEventListener("click", closeModal);
 modalBackdrop && modalBackdrop.addEventListener("click", closeModal);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
-/* ─── THEME TOGGLE ───────────────────────────────────────── */
-(function initTheme() {
-  const toggle = $("#themeToggle");
-  const root   = document.documentElement;
-  const saved  = localStorage.getItem("felix-theme");
-  if (saved) root.setAttribute("data-theme", saved);
 
-  toggle && toggle.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    localStorage.setItem("felix-theme", next);
+/* Motion is progressive enhancement; content remains readable without it. */
+const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
   });
-})();
-
-/* ─── FOOTER YEAR ────────────────────────────────────────── */
-const yrEl = document.getElementById("footerYear");
-if (yrEl) yrEl.textContent = new Date().getFullYear();
-
-/* ─── HERO ENTRANCE ──────────────────────────────────────── */
-function initHeroEntrance() {
-  // Stagger each .hl-line
-  $$(".hl-line").forEach((line, i) => {
-    const word = line.querySelector(".hl-word, .hl-accent, .hl-stroke-text");
-    if (!word) return;
-    line.style.overflow = "hidden";
-    word.style.display = "inline-block";
-    word.style.transform = "translateY(110%)";
-    word.style.opacity = "0";
-    word.style.transition = `transform 1s cubic-bezier(0.19,1,0.22,1) ${0.1 + i * 0.12}s, opacity 0.6s ease ${0.1 + i * 0.12}s`;
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        word.style.transform = "translateY(0)";
-        word.style.opacity = "1";
-      });
-    });
-  });
-
-  // The italic accent on line 2 also needs the treatment
-  const accent = $(".hl-accent");
-  if (accent) {
-    accent.style.display = "inline-block";
-    accent.style.transform = "translateY(110%)";
-    accent.style.opacity = "0";
-    accent.style.transition = `transform 1s cubic-bezier(0.19,1,0.22,1) 0.32s, opacity 0.6s ease 0.32s`;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      accent.style.transform = "translateY(0)";
-      accent.style.opacity = "1";
-    }));
-  }
+}, { threshold: .08 });
+function observeCards(cards) { cards.forEach(card => card.classList.add('is-in')); }
+function initCardTilt() {
+  // Keep the case-study reading surface stable; motion lives in its image.
 }
 
-/* ─── INIT ───────────────────────────────────────────────── */
-document.addEventListener("DOMContentLoaded", () => {
-  initSplitText();
-  initHeroEntrance();
-  initParallax();
-  initNavSpy();
-  initCounters();
-  populateMarquee();
-
-  // Reveal observers
-  observeReveal($$(".reveal-fade, .reveal-split, .work-head, .subgrid-head"));
-
-  // Magnetic on initial set
-  if (window.applyMagneticToNew) window.applyMagneticToNew();
-
-  // Render default tab
-  try {
-    tabDescEl.textContent = TAB_COPY[currentTab];
-    renderGrid(currentTab);
-  } catch (err) {
-    console.error("Portfolio — grid render failed:", err);
+// Preserve every relative filename; GitHub hosts the fallback asset.
+document.addEventListener('error', event => {
+  const img = event.target;
+  if (!(img instanceof HTMLImageElement)) return;
+  const relative = img.getAttribute('src');
+  if (!img.dataset.remoteTried && relative?.startsWith('images/')) {
+    img.dataset.remoteTried = 'true';
+    img.src = 'https://patetefelix.github.io/portfolio/' + relative;
+  } else {
+    const note = document.createElement('span');
+    note.className = 'media-unavailable';
+    note.textContent = img.alt ? `${img.alt} — image unavailable` : 'Image unavailable';
+    img.replaceWith(note);
   }
+}, true);
+// Catch early image failures that occurred before this script loaded.
+$$('img').forEach(img => {
+  if (img.complete && !img.naturalWidth) img.dispatchEvent(new Event('error'));
+});
 
-  // Observe about reveal-count
-  observeReveal($$(".reveal-count"));
+const toggle = $('#themeToggle');
+try {
+  const saved = localStorage.getItem('felix-theme');
+  if (['light', 'dark'].includes(saved)) document.documentElement.dataset.theme = saved;
+} catch { /* Storage can be unavailable in private contexts. */ }
+function updateThemeLabel() {
+  toggle.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'light'));
+}
+updateThemeLabel();
+toggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  updateThemeLabel();
+  try { localStorage.setItem('felix-theme', next); } catch { /* Optional preference. */ }
+});
+
+$('#footerYear').textContent = new Date().getFullYear();
+const track = $('#marqueeTrack');
+CLIENTS.forEach(name => {
+  const item = document.createElement('span');
+  item.textContent = name;
+  track.appendChild(item);
+});
+const firstItems = [...track.children];
+firstItems.forEach(item => {
+  const copy = item.cloneNode(true);
+  copy.setAttribute('aria-hidden', 'true');
+  track.appendChild(copy);
+});
+$('.marquee').tabIndex = 0;
+
+// One panel, three keyboard-operable categories.
+const tabButtons = $$('.tab');
+tabButtons.forEach((tab, i) => {
+  tab.id = `tab-${tab.dataset.tab}`;
+  tab.setAttribute('aria-controls', 'projectGrid');
+  tab.tabIndex = i === 0 ? 0 : -1;
+  tab.addEventListener('click', () => {
+    tabButtons.forEach(button => button.tabIndex = button === tab ? 0 : -1);
+    gridEl.setAttribute('aria-labelledby', tab.id);
+  });
+  tab.addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'ArrowRight') next = (i + 1) % tabButtons.length;
+    if (event.key === 'ArrowLeft') next = (i + tabButtons.length - 1) % tabButtons.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = tabButtons.length - 1;
+    if (next === undefined) return;
+    event.preventDefault(); tabButtons[next].click(); tabButtons[next].focus();
+  });
+});
+gridEl.setAttribute('aria-labelledby', tabButtons[0].id);
+tabDescEl.textContent = TAB_COPY[currentTab];
+renderGrid(currentTab);
+$$('[data-case]').forEach(button => button.addEventListener('click', () => openCase(button.dataset.case)));
+
+modal.addEventListener('keydown', event => {
+  if (event.key !== 'Tab') return;
+  const focusable = $$('button, a[href], [tabindex="0"]', modal);
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
+
+let scrollFrame = 0;
+function updateScroll() {
+  scrollFrame = 0;
+  const max = document.documentElement.scrollHeight - innerHeight;
+  document.documentElement.style.setProperty('--progress', max > 0 ? scrollY / max : 0);
+  $('#siteNav').classList.toggle('is-scrolled', scrollY > 60);
+  let current = '';
+  ['work', 'about', 'contact'].forEach(id => { if ($('#' + id).getBoundingClientRect().top <= 200) current = id; });
+  $$('.nav-links a').forEach(link => {
+    const active = link.dataset.nav === current;
+    link.classList.toggle('is-active', active);
+    if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+  });
+}
+addEventListener('scroll', () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll); }, { passive: true });
+addEventListener('resize', updateScroll);
+updateScroll();
+
+const stage = $('.hero-stack-wrap');
+stage.addEventListener('pointermove', event => {
+  if (motion.matches || !finePointer.matches) return;
+  const rect = stage.getBoundingClientRect();
+  stage.style.setProperty('--stage-x', `${((event.clientX - rect.left) / rect.width - .5) * 9}deg`);
+  stage.style.setProperty('--stage-y', `${((event.clientY - rect.top) / rect.height - .5) * -7}deg`);
+});
+stage.addEventListener('pointerleave', () => {
+  stage.style.setProperty('--stage-x', '0deg'); stage.style.setProperty('--stage-y', '0deg');
+});
+$$('.magnetic').forEach(button => {
+  button.addEventListener('pointermove', event => {
+    if (motion.matches || !finePointer.matches) return;
+    const rect = button.getBoundingClientRect();
+    button.style.transform = `translate(${(event.clientX - rect.left - rect.width / 2) * .09}px,${(event.clientY - rect.top - rect.height / 2) * .12}px)`;
+  });
+  button.addEventListener('pointerleave', () => button.style.transform = '');
+});
+if (!motion.matches) {
+  document.documentElement.classList.add('js-motion');
+  $$('.reveal-fade,.reveal-count').forEach(el => revealObserver.observe(el));
+  $$('.hl-line').forEach((line, index) => line.animate(
+    [{ opacity: 0, transform: 'translateY(25px)', filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }],
+    { duration: 950, delay: 100 + index * 100, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }
+  ));
+}
+motion.addEventListener('change', () => {
+  if (motion.matches) {
+    document.documentElement.classList.remove('js-motion');
+    document.getAnimations().forEach(animation => animation.cancel());
+    stage.style.transform = 'none';
+    $$('.magnetic').forEach(button => button.style.transform = '');
+  }
 });
