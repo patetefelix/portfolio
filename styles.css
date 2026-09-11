@@ -1284,3 +1284,10 @@ section[id] { scroll-margin-top:110px; }
  .footer-inner { flex-direction:column; align-items:center; }
  .nav-inner { gap:13px; }
 }
+/* Archive cards use the verified image collection without invented metadata. */
+.card-media + .card-body { padding-top:20px; }
+.cs-section[hidden] { display:none; }
+@media(max-width:600px) {
+ .tabs { display:grid; grid-template-columns:1fr 1fr; }
+ .tab { text-align:left; white-space:normal; }
+}
