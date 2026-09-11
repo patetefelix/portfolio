@@ -1439,13 +1439,13 @@ function cardHTML(p) {
       ${p.role ? `<p class="card-role">${p.role}</p>` : ""}
       <h3 class="card-name">${p.name}</h3>
       ${p.desc ? `<p class="card-desc">${p.desc}</p>` : ""}
-      <span class="card-cta">${p.tab === "archive" ? "view gallery" : "view case study"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;">↗</span></span>
+      <span class="card-cta">${p.tab === "archive" ? "view gallery" : "view case study"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></span>
     </div>
   `;
 }
 
 function liveLinkHTML(p) {
-  if (p.liveUrl) return `<a class="btn btn-ghost btn-sm cs-live-btn" href="${p.liveUrl}" target="_blank" rel="noopener"><span>view live</span><span class="btn-icon" style="width:20px;height:20px;font-size:10px;">↗</span></a>`;
+  if (p.liveUrl) return `<a class="btn btn-ghost btn-sm cs-live-btn" href="${p.liveUrl}" target="_blank" rel="noopener"><span>view live</span><span class="btn-icon" style="width:20px;height:20px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a>`;
   if (p.comingSoon) return `<span class="btn btn-ghost btn-sm cs-live-btn is-disabled">coming soon</span>`;
   return "";
 }
@@ -1714,3 +1714,36 @@ motion.addEventListener('change', () => {
     $$('.magnetic').forEach(button => button.style.transform = '');
   }
 });
+
+
+/* Background color drifts independently of pointer input. */
+const backgroundToggle = $('#backgroundToggle');
+let backgroundPaused = motion.matches;
+try { backgroundPaused ||= localStorage.getItem('felix-background-paused') === 'true'; } catch {}
+function syncBackground() {
+  const paused = backgroundPaused || motion.matches;
+  document.documentElement.classList.toggle('background-paused', paused);
+  backgroundToggle.textContent = paused ? 'Resume background' : 'Pause background';
+  backgroundToggle.setAttribute('aria-pressed', String(paused));
+  backgroundToggle.disabled = motion.matches;
+  if (motion.matches) backgroundToggle.textContent = 'Reduced motion';
+}
+backgroundToggle.addEventListener('click', () => {
+  backgroundPaused = !backgroundPaused;
+  try { localStorage.setItem('felix-background-paused', String(backgroundPaused)); } catch {}
+  syncBackground();
+});
+motion.addEventListener('change', syncBackground);
+$$('.portfolio-wash i').forEach(layer => {
+  const random = (min, max) => min + Math.random() * (max - min);
+  layer.style.setProperty('--wash-x1', `${random(-20, 0).toFixed(1)}%`);
+  layer.style.setProperty('--wash-y1', `${random(-15, 0).toFixed(1)}%`);
+  layer.style.setProperty('--wash-x2', `${random(10, 30).toFixed(1)}%`);
+  layer.style.setProperty('--wash-y2', `${random(10, 30).toFixed(1)}%`);
+  layer.style.setProperty('--wash-time', `${random(60, 100).toFixed(1)}s`);
+  layer.style.setProperty('--wash-delay', `${-random(0, 80).toFixed(1)}s`);
+});
+document.addEventListener('visibilitychange', () => {
+  document.documentElement.classList.toggle('background-hidden', document.hidden);
+});
+syncBackground();

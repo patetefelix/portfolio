@@ -1291,3 +1291,29 @@ section[id] { scroll-margin-top:110px; }
  .tabs { display:grid; grid-template-columns:1fr 1fr; }
  .tab { text-align:left; white-space:normal; }
 }
+
+/* Shared square-ended arrow, inlined so the portfolio stays three files. */
+.portfolio-arrow{display:inline-block;vertical-align:middle;width:1em;height:1em;min-width:1em;color:inherit;flex-shrink:0}
+.btn-icon .portfolio-arrow{width:65%;height:65%;min-width:0}
+.portfolio-arrow.arrow-down{transform:rotate(90deg)}
+.btn-contact-arrow .portfolio-arrow{width:clamp(24px,3vw,42px);height:clamp(24px,3vw,42px)}
+.stack-card b .portfolio-arrow{width:20px;height:20px}
+
+/* Autonomous pastel atmosphere, tuned separately for pine and parchment. */
+body{isolation:isolate}
+.portfolio-wash{position:absolute;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
+body>.portfolio-wash{position:fixed}
+.work,.contact,.footer{position:relative;isolation:isolate}
+.portfolio-wash i{position:absolute;display:block;left:-20%;top:-20%;width:115%;height:130%;background:radial-gradient(ellipse at 45% 45%,#d6b7a1 0%,#d6b7a188 22%,transparent 65%);opacity:.1;animation:portfolio-drift var(--wash-time,80s) ease-in-out var(--wash-delay,0s) infinite alternate;will-change:transform}
+.portfolio-wash i:nth-child(2){left:10%;top:0;background:radial-gradient(ellipse at 45% 45%,#c2d5a4 0%,#c2d5a466 25%,transparent 65%);animation-direction:alternate-reverse}
+.portfolio-wash i:nth-child(3){left:25%;top:-20%;background:radial-gradient(ellipse at 45% 45%,#c6bedc 0%,#c6bedc66 25%,transparent 65%)}
+html[data-theme="light"] .portfolio-wash i,.work>.portfolio-wash i{opacity:.34}
+.footer>.portfolio-wash i{opacity:.13}
+html[data-theme="light"] .footer>.portfolio-wash i{opacity:.3}
+@keyframes portfolio-drift{from{transform:translate(var(--wash-x1,-10%),var(--wash-y1,-10%)) scale(1)}to{transform:translate(var(--wash-x2,20%),var(--wash-y2,20%)) scale(1.15)}}
+.background-paused .portfolio-wash i,.background-hidden .portfolio-wash i{animation-play-state:paused}
+.background-toggle{font-size:10px;color:var(--text-dim);border:1px solid var(--line-strong);border-radius:4px;padding:10px 12px;min-height:40px;white-space:nowrap}
+.background-toggle:hover{border-color:var(--accent);color:var(--text)}
+.background-toggle:disabled{cursor:default}
+.footer-inner{flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){.portfolio-wash i{animation:none!important;will-change:auto}}

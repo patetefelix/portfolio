@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
 <a class="skip-link" href="#work">Skip to work</a>
 <div class="reading-progress" aria-hidden="true"></div>
 
@@ -92,11 +93,11 @@
           <div class="hero-cta">
             <a href="#work" class="btn btn-primary magnetic">
               <span>see the work</span>
-              <span class="btn-icon">↓</span>
+              <span class="btn-icon"><svg class="portfolio-arrow arrow-down" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
             </a>
             <a href="mailto:patetefelix@gmail.com" class="btn btn-ghost magnetic">
               <span>say hello</span>
-              <span class="btn-icon">↗</span>
+              <span class="btn-icon"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
             </a>
           </div>
         </div>
@@ -105,9 +106,9 @@
       <div class="hero-stack-wrap" aria-label="Explore selected projects">
         <div class="orbit" aria-hidden="true"></div>
         <span class="stage-label">UX · BRAND · GROWTH</span>
-        <button class="stack-card c1" data-case="zip-corvette" aria-label="View Zip Corvette project"><img src="https://patetefelix.github.io/portfolio/images/zipcorvette-thumb.png" alt="Zip Corvette storefront"><span>Zip Corvette <b>↗</b></span></button>
-        <button class="stack-card c2" data-case="paraiso" aria-label="View El Paraíso project"><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity"><span>El Paraíso <b>↗</b></span></button>
-        <button class="stack-card c3" data-case="wolven" aria-label="View Wolven project"><img src="https://patetefelix.github.io/portfolio/images/wolven-thumb.png" alt="Wolven campaign design"><span>Wolven <b>↗</b></span></button>
+        <button class="stack-card c1" data-case="zip-corvette" aria-label="View Zip Corvette project"><img src="https://patetefelix.github.io/portfolio/images/zipcorvette-thumb.png" alt="Zip Corvette storefront"><span>Zip Corvette <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
+        <button class="stack-card c2" data-case="paraiso" aria-label="View El Paraíso project"><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity"><span>El Paraíso <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
+        <button class="stack-card c3" data-case="wolven" aria-label="View Wolven project"><img src="https://patetefelix.github.io/portfolio/images/wolven-thumb.png" alt="Wolven campaign design"><span>Wolven <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
         <span class="stage-caption">Branding is the throughline.</span>
       </div>
 
@@ -137,7 +138,7 @@
   <!-- ═══════════════════════════════════
        WORK
   ═══════════════════════════════════ -->
-  <section class="work" id="work">
+  <section class="work" id="work"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="work-head">
       <div class="work-head-top reveal-fade">
         <p class="section-label">Work</p>
@@ -228,7 +229,7 @@
   <!-- ═══════════════════════════════════
        CONTACT
   ═══════════════════════════════════ -->
-  <section class="contact" id="contact">
+  <section class="contact" id="contact"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="contact-inner">
       <div class="contact-top reveal-fade">
         <span class="section-label">Say Hello</span>
@@ -243,7 +244,7 @@
       <div class="contact-cta reveal-fade" style="--delay:0.35s">
         <a href="mailto:patetefelix@gmail.com" class="btn-contact magnetic">
           <span class="btn-contact-text">patetefelix@gmail.com</span>
-          <span class="btn-contact-arrow">↗</span>
+          <span class="btn-contact-arrow"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
         </a>
       </div>
       <div class="socials reveal-fade" style="--delay:0.5s">
@@ -261,7 +262,7 @@
 
 </main>
 
-<footer class="footer">
+<footer class="footer"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="footer-inner">
     <a href="#top" class="nav-logo">Félix<span class="dot">.</span></a>
     <nav class="footer-links">
@@ -269,6 +270,7 @@
       <a href="#about">about</a>
       <a href="#contact">say hello</a>
     </nav>
+    <button class="background-toggle" id="backgroundToggle" type="button" aria-pressed="false">Pause background</button>
     <p class="footer-note">Designed &amp; built by Félix Patete. Medellín, Colombia — <span id="footerYear"></span>.</p>
   </div>
 </footer>
