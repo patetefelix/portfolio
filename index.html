@@ -52,93 +52,52 @@
   <!-- ═══════════════════════════════════
        HERO
   ═══════════════════════════════════ -->
-  <section class="hero" id="top">
+  <section class="hero story-hero" id="top" aria-label="Portfolio introduction">
+    <div class="hero-layout story-stage">
+      <div class="story-intro-meta"><span>UI/UX · Brand · Growth</span><span>Medellín, Colombia</span></div>
+      <h1 class="hero-headline story-name"><span class="hl-line">( Félix <em>Patete</em> )</span></h1>
+      <div class="hero-stack-wrap story-deck" id="heroDeck" aria-label="Project previews"></div>
+      <div class="deck-navigation"><button type="button" id="deckPrevious" aria-label="Previous project">Previous</button><p id="deckCaption" aria-live="polite"></p><button type="button" id="deckNext" aria-label="Next project">Next</button></div>
+      <div class="story-hero-bottom"><p>Branding is the job.<br><em>Everything else is just the medium.</em></p><a href="#work" class="story-enter">Explore the story <svg class="portfolio-arrow arrow-down" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></a></div>
+    </div>
+  </section>
 
-    <div class="hero-bg-grid" aria-hidden="true"></div>
+  <!-- ═══════════════════════════════════
+       CLIENTS
+  ═══════════════════════════════════ -->
 
-    <div class="hero-layout">
 
-      <div class="hero-copy">
-        <div class="hero-eyebrow reveal-fade">
-          <span class="eyebrow-dot"></span>
-          <span class="eyebrow-text">UI/UX Designer — Medellín, CO</span>
-        </div>
+  <!-- ═══════════════════════════════════
+       WORK
+  ═══════════════════════════════════ -->
+  <section class="work" id="work"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
 
-        <h1 class="hero-headline">
-          <span class="hl-line hl-line-1">
-            <span class="hl-word">Branding</span>
-          </span>
-          <span class="hl-line hl-line-2">
-            <span class="hl-word">is the</span>
-            <em class="hl-accent">job.</em>
-          </span>
-          <span class="hl-line hl-line-3">
-            <span class="hl-word hl-dim">Everything else</span>
-          </span>
-          <span class="hl-line hl-line-4">
-            <span class="hl-word hl-dim">is just the</span>
-            <span class="hl-stroke-text">medium.</span>
-          </span>
-        </h1>
-
-        <div class="hero-meta reveal-fade" style="--delay:0.5s">
-          <p class="hero-sub">
+    <div class="collection-switch" role="tablist" aria-label="Choose how to explore the portfolio">
+      <button type="button" id="viewStory" role="tab" aria-selected="true" aria-controls="storyPanel" data-view="story">The story</button>
+      <button type="button" id="viewProjects" role="tab" aria-selected="false" aria-controls="completePanel" data-view="projects" tabindex="-1">Complete projects <span id="fullProjectCount"></span></button>
+    </div>
+    <div id="storyPanel" role="tabpanel" aria-labelledby="viewStory"><noscript><p>Enable JavaScript to explore the interactive collection, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
+      <section class="glance-section" aria-labelledby="glanceTitle">
+        <div class="glance-heading"><div><p class="section-label">A quick look / All disciplines</p><h2 id="glanceTitle">Different projects.<br><em>One throughline.</em></h2></div><div class="glance-controls"><button type="button" id="glancePrevious" aria-label="Scroll project previews left">Previous</button><button type="button" id="glanceNext" aria-label="Scroll project previews right">Next</button></div></div>
+        <div class="glance-rail" id="glanceRail" tabindex="0" role="region" aria-label="All project previews. Scroll horizontally to explore."></div>
+        <p class="glance-hint">A glance at every project. Select an image to open the complete work.</p>
+      </section>
+      <section class="story-statement"><p class="section-label">The point of view</p><h2>A logo. A storefront.<br>An email.<br><em>The same brand speaking.</em></h2><p>
             Branding is the throughline in everything I make — a logo, a website,
             a social campaign, an email flow, it all has to sound like the same
             brand said it. 13 years in design, 7 of them architecting e-commerce
             UX on Adobe&nbsp;Commerce, Shopify, BigCommerce, and Shopware.
             Currently at Crimson Agility, remote from Medellín, Colombia —
             EST/CST-aligned, no visa or sponsorship required.
-          </p>
-          <div class="hero-cta">
-            <a href="#work" class="btn btn-primary magnetic">
-              <span>see the work</span>
-              <span class="btn-icon"><svg class="portfolio-arrow arrow-down" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
-            </a>
-            <a href="mailto:patetefelix@gmail.com" class="btn btn-ghost magnetic">
-              <span>say hello</span>
-              <span class="btn-icon"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
-            </a>
-          </div>
-        </div>
+          </p></section>
+      <div class="story-chapters">
+        <article class="story-chapter chapter-brand"><div class="chapter-copy"><span class="chapter-number">01 / Give it a voice</span><h2>It starts<br>with <em>identity.</em></h2><p>A brand has to feel like itself wherever it appears. For El Paraíso, that meant taking an identity from the logo to packaging and retail interiors.</p><button type="button" class="chapter-action" data-case="paraiso">Explore El Paraíso</button><button type="button" class="chapter-category" data-browse-category="brand">All branding projects</button></div><button type="button" class="chapter-art" data-case="paraiso" aria-label="View El Paraíso brand project"><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity and packaging" loading="lazy"><span>El Paraíso / Brand identity</span></button></article>
+        <article class="story-chapter chapter-ux"><div class="chapter-copy"><span class="chapter-number">02 / Make it work</span><h2>Then it meets<br><em>real people.</em></h2><p>Identity becomes an experience. For TK Elevator, I designed a two-click part-lookup flow for maintenance technicians, across category navigation and product detail pages.</p><button type="button" class="chapter-action" data-case="tke">Explore TK Elevator</button><button type="button" class="chapter-category" data-browse-category="uiux">All UI/UX projects</button></div><button type="button" class="chapter-art" data-case="tke" aria-label="View TK Elevator UX project"><img src="https://patetefelix.github.io/portfolio/images/tke-thumb.png" alt="TK Elevator storefront UX" loading="lazy"><span>TK Elevator / E-commerce UX</span></button></article>
+        <article class="story-chapter chapter-growth"><div class="chapter-copy"><span class="chapter-number">03 / Keep it consistent</span><h2>And stays<br><em>recognizable.</em></h2><p>A brand’s voice carries into the inbox, too. For Feat Clothing, I built a modular email system to support weekly drops without wearing down the brand’s aesthetic.</p><button type="button" class="chapter-action" data-case="feat">Explore Feat Clothing</button><button type="button" class="chapter-category" data-browse-category="growth">All growth marketing projects</button></div><button type="button" class="chapter-art" data-case="feat" aria-label="View Feat Clothing email project"><img src="https://patetefelix.github.io/portfolio/images/feat-thumb.png" alt="Feat Clothing email campaign design" loading="lazy"><span>Feat Clothing / Growth marketing</span></button></article>
       </div>
-
-      <div class="hero-stack-wrap" aria-label="Explore selected projects">
-        <div class="orbit" aria-hidden="true"></div>
-        <span class="stage-label">UX · BRAND · GROWTH</span>
-        <button class="stack-card c1" data-case="zip-corvette" aria-label="View Zip Corvette project"><img src="https://patetefelix.github.io/portfolio/images/zipcorvette-thumb.png" alt="Zip Corvette storefront"><span>Zip Corvette <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
-        <button class="stack-card c2" data-case="paraiso" aria-label="View El Paraíso project"><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity"><span>El Paraíso <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
-        <button class="stack-card c3" data-case="wolven" aria-label="View Wolven project"><img src="https://patetefelix.github.io/portfolio/images/wolven-thumb.png" alt="Wolven campaign design"><span>Wolven <b><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></b></span></button>
-        <span class="stage-caption">Branding is the throughline.</span>
-      </div>
-
+      <div class="story-end"><p class="section-label">That’s the throughline.</p><h2>Different mediums.<br><em>The same attention.</em></h2><button type="button" class="chapter-action" data-show-projects>Explore the complete collection</button></div>
     </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="scroll-line"><div class="scroll-dot"></div></div>
-      <span>scroll</span>
-    </div>
-
-  </section>
-
-  <!-- ═══════════════════════════════════
-       CLIENTS
-  ═══════════════════════════════════ -->
-  <section class="clients" id="clients">
-    <div class="clients-label reveal-fade">
-      <span>Clients</span>
-      <div class="clients-rule"></div>
-    </div>
-    <div class="marquee" aria-label="Client list">
-      <div class="marquee-track" id="marqueeTrack"></div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════
-       WORK
-  ═══════════════════════════════════ -->
-  <section class="work" id="work"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div id="completePanel" role="tabpanel" aria-labelledby="viewProjects" hidden>
     <div class="work-head">
       <div class="work-head-top reveal-fade">
         <p class="section-label">Work</p>
@@ -158,12 +117,11 @@
       <button class="tab" data-tab="growth" role="tab" aria-selected="false">
         <span class="tab-num">03</span>Growth Marketing Creative
       </button>
-      <button class="tab" data-tab="archive" role="tab" aria-selected="false"><span class="tab-num">04</span>Archive</button>
     </div>
     <p class="tab-desc" id="tabDesc"></p>
 
     <div class="grid" id="projectGrid" role="tabpanel" aria-label="Selected projects"></div>
-    <noscript><p>Enable JavaScript to explore the project archive, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
+    <noscript><p>Enable JavaScript to explore the project collection, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
 
     <div class="subgrid subgrid-featured" id="brandGalleryFeatured"></div>
 
@@ -172,11 +130,22 @@
       <p>Smaller-scope identity systems — logo, packaging, and retail branding, each taken 0→1.</p>
     </div>
     <div class="subgrid" id="brandGallery"></div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════
        ABOUT
   ═══════════════════════════════════ -->
+  <section class="clients" id="clients">
+    <div class="clients-label reveal-fade">
+      <span>Clients</span>
+      <div class="clients-rule"></div>
+    </div>
+    <div class="marquee" aria-label="Client list">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+  </section>
+
   <section class="about" id="about">
     <div class="about-header">
       <span class="section-label reveal-fade">About</span>

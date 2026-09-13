@@ -16,7 +16,6 @@ const lerp = (a, b, t) => a + (b - a) * t;
 /* ─── DATA ────────────────────────────────────────────────── */
 
 const TAB_COPY = {
-  archive: "Additional project images from the portfolio archive.",
   uiux: "High-conversion e-commerce storefronts and complex B2B catalogs, designed to scale — Adobe Commerce, Shopify, BigCommerce, and Shopware.",
   brand: "0→1 identity systems — brand strategy, typography, packaging, and retail interiors built to last.",
   growth: "Visual strategy for digital marketing — email flows, high-performing ad creative, and campaign assets built for DTC retention and conversion."
@@ -1163,7 +1162,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-arepale",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Arépale",
     "industry": "",
@@ -1204,7 +1203,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-bark2earth",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Bark 2 Earth",
     "industry": "",
@@ -1225,7 +1224,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-biona",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Biona Coffee",
     "industry": "",
@@ -1248,7 +1247,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-brussel",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Brüssel",
     "industry": "",
@@ -1274,7 +1273,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-denali",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Denali Leather Goods",
     "industry": "",
@@ -1302,7 +1301,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-emraw",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Emraw",
     "industry": "",
@@ -1330,7 +1329,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-fryefit",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Fryefit",
     "industry": "",
@@ -1360,7 +1359,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-lifeboostcoffee",
-    "tab": "archive",
+    "tab": "growth",
     "type": "case",
     "name": "Lifeboost Coffee",
     "industry": "",
@@ -1383,7 +1382,7 @@ const PROJECTS = [
   },
   {
     "id": "archive-oggi",
-    "tab": "archive",
+    "tab": "brand",
     "type": "case",
     "name": "Oggi Pizza",
     "industry": "",
@@ -1439,7 +1438,7 @@ function cardHTML(p) {
       ${p.role ? `<p class="card-role">${p.role}</p>` : ""}
       <h3 class="card-name">${p.name}</h3>
       ${p.desc ? `<p class="card-desc">${p.desc}</p>` : ""}
-      <span class="card-cta">${p.tab === "archive" ? "view gallery" : "view case study"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></span>
+      <span class="card-cta">${!p.desc ? "view gallery" : "view case study"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></span>
     </div>
   `;
 }
@@ -1457,7 +1456,7 @@ function renderGrid(tab) {
   PROJECTS.filter(p => p.tab === tab).forEach(p => {
     const card = document.createElement("button");
     card.type = "button";
-    card.setAttribute("aria-label", `View ${p.name} ${p.tab === "archive" ? "gallery" : "case study"}`);
+    card.setAttribute("aria-label", `View ${p.name} ${!p.desc ? "gallery" : "case study"}`);
     card.className = "card";
     card.innerHTML = cardHTML(p);
     card.addEventListener("click", () => openCase(p.id));
@@ -1747,3 +1746,105 @@ document.addEventListener('visibilitychange', () => {
   document.documentElement.classList.toggle('background-hidden', document.hidden);
 });
 syncBackground();
+
+/* Story and full collection are separate views of the same project records. */
+const viewButtons = $$('[data-view]');
+const storyPanel = $('#storyPanel');
+const completePanel = $('#completePanel');
+$('#fullProjectCount').textContent = `(${PROJECTS.length})`;
+function setCollectionView(view, focus=false) {
+  const complete = view === 'projects';
+  storyPanel.hidden = complete;
+  completePanel.hidden = !complete;
+  viewButtons.forEach(button => {
+    const active = button.dataset.view === view;
+    button.setAttribute('aria-selected', String(active));
+    button.tabIndex = active ? 0 : -1;
+    if (active && focus) button.focus({ preventScroll:true });
+  });
+  updateScroll();
+  if (!complete) requestAnimationFrame(updateGlanceButtons);
+}
+viewButtons.forEach((button,index) => {
+  button.addEventListener('click', () => setCollectionView(button.dataset.view));
+  button.addEventListener('keydown', event => {
+    let target;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') target = 1-index;
+    if (event.key === 'Home') target = 0;
+    if (event.key === 'End') target = 1;
+    if (target === undefined) return;
+    event.preventDefault();
+    setCollectionView(viewButtons[target].dataset.view,true);
+  });
+});
+function browseProjects(category) {
+  setCollectionView('projects',true);
+  if(category) $(`.tab[data-tab="${category}"]`).click();
+  $('#work').scrollIntoView({ behavior:motion.matches?'auto':'smooth', block:'start' });
+}
+$$('[data-browse-category]').forEach(button => button.addEventListener('click', () => browseProjects(button.dataset.browseCategory)));
+$$('[data-show-projects]').forEach(button => button.addEventListener('click', () => browseProjects()));
+
+const categoryLabels = { uiux:'UI/UX & E-Commerce', brand:'Branding', growth:'Growth Marketing' };
+const glanceRail = $('#glanceRail');
+PROJECTS.forEach(project => {
+  const button = document.createElement('button');
+  button.type = 'button'; button.className = 'glance-card';
+  button.setAttribute('aria-label',`View ${project.name}, ${categoryLabels[project.tab]}`);
+  const img = document.createElement('img');
+  img.src = imageURL(project.thumbnail); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+  const name = document.createElement('span'); name.textContent = project.name;
+  const category = document.createElement('small'); category.textContent = categoryLabels[project.tab];
+  button.append(img,name,category);
+  button.addEventListener('click',() => openCase(project.id));
+  glanceRail.appendChild(button);
+});
+function updateGlanceButtons() {
+  $('#glancePrevious').disabled = glanceRail.scrollLeft < 3;
+  $('#glanceNext').disabled = glanceRail.scrollLeft + glanceRail.clientWidth >= glanceRail.scrollWidth - 3;
+}
+$('#glancePrevious').addEventListener('click',() => glanceRail.scrollBy({left:-glanceRail.clientWidth*.8,behavior:motion.matches?'auto':'smooth'}));
+$('#glanceNext').addEventListener('click',() => glanceRail.scrollBy({left:glanceRail.clientWidth*.8,behavior:motion.matches?'auto':'smooth'}));
+glanceRail.addEventListener('scroll',updateGlanceButtons,{passive:true});
+addEventListener('resize',updateGlanceButtons);
+updateGlanceButtons();
+// Correct dimensions when returning from the hidden complete-project view.
+viewButtons[0].addEventListener('click',updateGlanceButtons);
+
+let deckIndex = Math.max(0,PROJECTS.findIndex(project => project.id === 'paraiso'));
+const deck = $('#heroDeck');
+function renderDeck() {
+  deck.replaceChildren();
+  [-1,1,0].forEach(offset => {
+    const project = PROJECTS[(deckIndex+offset+PROJECTS.length)%PROJECTS.length];
+    const button = document.createElement('button');
+    button.type='button';button.className='deck-card';button.setAttribute('aria-label',`Open ${project.name}`);
+    const img=document.createElement('img');img.src=imageURL(project.thumbnail);img.alt=project.name;img.decoding='async';
+    button.appendChild(img);button.addEventListener('click',() => openCase(project.id));deck.appendChild(button);
+  });
+  $('#deckCaption').textContent=`${String(deckIndex+1).padStart(2,'0')} / ${PROJECTS.length} — ${PROJECTS[deckIndex].name}`;
+}
+$('#deckPrevious').addEventListener('click',()=>{deckIndex=(deckIndex-1+PROJECTS.length)%PROJECTS.length;renderDeck();});
+$('#deckNext').addEventListener('click',()=>{deckIndex=(deckIndex+1)%PROJECTS.length;renderDeck();});
+renderDeck();
+
+/* Scroll sets the scene; it never intercepts or simulates native scrolling. */
+const scene = $('.story-hero');
+const chapters = $$('.story-chapter');
+let sceneFrame = 0;
+function updateStoryScenes() {
+  sceneFrame=0;
+  if(motion.matches) return;
+  const rect=scene.getBoundingClientRect();
+  const travel=Math.max(1,scene.offsetHeight-innerHeight);
+  scene.style.setProperty('--scene-progress',clamp(-rect.top/travel,0,1));
+  if(storyPanel.hidden) return;
+  chapters.forEach(chapter => {
+    const r=chapter.getBoundingClientRect();
+    if(r.bottom<0||r.top>innerHeight)return;
+    chapter.style.setProperty('--chapter-progress',clamp((innerHeight-r.top)/(innerHeight+r.height),0,1));
+  });
+}
+addEventListener('scroll',()=>{if(!sceneFrame)sceneFrame=requestAnimationFrame(updateStoryScenes);},{passive:true});
+addEventListener('resize',updateStoryScenes);
+updateStoryScenes();
