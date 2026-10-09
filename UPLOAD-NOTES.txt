@@ -1,0 +1,9 @@
+Portfolio — final refinement pass
+
+Upload index.html, styles.css, script.js, and the assets folder to the same GitHub repository location as your existing index.html. Keep your existing images and other project files.
+
+This package replaces the large platforms and tools directory with a compact monochrome tools strip, adds a small scrolling company-logo banner on white, and adds six expandable design-support stages in the Story view. It also gives the page more reading room.
+
+The collage header, 50 projects, color theme controls, and felix@alineabrands.net contact address remain in place. Motion has pause controls and respects reduced-motion preferences.
+
+These are prepared local files; they have not been published to GitHub.

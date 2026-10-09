@@ -1,0 +1,41 @@
+# Logo sources
+
+Tool/platform SVGs: Simple Icons 11.15.0 (CC0-1.0). Brand trademarks remain with their owners. Client logos are from the companies’ own websites. Spline and Web Shop Manager marks are from their own sites.
+
+- figma: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/figma.svg
+- adobeillustrator: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/adobeillustrator.svg
+- adobeindesign: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/adobeindesign.svg
+- adobephotoshop: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/adobephotoshop.svg
+- affinitydesigner: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/affinitydesigner.svg
+- affinityphoto: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/affinityphoto.svg
+- affinitypublisher: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/affinitypublisher.svg
+- googledocs: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/googledocs.svg
+- googleslides: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/googleslides.svg
+- apple: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/apple.svg
+- microsoftword: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/microsoftword.svg
+- microsoftpowerpoint: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/microsoftpowerpoint.svg
+- webflow: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/webflow.svg
+- sketch: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/sketch.svg
+- applepodcasts: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/applepodcasts.svg
+- spotify: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/spotify.svg
+- canva: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/canva.svg
+- notion: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/notion.svg
+- slack: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/slack.svg
+- magento: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/magento.svg
+- shopify: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/shopify.svg
+- bigcommerce: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/bigcommerce.svg
+- shopware: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/shopware.svg
+- wordpress: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/wordpress.svg
+- woocommerce: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/woocommerce.svg
+- drupal: https://cdn.jsdelivr.net/npm/simple-icons@11.15.0/icons/drupal.svg
+- client-tke.svg: https://www.tkelevator.com/media/system_files/assets/tke_logo_claim_rgb_standard_white.svg
+- client-caplugs.svg: https://www.caplugs.com/themes/assets/static/images/Caplugs-Corporate-Logo_Color.svg
+- client-frontier.svg: https://www.frontiercoop.com/static/version1790263107/frontend/Frontier/frontiercoop/en_US/images/logo.svg
+- client-hoveround.png: https://www.hoveround.com/media/logo/stores/1/colored_logo_with_.png
+- client-feat.png: https://featclothing.com/cdn/shop/files/Feat_Logo.png?v=1698879944&width=500
+- client-12thtribe.png: https://www.12thtribe.com/cdn/shop/files/12th_Tribe_Logo_2025_-_Horizontal_Black_2x-8.png?v=1771433404&width=500
+- client-brumate.svg: https://brumate.com/svgs/new/brumate-logo.svg
+- client-smithey.svg: https://smithey.com/
+- spline.png: https://spline.design/_next/static/immutable/media/spline_logo.18-bh7nan-wgm.png
+- webshopmanager.png: https://webshopmanager.com/wp-content/uploads/2025/10/logo_alt.png
+- client-frontier-mono.svg: vector monochrome adaptation of client-frontier.svg; original geometry and mask retained, parchment changed to white and greens to black. Other marks use CSS monochrome treatment.

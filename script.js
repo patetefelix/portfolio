@@ -1614,20 +1614,6 @@ toggle.addEventListener('click', () => {
 });
 
 $('#footerYear').textContent = new Date().getFullYear();
-const track = $('#marqueeTrack');
-CLIENTS.forEach(name => {
-  const item = document.createElement('span');
-  item.textContent = name;
-  track.appendChild(item);
-});
-const firstItems = [...track.children];
-firstItems.forEach(item => {
-  const copy = item.cloneNode(true);
-  copy.setAttribute('aria-hidden', 'true');
-  track.appendChild(copy);
-});
-$('.marquee').tabIndex = 0;
-
 // One panel, three keyboard-operable categories.
 const tabButtons = $$('.tab');
 tabButtons.forEach((tab, i) => {
@@ -1811,40 +1797,90 @@ updateGlanceButtons();
 // Correct dimensions when returning from the hidden complete-project view.
 viewButtons[0].addEventListener('click',updateGlanceButtons);
 
-let deckIndex = Math.max(0,PROJECTS.findIndex(project => project.id === 'paraiso'));
+const openingProjects = ['paraiso','tke','feat'];
+const deckProjects = [...openingProjects.map(id => PROJECTS.find(project => project.id === id)), ...PROJECTS.filter(project => !openingProjects.includes(project.id))];
+let deckIndex = 0;
 const deck = $('#heroDeck');
 function renderDeck() {
   deck.replaceChildren();
-  [-1,1,0].forEach(offset => {
-    const project = PROJECTS[(deckIndex+offset+PROJECTS.length)%PROJECTS.length];
+  [1,2,0].forEach(offset => {
+    const project = deckProjects[(deckIndex+offset)%deckProjects.length];
     const button = document.createElement('button');
     button.type='button';button.className='deck-card';button.setAttribute('aria-label',`Open ${project.name}`);
     const img=document.createElement('img');img.src=imageURL(project.thumbnail);img.alt=project.name;img.decoding='async';
-    button.appendChild(img);button.addEventListener('click',() => openCase(project.id));deck.appendChild(button);
+    const caption=document.createElement('span');caption.className='deck-card-caption';
+    const name=document.createElement('strong');name.textContent=project.name;
+    const discipline=document.createElement('small');discipline.textContent=categoryLabels[project.tab];
+    caption.append(name,discipline);button.append(img,caption);
+    button.addEventListener('click',() => openCase(project.id));deck.appendChild(button);
   });
-  $('#deckCaption').textContent=`${String(deckIndex+1).padStart(2,'0')} / ${PROJECTS.length} — ${PROJECTS[deckIndex].name}`;
+  $('#deckCaption').textContent=`${String(deckIndex+1).padStart(2,'0')} / ${PROJECTS.length} — ${deckProjects[deckIndex].name}`;
 }
 $('#deckPrevious').addEventListener('click',()=>{deckIndex=(deckIndex-1+PROJECTS.length)%PROJECTS.length;renderDeck();});
 $('#deckNext').addEventListener('click',()=>{deckIndex=(deckIndex+1)%PROJECTS.length;renderDeck();});
 renderDeck();
 
-/* Scroll sets the scene; it never intercepts or simulates native scrolling. */
-const scene = $('.story-hero');
-const chapters = $$('.story-chapter');
-let sceneFrame = 0;
-function updateStoryScenes() {
-  sceneFrame=0;
-  if(motion.matches) return;
-  const rect=scene.getBoundingClientRect();
-  const travel=Math.max(1,scene.offsetHeight-innerHeight);
-  scene.style.setProperty('--scene-progress',clamp(-rect.top/travel,0,1));
-  if(storyPanel.hidden) return;
-  chapters.forEach(chapter => {
-    const r=chapter.getBoundingClientRect();
-    if(r.bottom<0||r.top>innerHeight)return;
-    chapter.style.setProperty('--chapter-progress',clamp((innerHeight-r.top)/(innerHeight+r.height),0,1));
+
+// A quiet sense of depth; no scroll interception or automatic project rotation.
+let collageFrame = 0;
+deck.addEventListener('pointermove', event => {
+  if (motion.matches || !finePointer.matches) return;
+  if (collageFrame) cancelAnimationFrame(collageFrame);
+  const rect = deck.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - .5;
+  const y = (event.clientY - rect.top) / rect.height - .5;
+  collageFrame = requestAnimationFrame(() => {
+    deck.style.setProperty('--collage-x', `${x * 10}px`);
+    deck.style.setProperty('--collage-y', `${y * 8}px`);
+    collageFrame = 0;
   });
+});
+function resetCollage() {
+  if (collageFrame) cancelAnimationFrame(collageFrame);
+  collageFrame = 0;
+  deck.style.removeProperty('--collage-x');
+  deck.style.removeProperty('--collage-y');
 }
-addEventListener('scroll',()=>{if(!sceneFrame)sceneFrame=requestAnimationFrame(updateStoryScenes);},{passive:true});
-addEventListener('resize',updateStoryScenes);
-updateStoryScenes();
+deck.addEventListener('pointerleave', resetCollage);
+motion.addEventListener('change', resetCollage);
+
+// Small moving indexes, with explicit pause, keyboard access and reduced motion.
+$$('[data-marquee]').forEach(section => {
+  const window = section.querySelector('.marquee-window');
+  const track = section.querySelector('.marquee-track');
+  const group = section.querySelector('.marquee-group');
+  const control = section.querySelector('[data-marquee-toggle]');
+  const label = section.id === 'clients' ? 'logos' : 'tools';
+  const clone = group.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  clone.querySelectorAll('button').forEach(button => {
+    button.tabIndex = -1;
+    button.addEventListener('pointerdown', event => event.preventDefault());
+    button.addEventListener('click', () => openCase(button.dataset.case));
+  });
+  track.appendChild(clone);
+  section.classList.add('is-ready');
+  const resize = () => section.style.setProperty('--marquee-width', `${window.clientWidth}px`);
+  new ResizeObserver(resize).observe(window);
+  resize();
+  let paused = false;
+  const sync = () => {
+    section.classList.toggle('is-paused', paused);
+    control.hidden = motion.matches;
+    control.textContent = `${paused ? 'Resume' : 'Pause'} ${label}`;
+    control.setAttribute('aria-pressed', String(paused));
+  };
+  control.addEventListener('click', () => { paused = !paused; sync(); });
+  motion.addEventListener('change', sync);
+  group.addEventListener('focusin', event => {
+    requestAnimationFrame(() => {
+      const item = event.target.getBoundingClientRect();
+      const bounds = window.getBoundingClientRect();
+      window.scrollLeft += item.left - bounds.left - (bounds.width - item.width) / 2;
+    });
+  });
+  section.addEventListener('focusout', () => {
+    requestAnimationFrame(() => { if (!section.contains(document.activeElement)) window.scrollLeft = 0; });
+  });
+  sync();
+});
