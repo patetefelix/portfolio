@@ -1,9 +1,26 @@
-Portfolio — final refinement pass
+Portfolio v3 — upload notes
 
-Upload index.html, styles.css, script.js, and the assets folder to the same GitHub repository location as your existing index.html. Keep your existing images and other project files.
+Upload these to the repo root, replacing the existing files:
+  index.html
+  styles.css
+  script.js
 
-This package replaces the large platforms and tools directory with a compact monochrome tools strip, adds a small scrolling company-logo banner on white, and adds six expandable design-support stages in the Story view. It also gives the page more reading room.
+Add these new files (keep everything else in images/ and assets/ as it is):
+  images/thumbs/                      51 lightweight .webp card images (5.7 MB in place of 130 MB)
+  assets/logos/client-frontier-flat.png
+  assets/logos/client-hoveround-flat.png
 
-The collage header, 50 projects, color theme controls, and felix@alineabrands.net contact address remain in place. Motion has pause controls and respects reduced-motion preferences.
+How the images work
+- Cards, the hero and the story load images/thumbs/<name>.webp. If a thumb is missing, the page
+  falls back to the original file named in PROJECTS, so nothing breaks.
+- When you add a project, add its entry to PROJECTS in script.js as before. A thumb is optional:
+  export the card image at about 1000px wide as images/thumbs/<same name as the thumbnail>.webp.
+- Case study galleries still load the original full-size images.
+- All paths are relative now, so the site also works on a custom domain.
 
-These are prepared local files; they have not been published to GitHub.
+Sharing one project
+- Add #project=<id> to the address, e.g. https://patetefelix.github.io/portfolio/#project=tke
+
+Font
+- San Francisco is used on Apple devices through the system font stack. Inter loads as the
+  fallback on Windows and Android. No SF font files are in the repo.

@@ -3,304 +3,352 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Félix Patete — UI/UX &amp; Brand Designer</title>
+<title>Félix Patete — Brand, UX &amp; Email Designer</title>
 <meta name="description" content="Félix Patete — Mid to senior UI/UX, branding, and growth marketing designer. 13 years in design, 7 years architecting e-commerce UX on Adobe Commerce, Shopify, BigCommerce, and Shopware. Remote-ready, EST/CST-aligned, based in Medellín, Colombia." />
+<meta name="theme-color" content="#102c26" />
 
-<!-- Open Graph -->
-<meta property="og:title" content="Félix Patete — UI/UX & Brand Designer" />
+<meta property="og:title" content="Félix Patete — Brand, UX & Email Designer" />
 <meta property="og:description" content="Mid to senior UI/UX, branding, and growth marketing designer. 13 years in design, 7 years architecting e-commerce UX on Adobe Commerce, Shopify, BigCommerce, and Shopware." />
 <meta property="og:image" content="https://patetefelix.github.io/portfolio/images/og-preview.jpg" />
 <meta property="og:url" content="https://patetefelix.github.io/portfolio/" />
 <meta property="og:type" content="website" />
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Félix Patete — UI/UX & Brand Designer" />
+<meta name="twitter:title" content="Félix Patete — Brand, UX & Email Designer" />
 <meta name="twitter:description" content="Mid to senior UI/UX, branding, and growth marketing designer." />
 <meta name="twitter:image" content="https://patetefelix.github.io/portfolio/images/og-preview.jpg" />
 
+<!-- San Francisco is used on Apple devices through the system font stack.
+     Inter is the fallback everywhere else. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/thumbs/tke-thumb.webp">
 <link rel="stylesheet" href="styles.css" />
+<script>
+  document.documentElement.classList.add('js');
+  try { var t = localStorage.getItem('felix-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 </head>
 <body>
-<div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
-<a class="skip-link" href="#work">Skip to work</a>
-<div class="reading-progress" aria-hidden="true"></div>
-
+<a class="skip" href="#work">Skip to the work</a>
+<div class="progress" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+
 <header class="nav" id="siteNav">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo">Félix<span class="dot">.</span></a>
+    <a href="#top" class="logo" aria-label="Félix Patete, back to top">Félix<i>.</i></a>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="#work" data-nav="work">work</a>
-      <a href="#about" data-nav="about">about</a>
-      <a href="#contact" data-nav="contact">say&nbsp;hello</a>
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#projects" data-nav="projects" data-optional>Projects</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
     </nav>
-    <div class="nav-right">
-      <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark theme">
-        <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
-      </button>
-    </div>
+    <button id="themeToggle" class="theme" type="button" aria-label="Switch between light and dark theme" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+    </button>
   </div>
 </header>
 
-<main id="mainContent">
+<main id="main">
 
-  <!-- ═══════════════════════════════════
-       HERO
-  ═══════════════════════════════════ -->
-  <section class="hero story-hero" id="top" aria-label="Portfolio introduction">
-    <div class="hero-layout story-stage">
-      <div class="story-intro-meta"><span>UI/UX · Brand · Growth</span><span>Medellín, Colombia</span></div>
-      <h1 class="hero-headline story-name"><span class="hl-line">Félix Patete<span class="name-period">.</span></span></h1>
-      <p class="hero-positioning">I build brands that feel like themselves.<br>On the shelf, on screen, and in the inbox.</p>
-      <div class="hero-stack-wrap story-deck" id="heroDeck" aria-label="Interactive project collage"></div>
-      <div class="deck-navigation"><button type="button" id="deckPrevious" aria-label="Previous project">Previous</button><p id="deckCaption" aria-live="polite"></p><button type="button" id="deckNext" aria-label="Next project">Next</button></div>
-      <div class="story-hero-bottom"><p>A few projects to start.<br><em>There’s more to the story below.</em></p><a href="#work" class="story-enter">Explore the story <svg class="portfolio-arrow arrow-down" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></a></div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════
-       CLIENTS
-  ═══════════════════════════════════ -->
-
-
-  <!-- ═══════════════════════════════════
-       WORK
-  ═══════════════════════════════════ -->
-  <section class="work" id="work"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
-
-    <div class="collection-switch" role="tablist" aria-label="Choose how to explore the portfolio">
-      <button type="button" id="viewStory" role="tab" aria-selected="true" aria-controls="storyPanel" data-view="story">The story</button>
-      <button type="button" id="viewProjects" role="tab" aria-selected="false" aria-controls="completePanel" data-view="projects" tabindex="-1">Complete projects <span id="fullProjectCount"></span></button>
-    </div>
-    <div id="storyPanel" role="tabpanel" aria-labelledby="viewStory"><noscript><p>Enable JavaScript to explore the interactive collection, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
-      <section class="glance-section" aria-labelledby="glanceTitle">
-        <div class="glance-heading"><div><p class="section-label">A quick look / All disciplines</p><h2 id="glanceTitle">Different projects.<br><em>One throughline.</em></h2></div><div class="glance-controls"><button type="button" id="glancePrevious" aria-label="Scroll project previews left">Previous</button><button type="button" id="glanceNext" aria-label="Scroll project previews right">Next</button></div></div>
-        <div class="glance-rail" id="glanceRail" tabindex="0" role="region" aria-label="All project previews. Scroll horizontally to explore."></div>
-        <p class="glance-hint">A glance at every project. Select an image to open the complete work.</p>
-      </section>
-      <section class="story-statement"><p class="section-label">The point of view</p><h2>A logo. A storefront.<br>An email.<br><em>The same brand speaking.</em></h2><p>
-            Branding is the throughline in everything I make — a logo, a website,
-            a social campaign, an email flow, it all has to sound like the same
-            brand said it. 13 years in design, 7 of them architecting e-commerce
-            UX on Adobe&nbsp;Commerce, Shopify, BigCommerce, and Shopware.
-            Currently at Crimson Agility, remote from Medellín, Colombia —
-            EST/CST-aligned, no visa or sponsorship required.
-          </p></section>
-      <div class="story-chapters">
-        <article class="story-chapter chapter-brand"><div class="chapter-copy"><span class="chapter-number">01 / Give it a voice</span><h2>It starts<br>with <em>identity.</em></h2><p>A brand has to feel like itself wherever it appears. For El Paraíso, that meant taking an identity from the logo to packaging and retail interiors.</p><button type="button" class="chapter-action" data-case="paraiso">Explore El Paraíso</button><button type="button" class="chapter-category" data-browse-category="brand">All branding projects</button></div><button type="button" class="chapter-art" data-case="paraiso" aria-label="View El Paraíso brand project"><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity and packaging" loading="lazy"><span>El Paraíso / Brand identity</span></button></article>
-        <article class="story-chapter chapter-ux"><div class="chapter-copy"><span class="chapter-number">02 / Make it work</span><h2>Then it meets<br><em>real people.</em></h2><p>Identity becomes an experience. For TK Elevator, I designed a two-click part-lookup flow for maintenance technicians, across category navigation and product detail pages.</p><button type="button" class="chapter-action" data-case="tke">Explore TK Elevator</button><button type="button" class="chapter-category" data-browse-category="uiux">All UI/UX projects</button></div><button type="button" class="chapter-art" data-case="tke" aria-label="View TK Elevator UX project"><img src="https://patetefelix.github.io/portfolio/images/tke-thumb.png" alt="TK Elevator storefront UX" loading="lazy"><span>TK Elevator / E-commerce UX</span></button></article>
-        <article class="story-chapter chapter-growth"><div class="chapter-copy"><span class="chapter-number">03 / Keep it consistent</span><h2>And stays<br><em>recognizable.</em></h2><p>A brand’s voice carries into the inbox, too. For Feat Clothing, I built a modular email system to support weekly drops without wearing down the brand’s aesthetic.</p><button type="button" class="chapter-action" data-case="feat">Explore Feat Clothing</button><button type="button" class="chapter-category" data-browse-category="growth">All growth marketing projects</button></div><button type="button" class="chapter-art" data-case="feat" aria-label="View Feat Clothing email project"><img src="https://patetefelix.github.io/portfolio/images/feat-thumb.png" alt="Feat Clothing email campaign design" loading="lazy"><span>Feat Clothing / Growth marketing</span></button></article>
+  <!-- ═════════ HERO ═════════ -->
+  <section class="hero" id="top">
+    <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="hero-head" style="--i:0">
+        <h1 class="hero-id">Félix Patete <span>Brand, UX and email designer</span></h1>
+        <p class="status trace"><i></i>Open to full-time remote roles</p>
       </div>
-      <section class="support-section" aria-labelledby="supportTitle">
-        <div class="support-heading"><p class="section-label">How I can help</p><div><h2 id="supportTitle">Thoughtful design.<br>At every stage.</h2><p>From finding the direction to refining what ships. Here’s how my work connects across a brand, a product, and the people building it.</p></div></div>
-        <div class="support-list">
-          <details class="support-stage" name="design-support" open>
-            <summary><span class="support-number">01</span><h3>Direction & strategy</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity" loading="lazy"><figcaption>El Paraíso brand identity / From the portfolio</figcaption></figure><div class="support-copy"><h4>Find the right problem to solve.</h4><p>Before the visual work, I help turn business goals and audience needs into a clear design direction. We look at what exists, where people get stuck, and what the experience needs to communicate.</p><ul><li>Brand and experience audits</li><li>Audience, goals, and priorities</li><li>Creative direction and visual references</li></ul><button type="button" class="support-action" data-browse-category="brand">Explore brand work<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-          <details class="support-stage" name="design-support">
-            <summary><span class="support-number">02</span><h3>Brand identity</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/paraiso-thumb.jpg" alt="El Paraíso brand identity" loading="lazy"><figcaption>El Paraíso brand identity / From the portfolio</figcaption></figure><div class="support-copy"><h4>Give the idea a recognizable voice.</h4><p>Translate that direction into an identity that holds together across a logo, a package, a storefront, and a campaign. The goal is a system your team can keep using as the brand grows.</p><ul><li>Logo, typography, and color</li><li>Packaging and brand touchpoints</li><li>Guidelines and reusable assets</li></ul><button type="button" class="support-action" data-browse-category="brand">Explore identity projects<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-          <details class="support-stage" name="design-support">
-            <summary><span class="support-number">03</span><h3>Websites & e-commerce</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/tke-thumb.png" alt="TK Elevator storefront" loading="lazy"><figcaption>TK Elevator storefront / From the portfolio</figcaption></figure><div class="support-copy"><h4>Make the next step feel natural.</h4><p>Connect the brand’s character with the way people browse, compare, and buy. I design the paths and the details together, from navigation and product discovery to responsive pages and checkout.</p><ul><li>Information architecture and user flows</li><li>Storefront and product page design</li><li>Responsive layouts and interaction states</li></ul><button type="button" class="support-action" data-browse-category="uiux">Explore e-commerce work<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-          <details class="support-stage" name="design-support">
-            <summary><span class="support-number">04</span><h3>Product ideas & prototypes</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/tke-thumb.png" alt="TK Elevator storefront" loading="lazy"><figcaption>TK Elevator storefront / From the portfolio</figcaption></figure><div class="support-copy"><h4>Make an idea tangible enough to discuss.</h4><p>Bring a new feature or a better way of doing something into focus. Flows, wireframes, and clickable prototypes help a team compare directions and resolve questions before development begins.</p><ul><li>Concept exploration and user journeys</li><li>Wireframes and interactive prototypes</li><li>Feature flows and edge cases</li></ul><button type="button" class="support-action" data-browse-category="uiux">Explore UX projects<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-          <details class="support-stage" name="design-support">
-            <summary><span class="support-number">05</span><h3>Campaigns & growth</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/feat-thumb.png" alt="Feat Clothing email creative" loading="lazy"><figcaption>Feat Clothing email creative / From the portfolio</figcaption></figure><div class="support-copy"><h4>Keep the brand recognizable as it moves.</h4><p>Carry the same visual language into the moments that bring people back. Modular email and campaign assets give new launches and ongoing communications a consistent starting point.</p><ul><li>Email campaigns and lifecycle flows</li><li>Reusable email design systems</li><li>Launch, social, and promotional creative</li></ul><button type="button" class="support-action" data-browse-category="growth">Explore growth work<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-          <details class="support-stage" name="design-support">
-            <summary><span class="support-number">06</span><h3>Systems & development support</h3><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20" stroke="currentColor" stroke-width="1.5"/><path class="plus-stem" d="M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
-            <div class="support-content"><figure><img src="https://patetefelix.github.io/portfolio/images/tke-thumb.png" alt="TK Elevator storefront" loading="lazy"><figcaption>TK Elevator storefront / From the portfolio</figcaption></figure><div class="support-copy"><h4>Help the design survive the handoff.</h4><p>Work alongside developers to translate the intended experience into something consistent. Clear components, states, responsive rules, and design reviews make it easier to resolve the small decisions that shape the finished product.</p><ul><li>Component libraries and design systems</li><li>Specifications and responsive behavior</li><li>Developer collaboration and implementation review</li></ul><button type="button" class="support-action" data-browse-category="uiux">Explore interface systems<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-          </details>
-        </div>
-      </section>
-      <div class="story-end"><p class="section-label">That’s the throughline.</p><h2>Different mediums.<br><em>The same attention.</em></h2><button type="button" class="chapter-action" data-show-projects>Explore the complete collection</button></div>
-    </div>
-    <div id="completePanel" role="tabpanel" aria-labelledby="viewProjects" hidden>
-    <div class="work-head">
-      <div class="work-head-top reveal-fade">
-        <p class="section-label">Work</p>
-        <div class="work-head-rule"></div>
-      </div>
-      <h2 class="work-headline reveal-split">Ownership across<br><em>UX, brand, and growth</em><span class="accent-dot">.</span></h2>
-      <p class="work-intro reveal-fade" style="--delay:0.2s">Three lenses on 13 years of design work — each one scoped, owned, and shipped end to end.</p>
-    </div>
 
-    <div class="tabs reveal-fade" style="--delay:0.3s" role="tablist" id="tabs">
-      <button class="tab active" data-tab="uiux" role="tab" aria-selected="true">
-        <span class="tab-num">01</span>UI/UX &amp; E-Commerce
-      </button>
-      <button class="tab" data-tab="brand" role="tab" aria-selected="false">
-        <span class="tab-num">02</span>Brand Identity
-      </button>
-      <button class="tab" data-tab="growth" role="tab" aria-selected="false">
-        <span class="tab-num">03</span>Growth Marketing Creative
-      </button>
-    </div>
-    <p class="tab-desc" id="tabDesc"></p>
-
-    <div class="grid" id="projectGrid" role="tabpanel" aria-label="Selected projects"></div>
-    <noscript><p>Enable JavaScript to explore the project collection, or <a href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
-
-    <div class="subgrid subgrid-featured" id="brandGalleryFeatured"></div>
-
-    <div class="subgrid-head reveal-fade" id="subgridHead" hidden>
-      <span class="section-label">More Brand Work</span>
-      <p>Smaller-scope identity systems — logo, packaging, and retail branding, each taken 0→1.</p>
-    </div>
-    <div class="subgrid" id="brandGallery"></div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════
-       ABOUT
-  ═══════════════════════════════════ -->
-  <section class="clients client-showcase" id="clients" aria-labelledby="clientsTitle" data-marquee>
-    <div class="client-showcase-head"><div><p class="section-label">Across the portfolio</p><h2 id="clientsTitle">Good company.</h2><p>Agency collaborations and independent projects. Explore the work behind each mark.</p></div><button class="marquee-toggle" type="button" aria-pressed="false" data-marquee-toggle hidden>Pause logos</button></div>
-    <div class="marquee-window"><div class="marquee-track"><div class="marquee-group">
-<button type="button" class="client-logo" data-case="tke" aria-label="View TK Elevator project"><img class="" src="assets/logos/client-tke.svg" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="caplugs" aria-label="View Caplugs project"><img class="" src="assets/logos/client-caplugs.svg" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="frontier-coop" aria-label="View Frontier Co-op project"><img class="" src="assets/logos/client-frontier-mono.svg" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="hoveround" aria-label="View Hoveround Mobility Solutions project"><img class="" src="assets/logos/client-hoveround.png" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="feat" aria-label="View Feat Clothing project"><img class="" src="assets/logos/client-feat.png" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="12thtribe" aria-label="View 12th Tribe project"><img class="" src="assets/logos/client-12thtribe.png" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="brümate" aria-label="View BrüMate project"><img class="" src="assets/logos/client-brumate.svg" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-<button type="button" class="client-logo" data-case="smithey" aria-label="View Smithey Ironware project"><img class="" src="assets/logos/client-smithey.svg" alt="" loading="lazy" decoding="async" width="48" height="48"></button>
-    </div></div></div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="about-header">
-      <span class="section-label reveal-fade">About</span>
-    </div>
-
-    <div class="about-grid">
-
-      <figure class="about-person">
-        <div class="portrait-frame">
-          <img class="about-portrait" src="https://patetefelix.github.io/portfolio/images/felix-portrait.jpg" alt="Portrait of Félix Patete" loading="lazy" width="4096" height="4096">
-          <span class="portrait-tint" aria-hidden="true"></span>
-        </div>
-        <figcaption><span>Félix Patete</span><span>Designer / Medellín, Colombia</span></figcaption>
-        <a class="about-studio-link" href="https://alineabrands.net" target="_blank" rel="noopener">Also building Alinea Brands <svg class="portfolio-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M5 5H19V19" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
-      </figure>
-
-      <div class="about-copy reveal-fade" style="--delay:0.15s">
-        <h2 class="about-headline">From Maracaibo.<br>Made for a wider world.</h2>
-        <p>
-          I started as a graphic designer in Maracaibo in 2014 — branding, packaging, retail
-          spaces — then moved into email design, and eventually into full UI/UX ownership for
-          e-commerce. Today I design storefronts and design systems for US-based brands on
-          Adobe Commerce, Shopify, BigCommerce, and Shopware at Crimson Agility, while running
-          <strong>Alinea</strong>, my own branding &amp; web studio, on the side.
+      <div class="hero-statement">
+        <p class="display">
+          <span class="ln" style="--i:1"><span>Brands that feel</span></span>
+          <span class="ln" style="--i:2"><span>like themselves.</span></span>
         </p>
-        <p>
-          I take on the projects where the interface has to carry a brand's voice, not just its
-          function — a checkout that still feels like the brand, a spec-heavy B2B catalog a
-          technician can actually navigate. Based in Medellín, Colombia, working EST/CST hours,
-          no visa or sponsorship required for US-based teams.
-        </p>
-        <p class="about-note">A brand’s voice belongs in the details. Even the checkout.</p>
-      </div>
-
-      <div class="about-stats">
-        <div class="stat-block reveal-count" data-count="13">
-          <span class="stat-num" id="stat-13">13</span>
-          <span class="stat-label">years in design<br>UI/UX · brand · email</span>
-        </div>
-        <div class="stat-block reveal-count" data-count="7" style="--delay:0.1s">
-          <span class="stat-num" id="stat-7">7</span>
-          <span class="stat-label">years owning<br>e-commerce UX</span>
-        </div>
-        <div class="stat-block reveal-count" data-count="3" style="--delay:0.2s">
-          <span class="stat-num" id="stat-3">3</span>
-          <span class="stat-label">disciplines<br>UX · brand · growth</span>
-        </div>
-        <div class="stat-block reveal-count" data-count="2" style="--delay:0.3s">
-          <span class="stat-num" id="stat-2">2</span>
-          <span class="stat-label">languages:<br>Spanish · English</span>
+        <div class="hero-side" style="--i:4">
+          <p>On the shelf, on screen and in the inbox. I design all three, so the brand sounds the same in each one.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid magnetic" href="mailto:felix@alineabrands.net"><span>Email me</span><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></a>
+            <a class="btn btn-line" href="#work"><span>See the work</span><svg class="arrow arrow-down" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></a>
+          </div>
         </div>
       </div>
 
+      <div class="surfaces">
+        <button type="button" class="surface surface-shelf" data-case="paraiso" style="--i:5" aria-label="On the shelf: open El Paraíso, brand identity and packaging">
+          <span class="frame trace"><span class="frame-shot"><img src="images/thumbs/paraiso-thumb.webp" data-fallback="images/paraiso-thumb.jpg" alt="El Paraíso ice cream packaging and identity" fetchpriority="high"></span></span>
+          <span class="surface-cap"><b>On the shelf</b><span>El Paraíso, identity and packaging</span></span>
+        </button>
+        <button type="button" class="surface surface-screen" data-case="tke" style="--i:6" aria-label="On screen: open TK Elevator, e-commerce UX">
+          <span class="frame frame-browser trace"><span class="chrome" aria-hidden="true"><i></i><i></i><i></i><b>tkelevator.com</b></span><span class="frame-shot" data-pan="auto"><img src="images/thumbs/tke-thumb.webp" data-fallback="images/tke-thumb.png" alt="TK Elevator parts storefront" fetchpriority="high"></span></span>
+          <span class="surface-cap"><b>On screen</b><span>TK Elevator, B2B parts storefront</span></span>
+        </button>
+        <button type="button" class="surface surface-inbox" data-case="feat" style="--i:7" aria-label="In the inbox: open Feat Clothing, email design">
+          <span class="frame frame-phone trace"><span class="frame-shot" data-pan="auto"><img src="images/thumbs/feat-thumb.webp" data-fallback="images/feat-thumb.png" alt="Feat Clothing email campaign"></span></span>
+          <span class="surface-cap"><b>In the inbox</b><span>Feat Clothing, email system</span></span>
+        </button>
+      </div>
 
+      <dl class="facts" style="--i:8">
+        <div><dt>Experience</dt><dd>13 years in design</dd></div>
+        <div><dt>Specialty</dt><dd>7 years of e-commerce UX</dd></div>
+        <div><dt>Currently</dt><dd>Designer at Crimson Agility</dd></div>
+        <div><dt>Based in</dt><dd>Medellín, on EST and CST hours</dd></div>
+      </dl>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════
-       CONTACT
-  ═══════════════════════════════════ -->
-  <section class="tools-strip" id="toolkit" aria-labelledby="toolkitTitle" data-marquee>
-    <div class="tools-strip-heading"><div><p class="section-label">On my desk</p><h2 id="toolkitTitle">A small part of the process.</h2><p>The tools I use to explore, make, and collaborate.</p></div><button type="button" class="marquee-toggle" aria-pressed="false" data-marquee-toggle hidden>Pause tools</button></div>
-    <div class="marquee-window"><div class="marquee-track"><ul class="marquee-group">
-<li class="tool-mark"><img src="assets/logos/figma.svg" alt="" width="30" height="30" loading="lazy"><span>Figma</span></li><li class="tool-mark"><img src="assets/logos/adobeillustrator.svg" alt="" width="30" height="30" loading="lazy"><span>Adobe Suite</span></li><li class="tool-mark"><img src="assets/logos/affinitydesigner.svg" alt="" width="30" height="30" loading="lazy"><span>Affinity Suite</span></li><li class="tool-mark"><img src="assets/logos/sketch.svg" alt="" width="30" height="30" loading="lazy"><span>Sketch</span></li><li class="tool-mark"><img src="assets/logos/canva.svg" alt="" width="30" height="30" loading="lazy"><span>Canva</span></li><li class="tool-mark"><img src="assets/logos/spline.png" alt="" width="30" height="30" loading="lazy"><span>Spline</span></li><li class="tool-mark"><img src="assets/logos/webflow.svg" alt="" width="30" height="30" loading="lazy"><span>Webflow</span></li><li class="tool-mark"><img src="assets/logos/notion.svg" alt="" width="30" height="30" loading="lazy"><span>Notion</span></li><li class="tool-mark"><img src="assets/logos/slack.svg" alt="" width="30" height="30" loading="lazy"><span>Slack</span></li><li class="tool-mark"><img src="assets/logos/googledocs.svg" alt="" width="30" height="30" loading="lazy"><span>Google Suite</span></li><li class="tool-mark"><img src="assets/logos/apple.svg" alt="" width="30" height="30" loading="lazy"><span>Pages & Keynote</span></li><li class="tool-mark"><img src="assets/logos/microsoftword.svg" alt="" width="30" height="30" loading="lazy"><span>Microsoft Suite</span></li>
-    </ul></div></div>
+  <!-- ═════════ CLIENT STRIP ═════════ -->
+  <section class="clients" aria-label="Brands in this portfolio" data-marquee>
+    <div class="wrap clients-inner">
+      <p class="clients-label">Work for brands like</p>
+      <div class="marquee"><div class="marquee-track"><div class="marquee-group">
+        <button type="button" class="client" data-case="tke" aria-label="View TK Elevator project"><img src="assets/logos/client-tke.svg" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="caplugs" aria-label="View Caplugs project"><img src="assets/logos/client-caplugs.svg" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="frontier-coop" aria-label="View Frontier Co-op project"><img src="assets/logos/client-frontier-flat.png" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="hoveround" aria-label="View Hoveround Mobility Solutions project"><img src="assets/logos/client-hoveround-flat.png" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="feat" aria-label="View Feat Clothing project"><img src="assets/logos/client-feat.png" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="12thtribe" aria-label="View 12th Tribe project"><img src="assets/logos/client-12thtribe.png" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="brümate" aria-label="View BrüMate project"><img src="assets/logos/client-brumate.svg" alt="" loading="lazy"></button>
+        <button type="button" class="client" data-case="smithey" aria-label="View Smithey Ironware project"><img src="assets/logos/client-smithey.svg" alt="" loading="lazy"></button>
+      </div></div></div>
+    </div>
   </section>
 
-  <section class="contact" id="contact"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="contact-inner">
-      <div class="contact-top reveal-fade">
-        <span class="section-label">Say Hello</span>
+  <!-- ═════════ THE STORY ═════════ -->
+  <div id="work">
+    <section class="band band-paper" data-reveal>
+      <div class="wrap story-intro">
+        <i class="rule"></i>
+        <h2 class="h-xl">A logo. A storefront. An email. The same brand speaking.</h2>
+        <p class="lede">Branding is the throughline in everything I make. Here is how one brand travels through my hands, in three steps.</p>
       </div>
-      <h2 class="contact-headline reveal-split">
-        Open to full-time<br>&amp; remote roles<em>.</em>
-      </h2>
-      <p class="contact-sub reveal-fade" style="--delay:0.2s">
-        Mid to senior level — UI/UX, Branding &amp; Growth Marketing.<br>
-        Medellín, Colombia. EST/CST-aligned. No visa or sponsorship required.
-      </p>
-      <div class="contact-cta reveal-fade" style="--delay:0.35s">
-        <a href="mailto:felix@alineabrands.net" class="btn-contact magnetic">
-          <span class="btn-contact-text">felix@alineabrands.net</span>
-          <span class="btn-contact-arrow"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span>
-        </a>
+    </section>
+
+    <section class="band band-pine chapter" data-reveal aria-labelledby="ch1">
+      <div class="wrap chapter-grid">
+        <div class="chapter-copy">
+          <p class="step"><b>1</b>Give it a voice</p>
+          <h2 class="h-xl" id="ch1">It starts with identity.</h2>
+          <p class="body">A brand has to feel like itself wherever it appears. For El Paraíso, that meant taking an identity from the logo to packaging and retail interiors.</p>
+          <div class="chapter-links">
+            <button type="button" class="btn btn-solid" data-case="paraiso"><span>Open El Paraíso</span><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></button>
+            <button type="button" class="link" data-browse="brand">All <span data-count="brand"></span> brand projects</button>
+          </div>
+        </div>
+        <div class="chapter-art">
+          <button type="button" class="feature" data-case="paraiso" aria-label="Open El Paraíso brand project">
+            <span class="frame"><span class="frame-shot"><img src="images/thumbs/paraiso-thumb.webp" data-fallback="images/paraiso-thumb.jpg" alt="El Paraíso brand identity and packaging" loading="lazy"></span></span>
+          </button>
+          <div class="minis" data-minis="massalino,casasantafe,pawty-animals,wolven"></div>
+        </div>
       </div>
-      <div class="socials reveal-fade" style="--delay:0.5s">
-        <a href="https://www.behance.net/alineabrands" target="_blank" rel="noopener" class="social-link">behance</a>
-        <span class="social-sep">/</span>
-        <a href="https://www.linkedin.com/in/felix-patete-38083385/" target="_blank" rel="noopener" class="social-link">linkedin</a>
+    </section>
+
+    <section class="band band-sage chapter is-flipped" data-reveal aria-labelledby="ch2">
+      <div class="wrap chapter-grid">
+        <div class="chapter-copy">
+          <p class="step"><b>2</b>Make it work</p>
+          <h2 class="h-xl" id="ch2">Then it meets real people.</h2>
+          <p class="body">Identity becomes an experience. For TK Elevator, I designed a two-click part-lookup flow for maintenance technicians, across category navigation and product detail pages.</p>
+          <div class="chapter-links">
+            <button type="button" class="btn btn-solid" data-case="tke"><span>Open TK Elevator</span><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></button>
+            <button type="button" class="link" data-browse="uiux">All <span data-count="uiux"></span> UX projects</button>
+          </div>
+        </div>
+        <div class="chapter-art">
+          <button type="button" class="feature" data-case="tke" aria-label="Open TK Elevator UX project">
+            <span class="frame frame-browser"><span class="chrome" aria-hidden="true"><i></i><i></i><i></i><b>tkelevator.com</b></span><span class="frame-shot" data-pan="auto"><img src="images/thumbs/tke-thumb.webp" data-fallback="images/tke-thumb.png" alt="TK Elevator storefront UX" loading="lazy"></span></span>
+          </button>
+          <div class="minis" data-minis="nueskes,briskheat,whitecap,siege"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-deep chapter" data-reveal aria-labelledby="ch3">
+      <div class="wrap chapter-grid">
+        <div class="chapter-copy">
+          <p class="step"><b>3</b>Keep it consistent</p>
+          <h2 class="h-xl" id="ch3">And stays recognizable.</h2>
+          <p class="body">A brand’s voice carries into the inbox, too. For Feat Clothing, I built a modular email system to support weekly drops without wearing down the brand’s aesthetic.</p>
+          <div class="chapter-links">
+            <button type="button" class="btn btn-solid" data-case="feat"><span>Open Feat Clothing</span><svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></button>
+            <button type="button" class="link" data-browse="growth">All <span data-count="growth"></span> email projects</button>
+          </div>
+        </div>
+        <div class="chapter-art">
+          <div class="phones" data-phones="feat,brümate,smithey"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═════════ EVERY PROJECT ═════════ -->
+  <section class="band band-paper" id="projects" data-reveal aria-labelledby="projectsTitle">
+    <div class="wrap">
+      <div class="index-head">
+        <i class="rule"></i>
+        <div>
+          <h2 class="h-xl" id="projectsTitle">Every project, in one place.</h2>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter projects">
+          <button type="button" class="filter" data-filter="featured" aria-pressed="true">Selected <sup></sup></button>
+          <button type="button" class="filter" data-filter="uiux" aria-pressed="false">UX and e-commerce <sup></sup></button>
+          <button type="button" class="filter" data-filter="brand" aria-pressed="false">Brand identity <sup></sup></button>
+          <button type="button" class="filter" data-filter="growth" aria-pressed="false">Email and growth <sup></sup></button>
+          <button type="button" class="filter" data-filter="all" aria-pressed="false">All <sup></sup></button>
+        </div>
+      </div>
+      <div class="grid" id="projectGrid" aria-live="polite"></div>
+      <noscript><p class="body">Enable JavaScript to browse the project collection, or <a class="link" href="https://www.behance.net/alineabrands">view the work on Behance</a>.</p></noscript>
+    </div>
+  </section>
+
+  <!-- ═════════ ABOUT ═════════ -->
+  <section class="band" id="about" data-reveal aria-labelledby="aboutTitle">
+    <div class="wrap">
+      <div class="about-grid">
+        <figure class="about-person">
+          <div class="portrait"><img src="images/thumbs/felix-portrait.webp" data-fallback="images/felix-portrait.jpg" alt="Portrait of Félix Patete" loading="lazy" width="1100" height="1100"></div>
+          <figcaption><span>Félix Patete</span><span>Medellín, Colombia</span></figcaption>
+        </figure>
+        <div class="about-copy">
+          <h2 class="h-lg" id="aboutTitle">From Maracaibo. Made for a wider world.</h2>
+          <p class="body">I started as a graphic designer in Maracaibo in 2014, doing branding, packaging and retail spaces. Then I moved into email design, and eventually into full UI/UX ownership for e-commerce. Today I design storefronts and design systems for US-based brands at Crimson Agility, while running <strong>Alinea</strong>, my own branding and web studio, on the side.</p>
+          <p class="body">I take on the projects where the interface has to carry a brand's voice, not just its function. A checkout that still feels like the brand. A spec-heavy B2B catalog a technician can actually navigate.</p>
+          <p><a class="link" href="https://alineabrands.net" target="_blank" rel="noopener">Visit Alinea Brands</a></p>
+        </div>
+      </div>
+
+      <ol class="path" id="path" aria-label="Career path">
+        <li><span>2014</span><b>Graphic design</b><p>Branding, packaging and retail spaces in Maracaibo, Venezuela.</p></li>
+        <li><span>Next</span><b>Email design</b><p>Campaigns and modular email systems for DTC brands.</p></li>
+        <li><span>Then</span><b>E-commerce UX</b><p>Full UI/UX ownership on Adobe Commerce, Shopify, BigCommerce and Shopware.</p></li>
+        <li><span>Now</span><b>Crimson Agility and Alinea</b><p>Storefronts and design systems for US brands, plus my own studio.</p></li>
+      </ol>
+
+      <dl class="stats">
+        <div><dt data-count-to="13">13</dt><dd>years in design, across UX, brand and email</dd></div>
+        <div><dt data-count-to="7">7</dt><dd>years owning e-commerce UX</dd></div>
+        <div><dt data-count-to="50" id="statProjects">50</dt><dd>projects in this portfolio</dd></div>
+        <div><dt data-count-to="2">2</dt><dd>languages, Spanish and English</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═════════ HOW I HELP ═════════ -->
+  <section class="band band-paper" id="help" data-reveal aria-labelledby="helpTitle">
+    <div class="wrap">
+      <div class="help-grid">
+        <div class="help-head">
+          <h2 class="h-lg" id="helpTitle">Where I fit on a team.</h2>
+          <p class="body">From finding the direction to refining what ships. Open a stage to see what I take on.</p>
+        </div>
+        <div class="stages">
+          <details class="stage" name="stage" open>
+            <summary>Direction and strategy<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Find the right problem to solve.</b>Before the visual work, I help turn business goals and audience needs into a clear design direction. We look at what exists, where people get stuck, and what the experience needs to communicate.</p><ul><li>Brand and experience audits</li><li>Audience, goals, and priorities</li><li>Creative direction and visual references</li></ul></div>
+          </details>
+          <details class="stage" name="stage">
+            <summary>Brand identity<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Give the idea a recognizable voice.</b>Translate that direction into an identity that holds together across a logo, a package, a storefront, and a campaign. The goal is a system your team can keep using as the brand grows.</p><ul><li>Logo, typography, and color</li><li>Packaging and brand touchpoints</li><li>Guidelines and reusable assets</li></ul></div>
+          </details>
+          <details class="stage" name="stage">
+            <summary>Websites and e-commerce<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Make the next step feel natural.</b>Connect the brand’s character with the way people browse, compare, and buy. I design the paths and the details together, from navigation and product discovery to responsive pages and checkout.</p><ul><li>Information architecture and user flows</li><li>Storefront and product page design</li><li>Responsive layouts and interaction states</li></ul></div>
+          </details>
+          <details class="stage" name="stage">
+            <summary>Product ideas and prototypes<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Make an idea tangible enough to discuss.</b>Bring a new feature or a better way of doing something into focus. Flows, wireframes, and clickable prototypes help a team compare directions and resolve questions before development begins.</p><ul><li>Concept exploration and user journeys</li><li>Wireframes and interactive prototypes</li><li>Feature flows and edge cases</li></ul></div>
+          </details>
+          <details class="stage" name="stage">
+            <summary>Campaigns and growth<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Keep the brand recognizable as it moves.</b>Carry the same visual language into the moments that bring people back. Modular email and campaign assets give new launches and ongoing communications a consistent starting point.</p><ul><li>Email campaigns and lifecycle flows</li><li>Reusable email design systems</li><li>Launch, social, and promotional creative</li></ul></div>
+          </details>
+          <details class="stage" name="stage">
+            <summary>Systems and development support<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+            <div class="stage-body"><p><b>Help the design survive the handoff.</b>Work alongside developers to translate the intended experience into something consistent. Clear components, states, responsive rules, and design reviews make it easier to resolve the small decisions that shape the finished product.</p><ul><li>Component libraries and design systems</li><li>Specifications and responsive behavior</li><li>Developer collaboration and implementation review</li></ul></div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tools">
+        <p class="note">Tools on my desk</p>
+        <ul>
+          <li><img src="assets/logos/figma.svg" alt="">Figma</li>
+          <li><img src="assets/logos/adobeillustrator.svg" alt="">Adobe Suite</li>
+          <li><img src="assets/logos/affinitydesigner.svg" alt="">Affinity Suite</li>
+          <li><img src="assets/logos/sketch.svg" alt="">Sketch</li>
+          <li><img src="assets/logos/canva.svg" alt="">Canva</li>
+          <li><img src="assets/logos/spline.png" alt="">Spline</li>
+          <li><img src="assets/logos/webflow.svg" alt="">Webflow</li>
+          <li><img src="assets/logos/notion.svg" alt="">Notion</li>
+          <li><img src="assets/logos/slack.svg" alt="">Slack</li>
+          <li><img src="assets/logos/googledocs.svg" alt="">Google Suite</li>
+          <li><img src="assets/logos/apple.svg" alt="">Pages and Keynote</li>
+          <li><img src="assets/logos/microsoftword.svg" alt="">Microsoft Suite</li>
+        </ul>
       </div>
     </div>
+  </section>
 
-    <!-- Kinetic background text -->
-    <div class="contact-bg-text" aria-hidden="true">
-      <span>Let's work together</span>
+  <!-- ═════════ CONTACT ═════════ -->
+  <section class="band contact" id="contact" data-reveal aria-labelledby="contactTitle">
+    <div class="wash" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="contact-grid">
+        <h2 class="h-xl" id="contactTitle">Open to full-time and remote roles.</h2>
+        <div class="contact-side">
+          <p class="lede">Mid to senior level, in UI/UX, branding and growth marketing.</p>
+          <p class="body">Based in Medellín, Colombia, working EST and CST hours. No visa or sponsorship required for US-based teams.</p>
+        </div>
+      </div>
+      <a class="mail trace" href="mailto:felix@alineabrands.net">
+        <span>felix@alineabrands.net</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+      <div class="contact-row">
+        <div>
+          <button type="button" class="copy" id="copyEmail" data-email="felix@alineabrands.net">Copy email address</button>
+          <p class="clock" id="clock" aria-live="off"></p>
+        </div>
+        <div>
+          <a class="link" href="https://www.linkedin.com/in/felix-patete-38083385/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="link" href="https://www.behance.net/alineabrands" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<footer class="footer"><div class="portfolio-wash" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="footer-inner">
-    <a href="#top" class="nav-logo">Félix<span class="dot">.</span></a>
-    <nav class="footer-links">
-      <a href="#work">work</a>
-      <a href="#about">about</a>
-      <a href="#contact">say hello</a>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a href="#top" class="logo" aria-label="Back to top">Félix<i>.</i></a>
+    <nav aria-label="Footer navigation">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <button class="background-toggle" id="backgroundToggle" type="button" aria-pressed="false">Pause background</button>
-    <p class="footer-note">Designed &amp; built by Félix Patete. Medellín, Colombia — <span id="footerYear"></span>.</p>
+    <button class="bg-toggle" id="bgToggle" type="button" aria-pressed="false">Pause motion</button>
+    <p>Designed and built by Félix Patete. Medellín, Colombia, <span id="year"></span>.</p>
   </div>
 </footer>
 
-<!-- Modal -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true" inert>
+<!-- Case study dialog -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="csTitle" aria-hidden="true" inert>
   <div class="modal-backdrop" id="modalBackdrop"></div>
-  <div class="modal-inner">
-    <button class="modal-close" id="modalClose" aria-label="Close">
-      <span>close</span><span class="btn-icon" style="width:22px;height:22px;font-size:11px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="2"/></svg></span>
-    </button>
-    <div id="modalContent"></div>
+  <div class="modal-sheet">
+    <div class="modal-bar">
+      <p id="modalCrumb"></p>
+      <div>
+        <button type="button" class="icon-btn" id="modalPrev" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12H4M11 5L4 12L11 19" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button type="button" class="icon-btn" id="modalNext" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button type="button" class="icon-btn is-close" id="modalClose"><span>Close</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="2"/></svg></button>
+      </div>
+    </div>
+    <div class="modal-scroll" id="modalScroll"></div>
   </div>
 </div>
 

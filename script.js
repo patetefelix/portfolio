@@ -1,40 +1,17 @@
 /* ============================================================
-   FÉLIX PATETE — PORTFOLIO v2
-   Interaction layer: cursor, loader, parallax, 3D tilt,
-   magnetic hover, scroll-driven counters, split-text reveals,
-   marquee, tabs, modal.
+   FÉLIX PATETE — PORTFOLIO v3
+   1. Project data (edit PROJECTS to add, remove or reorder work)
+   2. Story previews, project index, case study dialog
+   3. Theme, motion, contact
    ============================================================ */
 
 "use strict";
 
-/* ─── UTILITY ─────────────────────────────────────────────── */
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+const $ = (sel, scope = document) => scope.querySelector(sel);
+const $$ = (sel, scope = document) => [...scope.querySelectorAll(sel)];
 const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
-const lerp = (a, b, t) => a + (b - a) * t;
 
 /* ─── DATA ────────────────────────────────────────────────── */
-
-const TAB_COPY = {
-  uiux: "High-conversion e-commerce storefronts and complex B2B catalogs, designed to scale — Adobe Commerce, Shopify, BigCommerce, and Shopware.",
-  brand: "0→1 identity systems — brand strategy, typography, packaging, and retail interiors built to last.",
-  growth: "Visual strategy for digital marketing — email flows, high-performing ad creative, and campaign assets built for DTC retention and conversion."
-};
-
-const CLIENTS = [
-  "TK Elevator", "Caplugs", "Frontier Co-op",
-  "PT Solutions", "AFG Distribution", "BrüMate", "Hoveround Mobility Solutions",
-  "Oklahoma Correctional Industries", "BriskHeat", "High Speed Gear", "Nueske's", "White Cap Foods",
-  "Professional's Choice", "Zip Corvette", "Feat Clothing", "Smithey Ironware", "12th Tribe",
-  "Accutech", "Emraw", "Icarus Precision", "Siege Suppressors", "Phoenix Medical Instruments", "Live Q Or Die",
-  "Crimson Agility", "Riddy", "Rugged Suppressors", "Garment Decor", "Denali Leather Goods",
-  "Bark 2 Earth", "Klassen Farm Products",
-  "Massalino Bakery", "Brüssel", "Oggi Pizza", "Arépale", "Disfruta", "Casa Santafé Hostel",
-  "Bon Pops", "Cuida tu Mente", "Biona Coffee", "Sunset Coffee", "Casa de Encantos Tea House",
-  "Phila Cup Coffee", "El Paraíso Heladería", "Pawty Animals", "Fryefit",
-  "Rasa", "Tiny Rituals", "Static Nails"
-];
-
 const PROJECTS = [
   {
     "id": "tke",
@@ -1415,472 +1392,367 @@ const PROJECTS = [
   }
 ];
 
-const imageURL = path => "https://patetefelix.github.io/portfolio/" + path.split("/").map(encodeURIComponent).join("/");
-
-const BRAND_GALLERY = PROJECTS.filter(p => p.tab === "brand");
-
-
-let previousFocus = null;
-/* ─── TABS + GRID RENDER ─────────────────────────────────── */
-let currentTab = "uiux";
-const tabsEl       = $("#tabs");
-const tabDescEl    = $("#tabDesc");
-const gridEl       = $("#projectGrid");
-const subgridHeadEl  = $("#subgridHead");
-const brandFeaturedEl= $("#brandGalleryFeatured");
-const brandGalleryEl = $("#brandGallery");
-
-function cardHTML(p) {
-  return `
-    <div class="card-media"><img src="${imageURL(p.thumbnail)}" alt="${p.name}" loading="lazy"></div>
-    ${p.platform ? `<div class="card-tags"><span class="card-tag">${p.platform}</span></div>` : ""}
-    <div class="card-body">
-      ${p.role ? `<p class="card-role">${p.role}</p>` : ""}
-      <h3 class="card-name">${p.name}</h3>
-      ${p.desc ? `<p class="card-desc">${p.desc}</p>` : ""}
-      <span class="card-cta">${!p.desc ? "view gallery" : "view case study"} <span class="btn-icon" style="width:18px;height:18px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></span>
-    </div>
-  `;
-}
-
-function liveLinkHTML(p) {
-  if (p.liveUrl) return `<a class="btn btn-ghost btn-sm cs-live-btn" href="${p.liveUrl}" target="_blank" rel="noopener"><span>view live</span><span class="btn-icon" style="width:20px;height:20px;font-size:10px;"><svg class="portfolio-arrow " viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/></svg></span></a>`;
-  if (p.comingSoon) return `<span class="btn btn-ghost btn-sm cs-live-btn is-disabled">coming soon</span>`;
-  return "";
-}
-
-function renderGrid(tab) {
-  gridEl.innerHTML = "";
-  gridEl.classList.toggle("is-dense", tab !== "uiux");
-
-  PROJECTS.filter(p => p.tab === tab).forEach(p => {
-    const card = document.createElement("button");
-    card.type = "button";
-    card.setAttribute("aria-label", `View ${p.name} ${!p.desc ? "gallery" : "case study"}`);
-    card.className = "card";
-    card.innerHTML = cardHTML(p);
-    card.addEventListener("click", () => openCase(p.id));
-    gridEl.appendChild(card);
-  });
-
-  observeCards($$(".card", gridEl));
-  initCardTilt();
-
-  const isBrand = tab === "brand";
-  subgridHeadEl.hidden = !isBrand;
-  brandFeaturedEl.innerHTML = "";
-  brandGalleryEl.innerHTML = "";
-
-  subgridHeadEl.hidden = true;
-
-  if (window.applyMagneticToNew) window.applyMagneticToNew();
-}
-
-tabsEl && tabsEl.querySelectorAll(".tab").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tab = btn.dataset.tab;
-    if (tab === currentTab) return;
-    currentTab = tab;
-    tabsEl.querySelectorAll(".tab").forEach(t => {
-      const active = t === btn;
-      t.classList.toggle("active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    tabDescEl.textContent = TAB_COPY[tab];
-    renderGrid(tab);
-  });
-});
-
-/* ─── MODAL ──────────────────────────────────────────────── */
-const modal        = $("#modal");
-const modalBackdrop= $("#modalBackdrop");
-const modalContent = $("#modalContent");
-const modalClose   = $("#modalClose");
-
-function openCase(id) {
-  const p = PROJECTS.find(x => x.id === id) || BRAND_GALLERY.find(x => x.id === id);
-  if (!p) return;
-  modal.classList.remove("lightbox");
-
-  if (p.type === "gallery") {
-    modal.classList.add("lightbox");
-    modalContent.innerHTML = `<img class="lightbox-img" src="${imageURL(p.image)}" alt="${p.name}"><div class="lightbox-caption"><b>${p.name}</b>${p.caption}</div>`;
-    openModal();
-    return;
-  }
-
-  modalContent.innerHTML = `
-    <div class="cs-body">
-      <header class="cs-header">
-        <div class="cs-head">
-          <div class="cs-head-item">client<b>${p.name}</b></div>
-          ${p.industry ? `<div class="cs-head-item">industry<b>${p.industry}</b></div>` : ""}
-          ${p.platform ? `<div class="cs-head-item">platform<b>${p.platform}</b></div>` : ""}
-          ${p.techStack ? `<div class="cs-head-item">tech stack<b>${p.techStack}</b></div>` : ""}
-          ${p.role ? `<div class="cs-head-item">role<b>${p.role}</b></div>` : ""}
-        </div>
-        ${p.desc ? `<p class="cs-desc">${p.desc}</p>` : ""}
-        ${liveLinkHTML(p)}
-      </header>
-      <div class="modal-gallery">
-        ${p.gallery.map(src => `<div class="gallery-item"><img src="${imageURL(src)}" alt="${p.name}" loading="lazy"></div>`).join("")}
-      </div>
-      <div class="cs-section" ${p.scope.length ? "" : "hidden"}>
-        <p class="cs-label">What I worked on</p>
-        <ul class="cs-scope-list">${p.scope.map(s => `<li>${s}</li>`).join("")}</ul>
-      </div>
-    </div>`;
-  openModal();
-}
-
-function openModal() {
-  previousFocus = document.activeElement;
-  modal.inert = false;
-  modal.classList.add("is-open");
-  document.querySelector("main").inert = true;
-  document.querySelector("header.nav").inert = true;
-  document.querySelector("footer").inert = true;
-  modalClose.focus();
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  modal.querySelector(".modal-inner").scrollTop = 0;
-}
-function closeModal() {
-  if (!modal.classList.contains("is-open")) return;
-  modal.classList.remove("is-open");
-  modal.inert = true;
-  document.querySelector("main").inert = false;
-  document.querySelector("header.nav").inert = false;
-  document.querySelector("footer").inert = false;
-  previousFocus?.focus();
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
-modalClose   && modalClose.addEventListener("click", closeModal);
-modalBackdrop && modalBackdrop.addEventListener("click", closeModal);
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-
-
-/* Motion is progressive enhancement; content remains readable without it. */
-const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+/* ─── HELPERS ─────────────────────────────────────────────── */
+const root = document.documentElement;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: .08 });
-function observeCards(cards) { cards.forEach(card => card.classList.add('is-in')); }
-function initCardTilt() {
-  // Keep the case-study reading surface stable; motion lives in its image.
-}
+const byId = id => PROJECTS.find(p => p.id === id);
+const LABELS = { uiux: 'UX and e-commerce', brand: 'Brand identity', growth: 'Email and growth' };
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H20M13 5L20 12L13 19" stroke="currentColor" stroke-width="2"/></svg>';
 
-// Preserve every relative filename; GitHub hosts the fallback asset.
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Relative paths, so the site works on GitHub Pages, a custom domain, or locally.
+const url = path => path.split('/').map(encodeURIComponent).join('/');
+// Lightweight card image: images/thumbs/<name>.webp, falling back to the original file.
+const thumb = p => 'images/thumbs/' + p.thumbnail.split('/').pop().replace(/\.[^.]+$/, '') + '.webp';
+const thumbImg = (p, alt = '') => `<img src="${url(thumb(p))}" data-fallback="${url(p.thumbnail)}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+const host = p => { try { return new URL(p.liveUrl).hostname.replace(/^www\./, ''); } catch { return ''; } };
+
+/* Missing thumbnail → original image → a quiet note. */
 document.addEventListener('error', event => {
   const img = event.target;
   if (!(img instanceof HTMLImageElement)) return;
-  const relative = img.getAttribute('src');
-  if (!img.dataset.remoteTried && relative?.startsWith('images/')) {
-    img.dataset.remoteTried = 'true';
-    img.src = 'https://patetefelix.github.io/portfolio/' + relative;
-  } else {
-    const note = document.createElement('span');
-    note.className = 'media-unavailable';
-    note.textContent = img.alt ? `${img.alt} — image unavailable` : 'Image unavailable';
-    img.replaceWith(note);
+  if (img.dataset.fallback && !img.dataset.fellBack) {
+    img.dataset.fellBack = '1';
+    img.src = img.dataset.fallback;
+    return;
   }
+  if (img.closest('.client, .tools')) { img.remove(); return; }
+  const note = document.createElement('span');
+  note.className = 'media-missing';
+  note.textContent = img.alt ? `${img.alt}: image unavailable` : 'Image unavailable';
+  img.replaceWith(note);
 }, true);
-// Catch early image failures that occurred before this script loaded.
-$$('img').forEach(img => {
-  if (img.complete && !img.naturalWidth) img.dispatchEvent(new Event('error'));
-});
+$$('img').forEach(img => { if (img.complete && !img.naturalWidth) img.dispatchEvent(new Event('error')); });
 
-const toggle = $('#themeToggle');
-try {
-  const saved = localStorage.getItem('felix-theme');
-  if (['light', 'dark'].includes(saved)) document.documentElement.dataset.theme = saved;
-} catch { /* Storage can be unavailable in private contexts. */ }
-function updateThemeLabel() {
-  toggle.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'light'));
+/* ─── LONG CAPTURES PAN INSIDE THEIR FRAME ────────────────── */
+function fitPan(img) {
+  const box = img.closest('[data-pan]');
+  if (!box || !img.naturalWidth) return;
+  const boxH = box.clientHeight, boxW = box.clientWidth;
+  if (!boxH || !boxW) return;
+  const fullH = boxW * img.naturalHeight / img.naturalWidth;
+  const travel = fullH - boxH;
+  const tall = travel > boxH * .35;
+  img.classList.toggle('is-tall', tall);
+  if (!tall) return;
+  box.style.setProperty('--pan', `${-travel}px`);
+  const speed = box.dataset.pan === 'auto' ? 26 : 150; // px per second
+  box.style.setProperty('--pan-t', `${Math.max(3, travel / speed).toFixed(1)}s`);
 }
-updateThemeLabel();
-toggle.addEventListener('click', () => {
-  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.dataset.theme = next;
-  updateThemeLabel();
-  try { localStorage.setItem('felix-theme', next); } catch { /* Optional preference. */ }
-});
-
-$('#footerYear').textContent = new Date().getFullYear();
-// One panel, three keyboard-operable categories.
-const tabButtons = $$('.tab');
-tabButtons.forEach((tab, i) => {
-  tab.id = `tab-${tab.dataset.tab}`;
-  tab.setAttribute('aria-controls', 'projectGrid');
-  tab.tabIndex = i === 0 ? 0 : -1;
-  tab.addEventListener('click', () => {
-    tabButtons.forEach(button => button.tabIndex = button === tab ? 0 : -1);
-    gridEl.setAttribute('aria-labelledby', tab.id);
-  });
-  tab.addEventListener('keydown', event => {
-    let next;
-    if (event.key === 'ArrowRight') next = (i + 1) % tabButtons.length;
-    if (event.key === 'ArrowLeft') next = (i + tabButtons.length - 1) % tabButtons.length;
-    if (event.key === 'Home') next = 0;
-    if (event.key === 'End') next = tabButtons.length - 1;
-    if (next === undefined) return;
-    event.preventDefault(); tabButtons[next].click(); tabButtons[next].focus();
-  });
-});
-gridEl.setAttribute('aria-labelledby', tabButtons[0].id);
-tabDescEl.textContent = TAB_COPY[currentTab];
-renderGrid(currentTab);
-$$('[data-case]').forEach(button => button.addEventListener('click', () => openCase(button.dataset.case)));
-
-modal.addEventListener('keydown', event => {
-  if (event.key !== 'Tab') return;
-  const focusable = $$('button, a[href], [tabindex="0"]', modal);
-  const first = focusable[0], last = focusable[focusable.length - 1];
-  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-});
-
-let scrollFrame = 0;
-function updateScroll() {
-  scrollFrame = 0;
-  const max = document.documentElement.scrollHeight - innerHeight;
-  document.documentElement.style.setProperty('--progress', max > 0 ? scrollY / max : 0);
-  $('#siteNav').classList.toggle('is-scrolled', scrollY > 60);
-  let current = '';
-  ['work', 'about', 'contact'].forEach(id => { if ($('#' + id).getBoundingClientRect().top <= 200) current = id; });
-  $$('.nav-links a').forEach(link => {
-    const active = link.dataset.nav === current;
-    link.classList.toggle('is-active', active);
-    if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+function watchPan(scope = document) {
+  $$('[data-pan] img', scope).forEach(img => {
+    if (img.complete) fitPan(img);
+    img.addEventListener('load', () => fitPan(img));
   });
 }
-addEventListener('scroll', () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll); }, { passive: true });
-addEventListener('resize', updateScroll);
-updateScroll();
+let panFrame = 0;
+addEventListener('resize', () => {
+  cancelAnimationFrame(panFrame);
+  panFrame = requestAnimationFrame(() => $$('[data-pan] img').forEach(fitPan));
+});
 
-const stage = $('.hero-stack-wrap');
-stage.addEventListener('pointermove', event => {
-  if (motion.matches || !finePointer.matches) return;
-  const rect = stage.getBoundingClientRect();
-  stage.style.setProperty('--stage-x', `${((event.clientX - rect.left) / rect.width - .5) * 9}deg`);
-  stage.style.setProperty('--stage-y', `${((event.clientY - rect.top) / rect.height - .5) * -7}deg`);
+/* ─── STORY: SMALL PREVIEWS + PHONES ──────────────────────── */
+$$('[data-minis]').forEach(row => {
+  row.innerHTML = row.dataset.minis.split(',').map(byId).filter(Boolean).map(p => `
+    <button type="button" class="mini" data-case="${esc(p.id)}" aria-label="Open ${esc(p.name)}">
+      <span class="mini-shot" data-pan="hover">${thumbImg(p)}</span>
+      <b>${esc(p.name)}</b>
+    </button>`).join('');
 });
-stage.addEventListener('pointerleave', () => {
-  stage.style.setProperty('--stage-x', '0deg'); stage.style.setProperty('--stage-y', '0deg');
+$$('[data-phones]').forEach(row => {
+  row.innerHTML = row.dataset.phones.split(',').map(byId).filter(Boolean).map(p => `
+    <button type="button" class="surface" data-case="${esc(p.id)}" aria-label="Open ${esc(p.name)}">
+      <span class="frame frame-phone trace"><span class="frame-shot" data-pan="auto">${thumbImg(p, p.name + ' email design')}</span></span>
+      <span class="surface-cap"><b>${esc(p.name)}</b><span>${esc((p.industry || '').split(' · ')[0])}</span></span>
+    </button>`).join('');
 });
-$$('.magnetic').forEach(button => {
-  button.addEventListener('pointermove', event => {
-    if (motion.matches || !finePointer.matches) return;
-    const rect = button.getBoundingClientRect();
-    button.style.transform = `translate(${(event.clientX - rect.left - rect.width / 2) * .09}px,${(event.clientY - rect.top - rect.height / 2) * .12}px)`;
-  });
-  button.addEventListener('pointerleave', () => button.style.transform = '');
+$$('[data-count]').forEach(el => { el.textContent = PROJECTS.filter(p => p.tab === el.dataset.count).length; });
+
+/* ─── PROJECT INDEX ───────────────────────────────────────── */
+const grid = $('#projectGrid');
+const filters = $$('.filter');
+const inFilter = (p, f) => f === 'all' || (f === 'featured' ? p.featured : p.tab === f);
+let currentFilter = 'featured';
+
+filters.forEach(btn => {
+  $('sup', btn).textContent = PROJECTS.filter(p => inFilter(p, btn.dataset.filter)).length;
+  btn.addEventListener('click', () => setFilter(btn.dataset.filter));
 });
-if (!motion.matches) {
-  document.documentElement.classList.add('js-motion');
-  $$('.reveal-fade,.reveal-count').forEach(el => revealObserver.observe(el));
-  $$('.hl-line').forEach((line, index) => line.animate(
-    [{ opacity: 0, transform: 'translateY(25px)', filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }],
-    { duration: 950, delay: 100 + index * 100, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }
-  ));
+
+function setFilter(filter, animate = true) {
+  currentFilter = filter;
+  filters.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+  const list = PROJECTS.filter(p => inFilter(p, filter));
+  grid.classList.toggle('is-swapping', animate && !reduceMotion.matches);
+  grid.innerHTML = list.map((p, i) => {
+    const line = (p.industry || '').split(' · ')[0] || LABELS[p.tab];
+    return `
+    <button type="button" class="card" data-case="${esc(p.id)}" style="--i:${Math.min(i, 16)}" aria-label="Open ${esc(p.name)}">
+      <span class="card-shot" data-pan="hover">${thumbImg(p)}<span class="card-open" aria-hidden="true">${ARROW}</span></span>
+      <span class="card-text"><b>${esc(p.name)}</b><span>${esc(line)}</span></span>
+    </button>`;
+  }).join('');
+  watchPan(grid);
 }
-motion.addEventListener('change', () => {
-  if (motion.matches) {
-    document.documentElement.classList.remove('js-motion');
-    document.getAnimations().forEach(animation => animation.cancel());
-    stage.style.transform = 'none';
-    $$('.magnetic').forEach(button => button.style.transform = '');
+setFilter(currentFilter, false);
+$('#statProjects').dataset.countTo = PROJECTS.length;
+$('#statProjects').textContent = PROJECTS.length;
+
+$$('[data-browse]').forEach(btn => btn.addEventListener('click', () => {
+  setFilter(btn.dataset.browse);
+  $('#projects').scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+}));
+
+/* ─── CASE STUDY DIALOG ───────────────────────────────────── */
+const modal = $('#modal');
+const modalScroll = $('#modalScroll');
+const modalCrumb = $('#modalCrumb');
+let openId = null;
+let lastFocus = null;
+
+// Previous / next walk through the same discipline as the open project.
+const siblings = p => PROJECTS.filter(x => x.tab === p.tab);
+const neighbour = (p, step) => { const s = siblings(p); return s[(s.indexOf(p) + step + s.length) % s.length]; };
+
+function renderCase(p) {
+  const meta = [['Industry', p.industry], ['Role', p.role], ['Platform', p.platform], ['Tech stack', p.techStack]].filter(m => m[1]);
+  const next = neighbour(p, 1);
+  const live = p.liveUrl
+    ? `<a class="btn btn-line" href="${esc(p.liveUrl)}" target="_blank" rel="noopener"><span>Visit ${esc(host(p) || 'live site')}</span>${ARROW.replace('<svg', '<svg class="arrow"')}</a>`
+    : (p.comingSoon ? '<span class="chip is-soon">Live site coming soon</span>' : '');
+  modalCrumb.textContent = `${LABELS[p.tab]}, ${siblings(p).indexOf(p) + 1} of ${siblings(p).length}`;
+  modalScroll.innerHTML = `
+    <div class="cs-top">
+      <div>
+        <h2 class="h-xl" id="csTitle">${esc(p.name)}</h2>
+        ${p.desc ? `<p class="lede">${esc(p.desc)}</p>` : ''}
+        ${live || (p.scope || []).length ? `<div class="cs-row">${live}${(p.scope || []).map(s => `<span class="chip">${esc(s)}</span>`).join('')}</div>` : ''}
+      </div>
+      ${meta.length ? `<dl class="cs-meta">${meta.map(m => `<div><dt>${m[0]}</dt><dd>${esc(m[1])}</dd></div>`).join('')}</dl>` : ''}
+    </div>
+    <div class="cs-gallery${p.tab === 'growth' ? ' is-columns' : ''}">
+      ${p.gallery.map((src, i) => `<img src="${url(src)}" alt="${esc(p.name)}, image ${i + 1}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">`).join('')}
+    </div>
+    <button type="button" class="cs-next" data-case="${esc(next.id)}">
+      <span><span>Next in ${esc(LABELS[p.tab].toLowerCase())}</span><b>${esc(next.name)}</b></span>${ARROW}
+    </button>`;
+  modalScroll.scrollTop = 0;
+}
+
+function openCase(id, push = true) {
+  const p = byId(id);
+  if (!p) return;
+  if (!openId) lastFocus = document.activeElement;
+  openId = id;
+  renderCase(p);
+  modal.inert = false;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  $('main').inert = true; $('#siteNav').inert = true; $('footer').inert = true;
+  document.body.style.overflow = 'hidden';
+  $('#modalClose').focus({ preventScroll: true });
+  if (push) history.replaceState(null, '', '#project=' + encodeURIComponent(id));
+}
+function closeCase() {
+  if (!openId) return;
+  openId = null;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.inert = true;
+  $('main').inert = false; $('#siteNav').inert = false; $('footer').inert = false;
+  document.body.style.overflow = '';
+  history.replaceState(null, '', location.pathname + location.search);
+  lastFocus?.focus?.({ preventScroll: true });
+}
+const stepCase = step => { if (openId) openCase(neighbour(byId(openId), step).id); };
+
+// One delegated listener opens any project, wherever its trigger lives.
+document.addEventListener('click', event => {
+  const trigger = event.target.closest('[data-case]');
+  if (trigger) openCase(trigger.dataset.case);
+});
+$('#modalClose').addEventListener('click', closeCase);
+$('#modalBackdrop').addEventListener('click', closeCase);
+$('#modalPrev').addEventListener('click', () => stepCase(-1));
+$('#modalNext').addEventListener('click', () => stepCase(1));
+document.addEventListener('keydown', event => {
+  if (!openId) return;
+  if (event.key === 'Escape') closeCase();
+  if (event.key === 'ArrowRight') stepCase(1);
+  if (event.key === 'ArrowLeft') stepCase(-1);
+  if (event.key === 'Tab') {
+    const focusable = $$('button, a[href]', modal).filter(el => el.offsetParent !== null);
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
 });
+// A shared link such as …/portfolio/#project=tke opens that case study directly.
+const linked = /^#project=(.+)$/.exec(location.hash);
+if (linked) openCase(decodeURIComponent(linked[1]), false);
 
-
-/* Background color drifts independently of pointer input. */
-const backgroundToggle = $('#backgroundToggle');
-let backgroundPaused = motion.matches;
-try { backgroundPaused ||= localStorage.getItem('felix-background-paused') === 'true'; } catch {}
-function syncBackground() {
-  const paused = backgroundPaused || motion.matches;
-  document.documentElement.classList.toggle('background-paused', paused);
-  backgroundToggle.textContent = paused ? 'Resume background' : 'Pause background';
-  backgroundToggle.setAttribute('aria-pressed', String(paused));
-  backgroundToggle.disabled = motion.matches;
-  if (motion.matches) backgroundToggle.textContent = 'Reduced motion';
-}
-backgroundToggle.addEventListener('click', () => {
-  backgroundPaused = !backgroundPaused;
-  try { localStorage.setItem('felix-background-paused', String(backgroundPaused)); } catch {}
-  syncBackground();
+/* ─── THEME ───────────────────────────────────────────────── */
+const themeToggle = $('#themeToggle');
+const syncTheme = () => {
+  themeToggle.setAttribute('aria-pressed', String(root.dataset.theme === 'light'));
+  $('meta[name="theme-color"]').content = root.dataset.theme === 'light' ? '#eee7d9' : '#102c26';
+};
+syncTheme();
+themeToggle.addEventListener('click', () => {
+  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  const apply = () => { root.dataset.theme = next; syncTheme(); };
+  const r = themeToggle.getBoundingClientRect();
+  root.style.setProperty('--tx', `${r.left + r.width / 2}px`);
+  root.style.setProperty('--ty', `${r.top + r.height / 2}px`);
+  if (document.startViewTransition && !reduceMotion.matches) document.startViewTransition(apply); else apply();
+  try { localStorage.setItem('felix-theme', next); } catch { /* optional */ }
 });
-motion.addEventListener('change', syncBackground);
-$$('.portfolio-wash i').forEach(layer => {
-  const random = (min, max) => min + Math.random() * (max - min);
-  layer.style.setProperty('--wash-x1', `${random(-20, 0).toFixed(1)}%`);
-  layer.style.setProperty('--wash-y1', `${random(-15, 0).toFixed(1)}%`);
-  layer.style.setProperty('--wash-x2', `${random(10, 30).toFixed(1)}%`);
-  layer.style.setProperty('--wash-y2', `${random(10, 30).toFixed(1)}%`);
-  layer.style.setProperty('--wash-time', `${random(60, 100).toFixed(1)}s`);
-  layer.style.setProperty('--wash-delay', `${-random(0, 80).toFixed(1)}s`);
-});
-document.addEventListener('visibilitychange', () => {
-  document.documentElement.classList.toggle('background-hidden', document.hidden);
-});
-syncBackground();
 
-/* Story and full collection are separate views of the same project records. */
-const viewButtons = $$('[data-view]');
-const storyPanel = $('#storyPanel');
-const completePanel = $('#completePanel');
-$('#fullProjectCount').textContent = `(${PROJECTS.length})`;
-function setCollectionView(view, focus=false) {
-  const complete = view === 'projects';
-  storyPanel.hidden = complete;
-  completePanel.hidden = !complete;
-  viewButtons.forEach(button => {
-    const active = button.dataset.view === view;
-    button.setAttribute('aria-selected', String(active));
-    button.tabIndex = active ? 0 : -1;
-    if (active && focus) button.focus({ preventScroll:true });
-  });
-  updateScroll();
-  if (!complete) requestAnimationFrame(updateGlanceButtons);
-}
-viewButtons.forEach((button,index) => {
-  button.addEventListener('click', () => setCollectionView(button.dataset.view));
-  button.addEventListener('keydown', event => {
-    let target;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') target = 1-index;
-    if (event.key === 'Home') target = 0;
-    if (event.key === 'End') target = 1;
-    if (target === undefined) return;
-    event.preventDefault();
-    setCollectionView(viewButtons[target].dataset.view,true);
-  });
-});
-function browseProjects(category) {
-  setCollectionView('projects',true);
-  if(category) $(`.tab[data-tab="${category}"]`).click();
-  $('#work').scrollIntoView({ behavior:motion.matches?'auto':'smooth', block:'start' });
-}
-$$('[data-browse-category]').forEach(button => button.addEventListener('click', () => browseProjects(button.dataset.browseCategory)));
-$$('[data-show-projects]').forEach(button => button.addEventListener('click', () => browseProjects()));
+/* ─── MOTION ──────────────────────────────────────────────── */
+// The hero's single load sequence.
+requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('is-loaded')));
+watchPan();
 
-const categoryLabels = { uiux:'UI/UX & E-Commerce', brand:'Branding', growth:'Growth Marketing' };
-const glanceRail = $('#glanceRail');
-PROJECTS.forEach(project => {
-  const button = document.createElement('button');
-  button.type = 'button'; button.className = 'glance-card';
-  button.setAttribute('aria-label',`View ${project.name}, ${categoryLabels[project.tab]}`);
-  const img = document.createElement('img');
-  img.src = imageURL(project.thumbnail); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-  const name = document.createElement('span'); name.textContent = project.name;
-  const category = document.createElement('small'); category.textContent = categoryLabels[project.tab];
-  button.append(img,name,category);
-  button.addEventListener('click',() => openCase(project.id));
-  glanceRail.appendChild(button);
-});
-function updateGlanceButtons() {
-  $('#glancePrevious').disabled = glanceRail.scrollLeft < 3;
-  $('#glanceNext').disabled = glanceRail.scrollLeft + glanceRail.clientWidth >= glanceRail.scrollWidth - 3;
-}
-$('#glancePrevious').addEventListener('click',() => glanceRail.scrollBy({left:-glanceRail.clientWidth*.8,behavior:motion.matches?'auto':'smooth'}));
-$('#glanceNext').addEventListener('click',() => glanceRail.scrollBy({left:glanceRail.clientWidth*.8,behavior:motion.matches?'auto':'smooth'}));
-glanceRail.addEventListener('scroll',updateGlanceButtons,{passive:true});
-addEventListener('resize',updateGlanceButtons);
-updateGlanceButtons();
-// Correct dimensions when returning from the hidden complete-project view.
-viewButtons[0].addEventListener('click',updateGlanceButtons);
-
-const openingProjects = ['paraiso','tke','feat'];
-const deckProjects = [...openingProjects.map(id => PROJECTS.find(project => project.id === id)), ...PROJECTS.filter(project => !openingProjects.includes(project.id))];
-let deckIndex = 0;
-const deck = $('#heroDeck');
-function renderDeck() {
-  deck.replaceChildren();
-  [1,2,0].forEach(offset => {
-    const project = deckProjects[(deckIndex+offset)%deckProjects.length];
-    const button = document.createElement('button');
-    button.type='button';button.className='deck-card';button.setAttribute('aria-label',`Open ${project.name}`);
-    const img=document.createElement('img');img.src=imageURL(project.thumbnail);img.alt=project.name;img.decoding='async';
-    const caption=document.createElement('span');caption.className='deck-card-caption';
-    const name=document.createElement('strong');name.textContent=project.name;
-    const discipline=document.createElement('small');discipline.textContent=categoryLabels[project.tab];
-    caption.append(name,discipline);button.append(img,caption);
-    button.addEventListener('click',() => openCase(project.id));deck.appendChild(button);
-  });
-  $('#deckCaption').textContent=`${String(deckIndex+1).padStart(2,'0')} / ${PROJECTS.length} — ${deckProjects[deckIndex].name}`;
-}
-$('#deckPrevious').addEventListener('click',()=>{deckIndex=(deckIndex-1+PROJECTS.length)%PROJECTS.length;renderDeck();});
-$('#deckNext').addEventListener('click',()=>{deckIndex=(deckIndex+1)%PROJECTS.length;renderDeck();});
-renderDeck();
-
-
-// A quiet sense of depth; no scroll interception or automatic project rotation.
-let collageFrame = 0;
-deck.addEventListener('pointermove', event => {
-  if (motion.matches || !finePointer.matches) return;
-  if (collageFrame) cancelAnimationFrame(collageFrame);
-  const rect = deck.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width - .5;
-  const y = (event.clientY - rect.top) / rect.height - .5;
-  collageFrame = requestAnimationFrame(() => {
-    deck.style.setProperty('--collage-x', `${x * 10}px`);
-    deck.style.setProperty('--collage-y', `${y * 8}px`);
-    collageFrame = 0;
-  });
-});
-function resetCollage() {
-  if (collageFrame) cancelAnimationFrame(collageFrame);
-  collageFrame = 0;
-  deck.style.removeProperty('--collage-x');
-  deck.style.removeProperty('--collage-y');
-}
-deck.addEventListener('pointerleave', resetCollage);
-motion.addEventListener('change', resetCollage);
-
-// Small moving indexes, with explicit pause, keyboard access and reduced motion.
-$$('[data-marquee]').forEach(section => {
-  const window = section.querySelector('.marquee-window');
-  const track = section.querySelector('.marquee-track');
-  const group = section.querySelector('.marquee-group');
-  const control = section.querySelector('[data-marquee-toggle]');
-  const label = section.id === 'clients' ? 'logos' : 'tools';
-  const clone = group.cloneNode(true);
-  clone.setAttribute('aria-hidden', 'true');
-  clone.querySelectorAll('button').forEach(button => {
-    button.tabIndex = -1;
-    button.addEventListener('pointerdown', event => event.preventDefault());
-    button.addEventListener('click', () => openCase(button.dataset.case));
-  });
-  track.appendChild(clone);
-  section.classList.add('is-ready');
-  const resize = () => section.style.setProperty('--marquee-width', `${window.clientWidth}px`);
-  new ResizeObserver(resize).observe(window);
-  resize();
-  let paused = false;
-  const sync = () => {
-    section.classList.toggle('is-paused', paused);
-    control.hidden = motion.matches;
-    control.textContent = `${paused ? 'Resume' : 'Pause'} ${label}`;
-    control.setAttribute('aria-pressed', String(paused));
+// Sections draw their rule and count their numbers once, on arrival.
+function countUp(el) {
+  const target = Number(el.dataset.countTo);
+  if (reduceMotion.matches || !target) return;
+  const start = performance.now(), duration = 1100;
+  const tick = now => {
+    const t = Math.min(1, (now - start) / duration);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+    if (t < 1) requestAnimationFrame(tick);
   };
-  control.addEventListener('click', () => { paused = !paused; sync(); });
-  motion.addEventListener('change', sync);
-  group.addEventListener('focusin', event => {
-    requestAnimationFrame(() => {
-      const item = event.target.getBoundingClientRect();
-      const bounds = window.getBoundingClientRect();
-      window.scrollLeft += item.left - bounds.left - (bounds.width - item.width) / 2;
-    });
+  requestAnimationFrame(tick);
+}
+const arrive = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (!entry.isIntersecting) return;
+  entry.target.classList.add('in');
+  if (entry.target.matches('.stats')) $$('[data-count-to]', entry.target).forEach(countUp);
+  arrive.unobserve(entry.target);
+}), { threshold: .2 });
+$$('[data-reveal], .stats').forEach(el => arrive.observe(el));
+
+// Scroll: progress bar, nav state, career line.
+const nav = $('#siteNav');
+const path = $('#path');
+const navLinks = $$('.nav-links a');
+let lastY = scrollY, frame = 0;
+function onScroll() {
+  frame = 0;
+  const y = scrollY;
+  const max = root.scrollHeight - innerHeight;
+  root.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
+  nav.classList.toggle('is-away', y > 600 && y > lastY + 4 && !nav.contains(document.activeElement));
+  if (y < lastY - 4) nav.classList.remove('is-away');
+  lastY = y;
+
+  let current = '';
+  ['work', 'projects', 'about', 'contact'].forEach(id => { if ($('#' + id).getBoundingClientRect().top <= innerHeight * .4) current = id; });
+  navLinks.forEach(link => link.dataset.nav === current ? link.setAttribute('aria-current', 'true') : link.removeAttribute('aria-current'));
+
+  const r = path.getBoundingClientRect();
+  const p = reduceMotion.matches ? 1 : clamp((innerHeight * .85 - r.top) / (innerHeight * .5), 0, 1);
+  path.style.setProperty('--p', p.toFixed(3));
+  const steps = $$('li', path);
+  steps.forEach((li, i) => li.classList.toggle('is-on', p >= (i + .02) / steps.length));
+}
+addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(onScroll); }, { passive: true });
+addEventListener('resize', onScroll);
+onScroll();
+
+// Primary buttons lean slightly toward the pointer.
+$$('.magnetic').forEach(el => {
+  el.addEventListener('pointermove', event => {
+    if (reduceMotion.matches || !finePointer.matches) return;
+    const r = el.getBoundingClientRect();
+    el.style.transform = `translate(${(event.clientX - r.left - r.width / 2) * .12}px, ${(event.clientY - r.top - r.height / 2) * .18}px)`;
   });
-  section.addEventListener('focusout', () => {
-    requestAnimationFrame(() => { if (!section.contains(document.activeElement)) window.scrollLeft = 0; });
-  });
-  sync();
+  el.addEventListener('pointerleave', () => { el.style.transform = ''; });
 });
+
+// Client strip: duplicate the group so the loop is seamless.
+$$('[data-marquee]').forEach(section => {
+  const track = $('.marquee-track', section), group = $('.marquee-group', section);
+  const fill = () => {
+    $$('.marquee-group[aria-hidden]', track).forEach(c => c.remove());
+    const copies = Math.max(1, Math.ceil(section.clientWidth / Math.max(1, group.offsetWidth)));
+    // An even number of groups keeps the -50% loop seamless.
+    const total = (copies + 1) % 2 ? copies + 2 : copies + 1;
+    for (let i = 1; i < total; i++) {
+      const clone = group.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      $$('button', clone).forEach(b => { b.tabIndex = -1; });
+      track.appendChild(clone);
+    }
+  };
+  fill();
+  addEventListener('resize', fill);
+  section.classList.add('is-ready');
+});
+
+// Each background wash drifts on its own path.
+$$('.wash i').forEach(layer => {
+  const rand = (a, b) => (a + Math.random() * (b - a)).toFixed(1);
+  layer.style.setProperty('--x1', rand(-18, 0) + '%'); layer.style.setProperty('--y1', rand(-12, 0) + '%');
+  layer.style.setProperty('--x2', rand(8, 26) + '%'); layer.style.setProperty('--y2', rand(8, 24) + '%');
+  layer.style.setProperty('--t', rand(55, 95) + 's'); layer.style.setProperty('--d', '-' + rand(0, 60) + 's');
+});
+document.addEventListener('visibilitychange', () => root.classList.toggle('tab-hidden', document.hidden));
+
+// One switch pauses every ambient animation.
+const bgToggle = $('#bgToggle');
+let paused = false;
+try { paused = localStorage.getItem('felix-motion-paused') === 'true'; } catch { /* optional */ }
+function syncMotion() {
+  const off = paused || reduceMotion.matches;
+  root.classList.toggle('bg-paused', off);
+  bgToggle.textContent = reduceMotion.matches ? 'Reduced motion is on' : (paused ? 'Resume motion' : 'Pause motion');
+  bgToggle.setAttribute('aria-pressed', String(off));
+  bgToggle.disabled = reduceMotion.matches;
+}
+bgToggle.addEventListener('click', () => {
+  paused = !paused;
+  try { localStorage.setItem('felix-motion-paused', String(paused)); } catch { /* optional */ }
+  syncMotion();
+});
+reduceMotion.addEventListener('change', () => { syncMotion(); onScroll(); });
+syncMotion();
+
+/* ─── CONTACT ─────────────────────────────────────────────── */
+const copyBtn = $('#copyEmail');
+copyBtn.addEventListener('click', async () => {
+  const label = copyBtn.textContent;
+  try {
+    await navigator.clipboard.writeText(copyBtn.dataset.email);
+    copyBtn.textContent = 'Email address copied';
+    copyBtn.classList.add('is-done');
+  } catch {
+    copyBtn.textContent = copyBtn.dataset.email;
+  }
+  setTimeout(() => { copyBtn.textContent = label; copyBtn.classList.remove('is-done'); }, 2200);
+});
+
+// Local time in Medellín, and how it lines up with New York right now.
+const clock = $('#clock');
+function hourIn(zone, date) {
+  const parts = new Intl.DateTimeFormat('en-US', { timeZone: zone, hour12: false, weekday: 'short', hour: 'numeric', minute: 'numeric' }).formatToParts(date);
+  const get = type => parts.find(x => x.type === type).value;
+  return { day: get('weekday'), minutes: (Number(get('hour')) % 24) * 60 + Number(get('minute')) };
+}
+function tick() {
+  try {
+    const now = new Date();
+    const time = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Bogota', hour: 'numeric', minute: '2-digit' }).format(now);
+    const here = hourIn('America/Bogota', now), ny = hourIn('America/New_York', now);
+    let diff = Math.round((ny.minutes - here.minutes) / 60);
+    if (diff > 12) diff -= 24; if (diff < -12) diff += 24;
+    const relation = diff === 0 ? 'the same time as New York' : `${Math.abs(diff)} hour${Math.abs(diff) > 1 ? 's' : ''} ${diff > 0 ? 'behind' : 'ahead of'} New York`;
+    clock.innerHTML = `<b>${time}</b> in Medellín, ${relation}`;
+  } catch { clock.hidden = true; }
+}
+tick();
+setInterval(tick, 30000);
+
+$('#year').textContent = new Date().getFullYear();
